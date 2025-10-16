@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="BatikAR - Aplikasi pembelajaran motif Batik Jetis Sidoarjo menggunakan teknologi Augmented Reality dan Artificial Intelligence. Scan, telusuri, dan pelajari secara interaktif.">
+    <meta name="keywords"
+        content="BatikAR, Batik Jetis, Sidoarjo, Augmented Reality, AR, pembelajaran batik, motif batik">
+    <meta name="author" content="Dwi Mulyo">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yourdomain.com/">
+    <meta property="og:title" content="BatikAR — Belajar Motif Batik Jetis dengan AR">
+    <meta property="og:description"
+        content="Scan, telusuri, dan pelajari motif Batik Jetis Sidoarjo secara interaktif.">
+    <meta property="og:image" content="https://yourdomain.com/assets/hero-banner.jpg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://yourdomain.com/">
+    <meta property="twitter:title" content="BatikAR — Belajar Motif Batik Jetis dengan AR">
+    <meta property="twitter:description"
+        content="Scan, telusuri, dan pelajari motif Batik Jetis Sidoarjo secara interaktif.">
+    <meta property="twitter:image" content="https://yourdomain.com/assets/hero-banner.jpg">
+
+    <title>BatikAR — Belajar Motif Batik Jetis dengan AR</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/logo.png">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav id="navbar" class="navbar" role="navigation" aria-label="Main navigation">
+        <div class="container">
+            <div class="nav-wrapper">
+                <a href="#home" class="logo" aria-label="BatikAR Home">
+                    <img src="assets/logo.png" alt="BatikAR Logo" width="50" height="50">
+                    <span class="logo-text">BatikAR</span>
+                </a>
+
+                <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+
+                <ul class="nav-menu">
+                    <li><a href="#home" class="nav-link active" aria-current="page">Home</a></li>
+                    <li><a href="#cara" class="nav-link">Cara Pakai</a></li>
+                    <li><a href="#galeri" class="nav-link">Galeri</a></li>
+                    <li><a href="#kontak" class="nav-link">Kontak</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero" role="banner">
+        <div class="hero-background"></div>
+        <div class="hero-overlay"></div>
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title animate-fade-in">BatikAR — Belajar Motif Batik Jetis dengan AR</h1>
+                <p class="hero-subtitle animate-fade-in">Scan, telusuri, dan pelajari motif Batik Jetis Sidoarjo secara
+                    interaktif menggunakan teknologi Augmented Reality dan Artificial Intelligence.</p>
+
+                <div class="download-banner animate-fade-in">
+                    <a href="#download" class="btn btn-primary btn-large">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="7 10 12 15 17 10"></polyline>
+                            <line x1="12" y1="15" x2="12" y2="3"></line>
+                        </svg>
+                        Download Android (APK)
+                    </a>
+                    <button class="btn btn-secondary btn-large" disabled>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path
+                                d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z">
+                            </path>
+                        </svg>
+                        App Store (Coming Soon)
+                    </button>
+                </div>
+
+                <div class="institution-badge animate-fade-in">
+                    <img src="assets/institution-logo-placeholder.png" alt="Logo Institusi Pendukung" width="60"
+                        height="60">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cara Penggunaan Section -->
+    <section id="cara" class="section-cara">
+        <div class="container">
+            <h2 class="section-title">Cara Menggunakan</h2>
+            <div class="steps-grid">
+                <!-- Step 1 -->
+                <div class="step-card">
+                    <div class="step-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="7 10 12 15 17 10"></polyline>
+                            <line x1="12" y1="15" x2="12" y2="3"></line>
+                        </svg>
+                    </div>
+                    <h3 class="step-title">Unduh & Buka Aplikasi</h3>
+                    <p class="step-description">Download aplikasi BatikAR dari link yang tersedia dan buka di perangkat
+                        Android Anda.</p>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="step-card">
+                    <div class="step-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="3" width="7" height="7"></rect>
+                            <rect x="14" y="3" width="7" height="7"></rect>
+                            <rect x="14" y="14" width="7" height="7"></rect>
+                            <rect x="3" y="14" width="7" height="7"></rect>
+                        </svg>
+                    </div>
+                    <h3 class="step-title">Pilih Motif</h3>
+                    <p class="step-description">Jelajahi dan pilih motif Batik Jetis yang ingin Anda pelajari dari
+                        koleksi yang tersedia.</p>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="step-card">
+                    <div class="step-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z">
+                            </path>
+                            <circle cx="12" cy="13" r="4"></circle>
+                        </svg>
+                    </div>
+                    <h3 class="step-title">Pindai Motif (AR)</h3>
+                    <p class="step-description">Gunakan kamera untuk memindai motif batik dan lihat informasi interaktif
+                        melalui AR.</p>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="step-card">
+                    <div class="step-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                            <polyline points="14 2 14 8 20 8"></polyline>
+                            <line x1="16" y1="13" x2="8" y2="13"></line>
+                            <line x1="16" y1="17" x2="8" y2="17"></line>
+                            <polyline points="10 9 9 9 8 9"></polyline>
+                        </svg>
+                    </div>
+                    <h3 class="step-title">Ikuti Kuis & Lihat Info</h3>
+                    <p class="step-description">Uji pengetahuan Anda dengan kuis interaktif dan pelajari sejarah serta
+                        makna motif batik.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Galeri Section -->
+    <section id="galeri" class="section-galeri">
+        <div class="container">
+            <h2 class="section-title">Galeri Batik yang Dapat Dipindai</h2>
+            <div class="gallery-grid">
+                <!-- Gallery Item 1 -->
+                <div class="gallery-item">
+                    <img src="assets/batik/jetis-sekar-jagad.jpg"
+                        alt="Motif Batik Jetis Sekar Jagad dengan pola geometris dan warna-warni khas" width="400"
+                        height="300" loading="lazy">
+                    <div class="gallery-label">Jetis – Sekar Jagad</div>
+                </div>
+
+                <!-- Gallery Item 2 -->
+                <div class="gallery-item">
+                    <img src="assets/batik/jetis-panji.jpg"
+                        alt="Motif Batik Jetis Panji dengan ornamen tradisional Jawa" width="400" height="300"
+                        loading="lazy">
+                    <div class="gallery-label">Jetis – Panji</div>
+                </div>
+
+                <!-- Gallery Item 3 -->
+                <div class="gallery-item">
+                    <img src="assets/batik/jetis-sido-mukti.jpg"
+                        alt="Motif Batik Jetis Sido Mukti melambangkan kesejahteraan dan kemakmuran" width="400"
+                        height="300" loading="lazy">
+                    <div class="gallery-label">Jetis – Sido Mukti</div>
+                </div>
+
+                <!-- Gallery Item 4 -->
+                <div class="gallery-item">
+                    <img src="assets/batik/jetis-truntum.jpg"
+                        alt="Motif Batik Jetis Truntum dengan makna cinta yang tumbuh kembali" width="400" height="300"
+                        loading="lazy">
+                    <div class="gallery-label">Jetis – Truntum</div>
+                </div>
+
+                <!-- Gallery Item 5 -->
+                <div class="gallery-item">
+                    <img src="assets/batik/jetis-kawung.jpg"
+                        alt="Motif Batik Jetis Kawung dengan pola lingkaran simetris" width="400" height="300"
+                        loading="lazy">
+                    <div class="gallery-label">Jetis – Kawung</div>
+                </div>
+
+                <!-- Gallery Item 6 -->
+                <div class="gallery-item">
+                    <img src="assets/batik/jetis-mega-mendung.jpg"
+                        alt="Motif Batik Jetis Mega Mendung dengan awan berlapis" width="400" height="300"
+                        loading="lazy">
+                    <div class="gallery-label">Jetis – Mega Mendung</div>
+                </div>
+
+                <!-- Gallery Item 7 -->
+                <div class="gallery-item">
+                    <img src="assets/batik/jetis-semen-rama.jpg"
+                        alt="Motif Batik Jetis Semen Rama dengan ornamen flora dan fauna" width="400" height="300"
+                        loading="lazy">
+                    <div class="gallery-label">Jetis – Semen Rama</div>
+                </div>
+
+                <!-- Gallery Item 8 -->
+                <div class="gallery-item">
+                    <img src="assets/batik/jetis-gurda.jpg" alt="Motif Batik Jetis Gurda dengan simbol burung garuda"
+                        width="400" height="300" loading="lazy">
+                    <div class="gallery-label">Jetis – Gurda</div>
+                </div>
+
+                <!-- Gallery Item 9 -->
+                <div class="gallery-item">
+                    <img src="assets/batik/jetis-cemukiran.jpg" alt="Motif Batik Jetis Cemukiran dengan bentuk ceplok"
+                        width="400" height="300" loading="lazy">
+                    <div class="gallery-label">Jetis – Cemukiran</div>
+                </div>
+
+                <!-- Gallery Item 10 -->
+                <div class="gallery-item">
+                    <img src="assets/batik/jetis-udan-liris.jpg"
+                        alt="Motif Batik Jetis Udan Liris melambangkan hujan gerimis pembawa berkah" width="400"
+                        height="300" loading="lazy">
+                    <div class="gallery-label">Jetis – Udan Liris</div>
+                </div>
+
+                <!-- Gallery Item 11 -->
+                <div class="gallery-item">
+                    <img src="assets/batik/jetis-lung-lungan.jpg"
+                        alt="Motif Batik Jetis Lung-lungan dengan pola sulur daun" width="400" height="300"
+                        loading="lazy">
+                    <div class="gallery-label">Jetis – Lung-lungan</div>
+                </div>
+
+                <!-- Gallery Item 12 -->
+                <div class="gallery-item">
+                    <img src="assets/batik/jetis-nitik.jpg" alt="Motif Batik Jetis Nitik dengan titik-titik halus khas"
+                        width="400" height="300" loading="lazy">
+                    <div class="gallery-label">Jetis – Nitik</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Kontak / Unduh Section -->
+    <section id="kontak" class="section-kontak">
+        <div class="container">
+            <div class="kontak-content">
+                <h2 class="section-title">Siap Belajar Batik?</h2>
+                <p class="kontak-text">Download aplikasi BatikAR sekarang dan mulai petualangan Anda menjelajahi
+                    kekayaan motif Batik Jetis Sidoarjo dengan cara yang modern dan interaktif.</p>
+
+                <div class="download-buttons">
+                    <a href="#download" class="btn btn-primary btn-large">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="7 10 12 15 17 10"></polyline>
+                            <line x1="12" y1="15" x2="12" y2="3"></line>
+                        </svg>
+                        Download Android (APK)
+                    </a>
+                    <button class="btn btn-secondary btn-large" disabled>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path
+                                d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z">
+                            </path>
+                        </svg>
+                        App Store (Coming Soon)
+                    </button>
+                </div>
+
+                <div class="contact-links">
+                    <a href="mailto:dwimulyo@example.com" class="contact-link">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z">
+                            </path>
+                            <polyline points="22,6 12,13 2,6"></polyline>
+                        </svg>
+                        dwimulyo@example.com
+                    </a>
+                    <a href="https://github.com/dwimulyo/batikar" target="_blank" rel="noopener noreferrer"
+                        class="contact-link">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path
+                                d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+                            </path>
+                        </svg>
+                        GitHub Repository
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <p class="copyright">&copy; 2025 BatikAR. Dikembangkan oleh <strong>Dwi Mulyo</strong>.</p>
+                    <p class="credit">Dengan bimbingan: <strong>[Nama Pembimbing]</strong></p>
+                </div>
+
+                <div class="sponsor-logos">
+                    <p class="sponsor-title">Didukung oleh:</p>
+                    <div class="sponsor-grid">
+                        <img src="assets/sponsor-1-placeholder.png" alt="Logo Sponsor 1" width="80" height="40">
+                        <img src="assets/sponsor-2-placeholder.png" alt="Logo Sponsor 2" width="80" height="40">
+                        <img src="assets/sponsor-3-placeholder.png" alt="Logo Sponsor 3" width="80" height="40">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-hidden="true">
+        <button class="lightbox-close" aria-label="Close lightbox">&times;</button>
+        <button class="lightbox-prev" aria-label="Previous image">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+        </button>
+        <button class="lightbox-next" aria-label="Next image">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+        </button>
+        <div class="lightbox-content">
+            <img id="lightbox-image" src="" alt="">
+            <p id="lightbox-caption" class="lightbox-caption"></p>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+</body>
+
+</html>
