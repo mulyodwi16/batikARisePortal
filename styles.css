@@ -132,11 +132,19 @@ button {
 }
 
 .logo img {
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
 }
 
 .logo-text {
-    display: none;
+    display: inline;
+    margin-left: 0.5rem;
+    font-size: 1.2em;
+    font-weight: 700;
+    color: var(--color-white);
 }
 
 @media (min-width: 480px) {
