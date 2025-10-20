@@ -1,0 +1,42 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .hero-bg {
+    @apply bg-cover bg-center;
+    background-image: url('assets/hero-banner.png');
+    background-position: center right;
+  }
+
+  .gallery-item:hover img {
+    @apply scale-105;
+  }
+
+  .gallery-item img {
+    @apply transition-transform duration-300;
+  }
+
+  .lightbox {
+    @apply hidden;
+  }
+
+  .lightbox.active {
+    @apply flex;
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fade-in-up {
+    animation: fadeInUp 0.8s ease-out forwards;
+  }
+}
