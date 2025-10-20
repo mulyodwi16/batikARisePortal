@@ -5,15 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
-        content="batikARise - Aplikasi pembelajaran motif Batik   dengan Augmented Reality dan AI.">
-    <meta name="keywords" content="batikARise, Batik Jetis, Augmented Reality, AR, pembelajaran">
+        content="batikARise - Aplikasi pembelajaran motif Batik Indonesia dengan Augmented Reality dan AI.">
+    <meta name="keywords" content="batikARise, Batik Indonesia, Augmented Reality, AR, pembelajaran">
     <meta name="author" content="Dwi Mulyo">
-    <meta property="og:title" content="batikARise — Belajar Motif Batik Jetis dengan AR">
-    <meta property="og:description"
-        content="Scan, telusuri, dan pelajari motif Batik   secara interaktif.">
+    <meta property="og:title" content="batikARise — Belajar Motif Batik dengan AR">
+    <meta property="og:description" content="Scan, telusuri, dan pelajari motif Batik Indonesia secara interaktif.">
     <meta property="og:image" content="assets/hero-banner.png">
 
-    <title>batikARise — Belajar Motif Batik Jetis dengan AR</title>
+    <title>batikARise — Belajar Motif Batik dengan AR</title>
     <link rel="icon" type="image/png" href="assets/logo.png">
 
     <!-- Tailwind CSS CDN (Official) -->
@@ -238,6 +237,7 @@
                 opacity: 0;
                 transform: translateY(-10px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -259,39 +259,41 @@
 
 <body class="bg-batik-cream font-body text-batik-dark">
     <!-- Navigation -->
-    <nav id="navbar" class="fixed w-full top-0 z-50 transition-all duration-500 ease-in-out" style="background-color: transparent;">
+    <nav id="navbar" class="fixed w-full top-0 z-50 bg-batik-dark-brown shadow-lg">
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
                 <!-- Logo -->
-                <a href="#home" class="flex items-center gap-3 group">
-                    <div class="relative">
-                        <img src="assets/logo.png" alt="batikARise Logo" 
-                             class="w-14 h-14 rounded-full shadow-lg group-hover:shadow-batik-gold/50 transition-all duration-300 group-hover:scale-110">
-                        <div class="absolute inset-0 rounded-full bg-batik-gold opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-300"></div>
-                    </div>
-                    <div class="flex flex-col">
-                        <span class="text-white font-heading font-bold text-xl tracking-tight">batikARise</span>
-                        <span class="text-batik-gold text-xs font-medium hidden sm:inline">Batik Jetis AR</span>
-                    </div>
+                <a href="#home" class="flex items-center group">
+                    <img src="assets/logo.png" alt="batikARise Logo"
+                        class="w-14 h-14 transition-all duration-300 group-hover:scale-110">
                 </a>
 
                 <!-- Desktop Menu -->
                 <ul class="hidden md:flex items-center gap-2">
-                    <li><a href="#home" class="nav-link px-4 py-2 text-white font-medium rounded-lg hover:bg-white/10">Home</a></li>
-                    <li><a href="#cara" class="nav-link px-4 py-2 text-white font-medium rounded-lg hover:bg-white/10">Cara Pakai</a></li>
-                    <li><a href="#galeri" class="nav-link px-4 py-2 text-white font-medium rounded-lg hover:bg-white/10">Galeri</a></li>
-                    <li><a href="#kontak" class="nav-link px-4 py-2 text-white font-medium rounded-lg hover:bg-white/10">Kontak</a></li>
+                    <li><a href="#home"
+                            class="nav-link px-4 py-2 text-white font-medium rounded-lg hover:bg-white/10">Home</a></li>
+                    <li><a href="#cara"
+                            class="nav-link px-4 py-2 text-white font-medium rounded-lg hover:bg-white/10">Cara
+                            Pakai</a></li>
+                    <li><a href="#galeri"
+                            class="nav-link px-4 py-2 text-white font-medium rounded-lg hover:bg-white/10">Galeri</a>
+                    </li>
+                    <li><a href="#kontak"
+                            class="nav-link px-4 py-2 text-white font-medium rounded-lg hover:bg-white/10">Kontak</a>
+                    </li>
                     <li>
-                        <a href="#download" 
-                           class="ml-4 px-6 py-2.5 bg-gradient-to-r from-batik-gold to-yellow-600 text-batik-dark font-bold rounded-full hover:shadow-lg hover:shadow-batik-gold/50 transition-all duration-300 hover:scale-105">
+                        <a href="#download"
+                            class="ml-4 px-6 py-2.5 bg-gradient-to-r from-batik-gold to-yellow-600 text-batik-dark font-bold rounded-full hover:shadow-lg hover:shadow-batik-gold/50 transition-all duration-300 hover:scale-105">
                             Download
                         </a>
                     </li>
                 </ul>
 
                 <!-- Mobile Menu Button -->
-                <button id="menu-btn" class="md:hidden text-white p-2 rounded-lg hover:bg-white/10 transition-all duration-300">
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <button id="menu-btn"
+                    class="md:hidden text-white p-2 rounded-lg hover:bg-white/10 transition-all duration-300">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
                         <line x1="3" y1="12" x2="21" y2="12"></line>
                         <line x1="3" y1="6" x2="21" y2="6"></line>
                         <line x1="3" y1="18" x2="21" y2="18"></line>
@@ -307,8 +309,8 @@
                 <a href="#cara" class="block text-white font-medium">Cara Pakai</a>
                 <a href="#galeri" class="block text-white font-medium">Galeri</a>
                 <a href="#kontak" class="block text-white font-medium">Kontak</a>
-                <a href="#download" 
-                   class="block text-center mt-4 px-6 py-3 bg-gradient-to-r from-batik-gold to-yellow-600 text-batik-dark font-bold rounded-lg hover:shadow-lg transition-all duration-300">
+                <a href="#download"
+                    class="block text-center mt-4 px-6 py-3 bg-gradient-to-r from-batik-gold to-yellow-600 text-batik-dark font-bold rounded-lg hover:shadow-lg transition-all duration-300">
                     Download App
                 </a>
             </div>
@@ -322,11 +324,11 @@
             <div class="max-w-2xl">
                 <h1 class="font-heading font-bold text-4xl sm:text-5xl lg:text-6xl text-white mb-6 animate-fade-in-up"
                     data-aos="fade-up" data-aos-duration="1000">
-                    batikARise — Belajar Motif Batik Jetis dengan AR
+                    batikARise — Belajar Motif Batik dengan AR
                 </h1>
                 <p class="text-lg sm:text-xl text-batik-cream mb-8 leading-relaxed" data-aos="fade-up"
                     data-aos-delay="200" data-aos-duration="1000">
-                    Scan, telusuri, dan pelajari motif Batik   secara interaktif menggunakan teknologi
+                    Scan, telusuri, dan pelajari motif Batik Indonesia secara interaktif menggunakan teknologi
                     Augmented Reality dan Artificial Intelligence.
                 </p>
 
@@ -405,7 +407,8 @@
                         class="w-8 h-8 bg-batik-gold text-white rounded-full flex items-center justify-center mx-auto mb-4 font-bold">
                         2</div>
                     <h3 class="font-heading font-bold text-xl text-batik-dark-brown mb-3">Pilih Motif</h3>
-                    <p class="text-sm text-batik-dark leading-relaxed">Jelajahi dan pilih motif Batik Jetis dari koleksi
+                    <p class="text-sm text-batik-dark leading-relaxed">Jelajahi dan pilih motif Batik Indonesia dari
+                        koleksi
                         yang tersedia.</p>
                 </div>
 
@@ -464,55 +467,55 @@
                 <!-- Gallery Items -->
                 <div class="gallery-item rounded-2xl overflow-hidden shadow-xl cursor-pointer" onclick="openLightbox(0)"
                     data-aos="zoom-in" data-aos-delay="0" data-aos-duration="600">
-                    <img src="assets/batik/1_MotifLiris.jpg" alt="Motif Batik Jetis Udan Liris"
+                    <img src="assets/batik/1_MotifLiris.jpg" alt="Motif Batik Udan Liris"
                         class="w-full h-72 object-cover" loading="lazy">
                     <div class="gallery-overlay">
-                        <p class="font-heading font-bold text-lg text-white">Jetis – Udan Liris</p>
+                        <p class="font-heading font-bold text-lg text-white">Udan Liris</p>
                     </div>
                 </div>
 
                 <div class="gallery-item rounded-2xl overflow-hidden shadow-xl cursor-pointer" onclick="openLightbox(1)"
                     data-aos="zoom-in" data-aos-delay="100" data-aos-duration="600">
-                    <img src="assets/batik/2_MotifAlunAlunContong.jpg" alt="Motif Batik Jetis Alun-Alun Contong"
+                    <img src="assets/batik/2_MotifAlunAlunContong.jpg" alt="Motif Batik Alun-Alun Contong"
                         class="w-full h-72 object-cover" loading="lazy">
                     <div class="gallery-overlay">
-                        <p class="font-heading font-bold text-lg text-white">Jetis – Alun-Alun Contong</p>
+                        <p class="font-heading font-bold text-lg text-white">Alun-Alun Contong</p>
                     </div>
                 </div>
 
                 <div class="gallery-item rounded-2xl overflow-hidden shadow-xl cursor-pointer" onclick="openLightbox(2)"
                     data-aos="zoom-in" data-aos-delay="200" data-aos-duration="600">
-                    <img src="assets/batik/3_MotifBurungMerak.jpg" alt="Motif Batik Jetis Burung Merak"
+                    <img src="assets/batik/3_MotifBurungMerak.jpg" alt="Motif Batik Burung Merak"
                         class="w-full h-72 object-cover" loading="lazy">
                     <div class="gallery-overlay">
-                        <p class="font-heading font-bold text-lg text-white">Jetis – Burung Merak</p>
+                        <p class="font-heading font-bold text-lg text-white">Burung Merak</p>
                     </div>
                 </div>
 
                 <div class="gallery-item rounded-2xl overflow-hidden shadow-xl cursor-pointer" onclick="openLightbox(3)"
                     data-aos="zoom-in" data-aos-delay="0" data-aos-duration="600">
-                    <img src="assets/batik/4_MotifSekarJagad.jpg" alt="Motif Batik Jetis Sekar Jagad"
+                    <img src="assets/batik/4_MotifSekarJagad.jpg" alt="Motif Batik Sekar Jagad"
                         class="w-full h-72 object-cover" loading="lazy">
                     <div class="gallery-overlay">
-                        <p class="font-heading font-bold text-lg text-white">Jetis – Sekar Jagad</p>
+                        <p class="font-heading font-bold text-lg text-white">Sekar Jagad</p>
                     </div>
                 </div>
 
                 <div class="gallery-item rounded-2xl overflow-hidden shadow-xl cursor-pointer" onclick="openLightbox(4)"
                     data-aos="zoom-in" data-aos-delay="100" data-aos-duration="600">
-                    <img src="assets/batik/5_MotifParangJabon.jpg" alt="Motif Batik Jetis Parang Jabon"
+                    <img src="assets/batik/5_MotifParangJabon.jpg" alt="Motif Batik Parang Jabon"
                         class="w-full h-72 object-cover" loading="lazy">
                     <div class="gallery-overlay">
-                        <p class="font-heading font-bold text-lg text-white">Jetis – Parang Jabon</p>
+                        <p class="font-heading font-bold text-lg text-white">Parang Jabon</p>
                     </div>
                 </div>
 
                 <div class="gallery-item rounded-2xl overflow-hidden shadow-xl cursor-pointer" onclick="openLightbox(5)"
                     data-aos="zoom-in" data-aos-delay="200" data-aos-duration="600">
-                    <img src="assets/batik/6_MotifLovePutihan.jpg" alt="Motif Batik Jetis Love Putihan"
+                    <img src="assets/batik/6_MotifLovePutihan.jpg" alt="Motif Batik Love Putihan"
                         class="w-full h-72 object-cover" loading="lazy">
                     <div class="gallery-overlay">
-                        <p class="font-heading font-bold text-lg text-white">Jetis – Love Putihan</p>
+                        <p class="font-heading font-bold text-lg text-white">Love Putihan</p>
                     </div>
                 </div>
             </div>
@@ -581,7 +584,7 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-batik-dark text-batik-cream py-12">
+    <footer class="bg-batik-dark-brown text-batik-cream py-12">
         <div class="max-w-6xl mx-auto px-4 sm:px-6">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
                 <div>
@@ -592,11 +595,11 @@
                     <p class="text-xs">Dr. Tri Budi Santoso, S.T., M.T.</p>
                 </div>
                 <div>
-                    <p class="font-bold mb-2">Didukung oleh:</p>
-                    <div class="flex gap-4 flex-wrap">
-                        <img src="assets/logo.png" alt="Sponsor" class="h-10 opacity-70">
-                        <img src="assets/logo.png" alt="Sponsor" class="h-10 opacity-70">
-                        <img src="assets/logo.png" alt="Sponsor" class="h-10 opacity-70">
+                    <p class="font-bold mb-4">Didukung oleh:</p>
+                    <div class="flex gap-6 flex-wrap items-center">
+                        <img src="assets/sponsor1.png" alt="Diktisaintek Berdampak" class="h-16 hover:scale-110 transition-transform duration-300">
+                        <img src="assets/sponsor2.png" alt="Sponsor Logo" class="h-16 hover:scale-110 transition-transform duration-300">
+                        <img src="assets/sponsor3.png" alt="Tut Wuri Handayani" class="h-16 hover:scale-110 transition-transform duration-300">
                     </div>
                 </div>
             </div>

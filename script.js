@@ -1,11 +1,11 @@
 // Gallery data
 const galleryData = [
-    { src: 'assets/batik/1_MotifLiris.jpg', caption: 'Jetis – Udan Liris' },
-    { src: 'assets/batik/2_MotifAlunAlunContong.jpg', caption: 'Jetis – Alun-Alun Contong' },
-    { src: 'assets/batik/3_MotifBurungMerak.jpg', caption: 'Jetis – Burung Merak' },
-    { src: 'assets/batik/4_MotifSekarJagad.jpg', caption: 'Jetis – Sekar Jagad' },
-    { src: 'assets/batik/5_MotifParangJabon.jpg', caption: 'Jetis – Parang Jabon' },
-    { src: 'assets/batik/6_MotifLovePutihan.jpg', caption: 'Jetis – Love Putihan' }
+    { src: 'assets/batik/1_MotifLiris.jpg', caption: 'Udan Liris' },
+    { src: 'assets/batik/2_MotifAlunAlunContong.jpg', caption: 'Alun-Alun Contong' },
+    { src: 'assets/batik/3_MotifBurungMerak.jpg', caption: 'Burung Merak' },
+    { src: 'assets/batik/4_MotifSekarJagad.jpg', caption: 'Sekar Jagad' },
+    { src: 'assets/batik/5_MotifParangJabon.jpg', caption: 'Parang Jabon' },
+    { src: 'assets/batik/6_MotifLovePutihan.jpg', caption: 'Love Putihan' }
 ];
 
 let currentIndex = 0;
@@ -75,7 +75,7 @@ if (menuBtn && mobileMenu) {
     menuBtn.addEventListener('click', () => {
         const isHidden = mobileMenu.classList.contains('hidden');
         mobileMenu.classList.toggle('hidden');
-        
+
         // Animate hamburger to X
         if (!isHidden) {
             menuBtn.style.transform = 'rotate(0deg)';
@@ -97,45 +97,7 @@ if (menuBtn && mobileMenu) {
     });
 }
 
-// Enhanced navbar scroll effect
-const navbar = document.getElementById('navbar');
-let lastScroll = 0;
-let ticking = false;
-
-function updateNavbar() {
-    const currentScroll = window.scrollY;
-    
-    if (currentScroll > 80) {
-        navbar.style.backgroundColor = 'rgba(78, 52, 46, 0.98)';
-        navbar.style.boxShadow = '0 4px 30px rgba(0, 0, 0, 0.4)';
-        navbar.style.borderBottom = '1px solid rgba(192, 151, 83, 0.2)';
-    } else {
-        navbar.style.backgroundColor = 'transparent';
-        navbar.style.boxShadow = 'none';
-        navbar.style.borderBottom = 'none';
-    }
-    
-    // Smart hide/show navbar
-    if (currentScroll > lastScroll && currentScroll > 150) {
-        // Scrolling down - hide navbar
-        navbar.style.transform = 'translateY(-100%)';
-    } else {
-        // Scrolling up - show navbar
-        navbar.style.transform = 'translateY(0)';
-    }
-    
-    lastScroll = currentScroll;
-    ticking = false;
-}
-
-window.addEventListener('scroll', () => {
-    if (!ticking) {
-        window.requestAnimationFrame(() => {
-            updateNavbar();
-        });
-        ticking = true;
-    }
-}, { passive: true });// Active link highlighting with smooth transition
+// Navbar is now fixed with solid brown color - no scroll effects needed// Active link highlighting with smooth transition
 const navLinks = document.querySelectorAll('.nav-link');
 window.addEventListener('scroll', () => {
     let current = '';
