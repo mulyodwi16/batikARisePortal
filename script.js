@@ -131,11 +131,3 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Add parallax effect to hero
-window.addEventListener('scroll', () => {
-    const heroSection = document.querySelector('.hero-bg');
-    if (heroSection) {
-        const scrolled = window.scrollY;
-        heroSection.style.transform = `translateY(${scrolled * 0.5}px)`;
-    }
-}, { passive: true });
