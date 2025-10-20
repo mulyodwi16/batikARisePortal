@@ -38,7 +38,7 @@ function nextLightbox() {
 function updateLightbox() {
     const img = document.getElementById('lightbox-image');
     const caption = document.getElementById('lightbox-caption');
-    
+
     // Smooth fade effect
     img.style.opacity = '0';
     setTimeout(() => {
@@ -53,7 +53,7 @@ function updateLightbox() {
 document.addEventListener('keydown', (e) => {
     const lightbox = document.getElementById('lightbox');
     if (!lightbox.classList.contains('active')) return;
-    
+
     if (e.key === 'Escape') closeLightbox();
     if (e.key === 'ArrowLeft') prevLightbox();
     if (e.key === 'ArrowRight') nextLightbox();
@@ -66,54 +66,76 @@ document.getElementById('lightbox')?.addEventListener('click', (e) => {
     }
 });
 
-// Mobile menu with smooth toggle
+// Mobile menu with smooth toggle and animation
 const menuBtn = document.getElementById('menu-btn');
 const mobileMenu = document.getElementById('mobile-menu');
+const menuBtnSvg = menuBtn?.querySelector('svg');
+
 if (menuBtn && mobileMenu) {
     menuBtn.addEventListener('click', () => {
+        const isHidden = mobileMenu.classList.contains('hidden');
         mobileMenu.classList.toggle('hidden');
-        // Animate menu button
-        menuBtn.style.transform = mobileMenu.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(90deg)';
+        
+        // Animate hamburger to X
+        if (!isHidden) {
+            menuBtn.style.transform = 'rotate(0deg)';
+            menuBtnSvg.style.transform = 'rotate(0deg)';
+        } else {
+            menuBtn.style.transform = 'rotate(90deg)';
+            menuBtnSvg.style.transform = 'rotate(90deg)';
+        }
     });
-    
+
     // Close mobile menu when clicking a link
     const mobileLinks = mobileMenu.querySelectorAll('a');
     mobileLinks.forEach(link => {
         link.addEventListener('click', () => {
             mobileMenu.classList.add('hidden');
             menuBtn.style.transform = 'rotate(0deg)';
+            if (menuBtnSvg) menuBtnSvg.style.transform = 'rotate(0deg)';
         });
     });
 }
 
-// Navbar scroll effect with smooth transition
+// Enhanced navbar scroll effect
 const navbar = document.getElementById('navbar');
 let lastScroll = 0;
+let ticking = false;
 
-window.addEventListener('scroll', () => {
+function updateNavbar() {
     const currentScroll = window.scrollY;
     
-    if (currentScroll > 50) {
-        navbar.style.backgroundColor = 'rgba(78, 52, 46, 0.95)';
-        navbar.style.boxShadow = '0 4px 20px rgba(0,0,0,0.3)';
-        navbar.style.backdropFilter = 'blur(10px)';
+    if (currentScroll > 80) {
+        navbar.style.backgroundColor = 'rgba(78, 52, 46, 0.98)';
+        navbar.style.boxShadow = '0 4px 30px rgba(0, 0, 0, 0.4)';
+        navbar.style.borderBottom = '1px solid rgba(192, 151, 83, 0.2)';
     } else {
         navbar.style.backgroundColor = 'transparent';
         navbar.style.boxShadow = 'none';
-        navbar.style.backdropFilter = 'none';
+        navbar.style.borderBottom = 'none';
     }
     
-    // Hide navbar on scroll down, show on scroll up
-    if (currentScroll > lastScroll && currentScroll > 100) {
+    // Smart hide/show navbar
+    if (currentScroll > lastScroll && currentScroll > 150) {
+        // Scrolling down - hide navbar
         navbar.style.transform = 'translateY(-100%)';
     } else {
+        // Scrolling up - show navbar
         navbar.style.transform = 'translateY(0)';
     }
     
     lastScroll = currentScroll;
-}, { passive: true });
+    ticking = false;
+}
 
-// Active link highlighting with smooth transition
+window.addEventListener('scroll', () => {
+    if (!ticking) {
+        window.requestAnimationFrame(() => {
+            updateNavbar();
+        });
+        ticking = true;
+    }
+}, { passive: true });// Active link highlighting with smooth transition
 const navLinks = document.querySelectorAll('.nav-link');
 window.addEventListener('scroll', () => {
     let current = '';
