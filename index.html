@@ -4,305 +4,307 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description"
-        content="batikARise - Aplikasi pembelajaran motif Batik Jetis Sidoarjo menggunakan teknologi Augmented Reality dan Artificial Intelligence. Scan, telusuri, dan pelajari secara interaktif.">
-    <meta name="keywords"
-        content="batikARise, Batik Jetis, Sidoarjo, Augmented Reality, AR, pembelajaran batik, motif batik">
+    <meta name="description" content="batikARise - Aplikasi pembelajaran motif Batik Jetis Sidoarjo dengan Augmented Reality dan AI.">
+    <meta name="keywords" content="batikARise, Batik Jetis, Augmented Reality, AR, pembelajaran">
     <meta name="author" content="Dwi Mulyo">
-
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="">
-    <meta property="og:title" content="batikARise — Belajar Motif Batik dengan Augmented Reality">
-    <meta property="og:description"
-        content="Scan, telusuri, dan pelajari motif Batik Jetis Sidoarjo secara interaktif.">
+    <meta property="og:title" content="batikARise — Belajar Motif Batik Jetis dengan AR">
+    <meta property="og:description" content="Scan, telusuri, dan pelajari motif Batik Jetis Sidoarjo secara interaktif.">
     <meta property="og:image" content="assets/hero-banner.png">
 
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="">
-    <meta property="twitter:title" content="batikARise — Belajar Motif Batik Jetis dengan AR">
-    <meta property="twitter:description"
-        content="Scan, telusuri, dan pelajari motif Batik Jetis Sidoarjo secara interaktif.">
-    <meta property="twitter:image" content="assets/hero-banner.png">
-
-    <title>BatikAR — Belajar Motif Batik dengan AR</title>
-
-    <!-- Favicon -->
+    <title>batikARise — Belajar Motif Batik Jetis dengan AR</title>
     <link rel="icon" type="image/png" href="assets/logo.png">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        batik: {
+                            dark: '#1F1B16',
+                            'dark-brown': '#4E342E',
+                            cream: '#F5E6D3',
+                            gold: '#C09753',
+                        }
+                    },
+                    fontFamily: {
+                        heading: ['Poppins', 'sans-serif'],
+                        body: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@600;700;800&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
 
-    <!-- Stylesheet -->
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        .hero-bg {
+            background-image: url('assets/hero-banner.png');
+            background-size: cover;
+            background-position: center right;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .gallery-item img {
+            transition: transform 0.3s ease;
+        }
+
+        .lightbox {
+            display: none;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fade-in-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+    </style>
 </head>
 
-<body>
+<body class="bg-batik-cream font-body text-batik-dark">
     <!-- Navigation -->
-    <nav id="navbar" class="navbar" role="navigation" aria-label="Main navigation">
-        <div class="container">
-            <div class="nav-wrapper">
-                <a href="#home" class="logo" aria-label="batikARise Home">
-                    <img src="assets/logo.png" alt="batikARise Logo" width="50" height="50">
-                    <span class="logo-text">batikARise</span>
-                </a>
-                <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
+    <nav id="navbar" class="fixed w-full top-0 z-50 transition-all duration-300" style="background-color: transparent;">
+        <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+            <!-- Logo -->
+            <a href="#home" class="flex items-center gap-2 hover:opacity-80 transition">
+                <img src="assets/logo.png" alt="batikARise Logo" class="w-12 h-12 rounded-full">
+                <span class="text-white font-heading font-bold text-lg hidden sm:inline">batikARise</span>
+            </a>
 
-                <ul class="nav-menu">
-                    <li><a href="#home" class="nav-link active" aria-current="page">Home</a></li>
-                    <li><a href="#cara" class="nav-link">Cara Pakai</a></li>
-                    <li><a href="#galeri" class="nav-link">Galeri</a></li>
-                    <li><a href="#kontak" class="nav-link">Kontak</a></li>
-                </ul>
-            </div>
+            <!-- Menu -->
+            <ul class="hidden md:flex gap-8 text-batik-cream">
+                <li><a href="#home" class="nav-link hover:text-batik-gold transition">Home</a></li>
+                <li><a href="#cara" class="nav-link hover:text-batik-gold transition">Cara Pakai</a></li>
+                <li><a href="#galeri" class="nav-link hover:text-batik-gold transition">Galeri</a></li>
+                <li><a href="#kontak" class="nav-link hover:text-batik-gold transition">Kontak</a></li>
+            </ul>
+
+            <!-- Mobile Menu Button -->
+            <button id="menu-btn" class="md:hidden text-white text-2xl">☰</button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-batik-dark-brown text-batik-cream p-4 space-y-2">
+            <a href="#home" class="block hover:text-batik-gold">Home</a>
+            <a href="#cara" class="block hover:text-batik-gold">Cara Pakai</a>
+            <a href="#galeri" class="block hover:text-batik-gold">Galeri</a>
+            <a href="#kontak" class="block hover:text-batik-gold">Kontak</a>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="hero" role="banner">
-        <div class="hero-background"></div>
-        <div class="hero-overlay"></div>
-        <div class="container">
-            <div class="hero-content">
-                <h1 class="hero-title animate-fade-in">batikARise — Belajar Motif Batik dengan AR</h1>
-                <p class="hero-subtitle animate-fade-in">Scan, telusuri, dan pelajari motif Batik secara
-                    interaktif menggunakan teknologi Augmented Reality dan Artificial Intelligence.</p>
+    <section id="home" class="hero-bg relative min-h-screen flex items-center pt-20">
+        <div class="absolute inset-0 bg-gradient-to-r from-batik-dark/90 via-batik-dark/60 to-batik-dark/30"></div>
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
+            <div class="max-w-2xl">
+                <h1 class="font-heading font-bold text-4xl sm:text-5xl lg:text-6xl text-white mb-4 animate-fade-in-up">
+                    batikARise — Belajar Motif Batik Jetis dengan AR
+                </h1>
+                <p class="text-lg sm:text-xl text-batik-cream mb-8 animate-fade-in-up" style="animation-delay: 0.2s;">
+                    Scan, telusuri, dan pelajari motif Batik Jetis Sidoarjo secara interaktif menggunakan teknologi Augmented Reality dan Artificial Intelligence.
+                </p>
 
-                <div class="download-banner animate-fade-in">
-                    <a href="#download" class="btn btn-primary btn-large">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                            <polyline points="7 10 12 15 17 10"></polyline>
-                            <line x1="12" y1="15" x2="12" y2="3"></line>
+                <!-- CTA Buttons -->
+                <div class="flex flex-col sm:flex-row gap-4 mb-8 animate-fade-in-up" style="animation-delay: 0.4s;">
+                    <a href="#download" class="inline-flex items-center justify-center gap-2 bg-batik-gold hover:bg-yellow-600 text-batik-dark font-bold py-3 px-6 rounded-lg transition transform hover:scale-105">
+                        <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2c5.5 0 10 4.5 10 10s-4.5 10-10 10S2 17.5 2 12 6.5 2 12 2m0 2c-4.4 0-8 3.6-8 8s3.6 8 8 8 8-3.6 8-8-3.6-8-8-8m3.5 9H13v3.5h-2V13H8.5v-2H11V7.5h2V11h3.5v2z"/>
                         </svg>
                         Download Android (APK)
                     </a>
-                    <button class="btn btn-secondary btn-large" disabled>
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path
-                                d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z">
-                            </path>
+                    <button class="inline-flex items-center justify-center gap-2 border-2 border-white text-white font-bold py-3 px-6 rounded-lg opacity-50 cursor-not-allowed">
+                        <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M17.05 13.5c-.91 0-1.82-.33-2.5-.92l-5.5 5.5c.59.68.92 1.59.92 2.5 0 2.21-1.79 4-4 4s-4-1.79-4-4 1.79-4 4-4c.91 0 1.82.33 2.5.92l5.5-5.5c-.59-.68-.92-1.59-.92-2.5 0-2.21 1.79-4 4-4s4 1.79 4 4-1.79 4-4 4z"/>
                         </svg>
                         App Store (Coming Soon)
                     </button>
+                </div>
+
+                <!-- Institution Badge -->
+                <div class="animate-fade-in-up" style="animation-delay: 0.6s;">
+                    <img src="assets/logo.png" alt="Logo Institusi" class="h-16 opacity-80">
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Cara Penggunaan Section -->
-    <section id="cara" class="section-cara">
-        <div class="container">
-            <h2 class="section-title">Cara Menggunakan</h2>
-            <div class="steps-grid">
+    <section id="cara" class="py-20 bg-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6">
+            <h2 class="font-heading font-bold text-4xl text-center text-batik-dark-brown mb-16">Cara Menggunakan</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                 <!-- Step 1 -->
-                <div class="step-card">
-                    <div class="step-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                            <polyline points="7 10 12 15 17 10"></polyline>
-                            <line x1="12" y1="15" x2="12" y2="3"></line>
+                <div class="bg-batik-cream p-6 rounded-lg text-center hover:shadow-lg transition transform hover:-translate-y-2 scroll-fade">
+                    <div class="w-16 h-16 bg-batik-gold rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg width="32" height="32" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
                         </svg>
                     </div>
-                    <h3 class="step-title">Unduh & Buka Aplikasi</h3>
-                    <p class="step-description">Download aplikasi batikARise dari link yang tersedia dan buka di
-                        perangkat
-                        Android Anda.</p>
+                    <h3 class="font-heading font-bold text-lg text-batik-dark-brown mb-2">Unduh & Buka Aplikasi</h3>
+                    <p class="text-sm text-batik-dark">Download aplikasi BatikAR dan buka di perangkat Android Anda.</p>
                 </div>
 
                 <!-- Step 2 -->
-                <div class="step-card">
-                    <div class="step-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <rect x="3" y="3" width="7" height="7"></rect>
-                            <rect x="14" y="3" width="7" height="7"></rect>
-                            <rect x="14" y="14" width="7" height="7"></rect>
-                            <rect x="3" y="14" width="7" height="7"></rect>
+                <div class="bg-batik-cream p-6 rounded-lg text-center hover:shadow-lg transition transform hover:-translate-y-2 scroll-fade">
+                    <div class="w-16 h-16 bg-batik-gold rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg width="32" height="32" fill="currentColor" viewBox="0 0 24 24">
+                            <rect x="3" y="3" width="7" height="7"/>
+                            <rect x="14" y="3" width="7" height="7"/>
+                            <rect x="14" y="14" width="7" height="7"/>
+                            <rect x="3" y="14" width="7" height="7"/>
                         </svg>
                     </div>
-                    <h3 class="step-title">Pilih Motif</h3>
-                    <p class="step-description">Jelajahi dan pilih motif Batik Jetis yang ingin Anda pelajari dari
-                        koleksi yang tersedia.</p>
+                    <h3 class="font-heading font-bold text-lg text-batik-dark-brown mb-2">Pilih Motif</h3>
+                    <p class="text-sm text-batik-dark">Jelajahi dan pilih motif Batik Jetis dari koleksi yang tersedia.</p>
                 </div>
 
                 <!-- Step 3 -->
-                <div class="step-card">
-                    <div class="step-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z">
-                            </path>
-                            <circle cx="12" cy="13" r="4"></circle>
+                <div class="bg-batik-cream p-6 rounded-lg text-center hover:shadow-lg transition transform hover:-translate-y-2 scroll-fade">
+                    <div class="w-16 h-16 bg-batik-gold rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg width="32" height="32" fill="currentColor" viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="3"/>
+                            <path d="M12 4c4.4 0 8 3.6 8 8s-3.6 8-8 8-8-3.6-8-8 3.6-8 8-8m0-2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2z"/>
                         </svg>
                     </div>
-                    <h3 class="step-title">Pindai Motif (AR)</h3>
-                    <p class="step-description">Gunakan kamera untuk memindai motif batik dan lihat informasi interaktif
-                        melalui AR.</p>
+                    <h3 class="font-heading font-bold text-lg text-batik-dark-brown mb-2">Pindai Motif (AR)</h3>
+                    <p class="text-sm text-batik-dark">Gunakan kamera untuk memindai motif batik melalui AR.</p>
                 </div>
 
                 <!-- Step 4 -->
-                <div class="step-card">
-                    <div class="step-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                            <polyline points="14 2 14 8 20 8"></polyline>
-                            <line x1="16" y1="13" x2="8" y2="13"></line>
-                            <line x1="16" y1="17" x2="8" y2="17"></line>
-                            <polyline points="10 9 9 9 8 9"></polyline>
+                <div class="bg-batik-cream p-6 rounded-lg text-center hover:shadow-lg transition transform hover:-translate-y-2 scroll-fade">
+                    <div class="w-16 h-16 bg-batik-gold rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg width="32" height="32" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14zm-5.04-6.71l-2.75-3.54-4.3 5.3h11.25L13.96 12.29z"/>
                         </svg>
                     </div>
-                    <h3 class="step-title">Ikuti Kuis & Lihat Info</h3>
-                    <p class="step-description">Uji pengetahuan Anda dengan kuis interaktif dan pelajari sejarah serta
-                        makna motif batik.</p>
+                    <h3 class="font-heading font-bold text-lg text-batik-dark-brown mb-2">Ikuti Kuis & Info</h3>
+                    <p class="text-sm text-batik-dark">Uji pengetahuan dan pelajari sejarah motif batik.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Galeri Section -->
-    <section id="galeri" class="section-galeri">
-        <div class="container">
-            <h2 class="section-title">Galeri Batik yang Dapat Dipindai</h2>
-            <div class="gallery-grid">
-                <!-- Gallery Item 1 -->
-                <div class="gallery-item">
-                    <img src="assets/batik/1_MotifLiris.jpg"
-                        alt="Motif Batik Jetis Udan Liris melambangkan hujan gerimis pembawa berkah" width="400"
-                        height="300" loading="lazy">
-                    <div class="gallery-label">Jetis – Udan Liris</div>
+    <section id="galeri" class="py-20 bg-batik-cream">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6">
+            <h2 class="font-heading font-bold text-4xl text-center text-batik-dark-brown mb-16">Galeri Batik yang Dapat Dipindai</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Gallery Items -->
+                <div class="gallery-item rounded-lg overflow-hidden shadow-md cursor-pointer hover:shadow-xl transition" onclick="openLightbox(0)">
+                    <img src="assets/batik/1_MotifLiris.jpg" alt="Motif Batik Jetis Udan Liris" class="w-full h-64 object-cover" loading="lazy">
+                    <div class="bg-gradient-to-t from-batik-dark to-transparent p-4 text-white absolute inset-0 flex items-end">
+                        <p class="font-heading font-bold">Jetis – Udan Liris</p>
+                    </div>
                 </div>
 
-                <!-- Gallery Item 2 -->
-                <div class="gallery-item">
-                    <img src="assets/batik/2_MotifAlunAlunContong.jpg"
-                        alt="Motif Batik Jetis Alun-Alun Contong dengan pola khas" width="400" height="300"
-                        loading="lazy">
-                    <div class="gallery-label">Jetis – Alun-Alun Contong</div>
+                <div class="gallery-item rounded-lg overflow-hidden shadow-md cursor-pointer hover:shadow-xl transition" onclick="openLightbox(1)">
+                    <img src="assets/batik/2_MotifAlunAlunContong.jpg" alt="Motif Batik Jetis Alun-Alun Contong" class="w-full h-64 object-cover" loading="lazy">
+                    <div class="bg-gradient-to-t from-batik-dark to-transparent p-4 text-white absolute inset-0 flex items-end">
+                        <p class="font-heading font-bold">Jetis – Alun-Alun Contong</p>
+                    </div>
                 </div>
 
-                <!-- Gallery Item 3 -->
-                <div class="gallery-item">
-                    <img src="assets/batik/3_MotifBurungMerak.jpg"
-                        alt="Motif Batik Jetis Burung Merak dengan ornamen burung merak yang indah" width="400"
-                        height="300" loading="lazy">
-                    <div class="gallery-label">Jetis – Burung Merak</div>
+                <div class="gallery-item rounded-lg overflow-hidden shadow-md cursor-pointer hover:shadow-xl transition" onclick="openLightbox(2)">
+                    <img src="assets/batik/3_MotifBurungMerak.jpg" alt="Motif Batik Jetis Burung Merak" class="w-full h-64 object-cover" loading="lazy">
+                    <div class="bg-gradient-to-t from-batik-dark to-transparent p-4 text-white absolute inset-0 flex items-end">
+                        <p class="font-heading font-bold">Jetis – Burung Merak</p>
+                    </div>
                 </div>
 
-                <!-- Gallery Item 4 -->
-                <div class="gallery-item">
-                    <img src="assets/batik/4_MotifSekarJagad.jpg"
-                        alt="Motif Batik Jetis Sekar Jagad dengan pola geometris dan warna-warni khas" width="400"
-                        height="300" loading="lazy">
-                    <div class="gallery-label">Jetis – Sekar Jagad</div>
+                <div class="gallery-item rounded-lg overflow-hidden shadow-md cursor-pointer hover:shadow-xl transition" onclick="openLightbox(3)">
+                    <img src="assets/batik/4_MotifSekarJagad.jpg" alt="Motif Batik Jetis Sekar Jagad" class="w-full h-64 object-cover" loading="lazy">
+                    <div class="bg-gradient-to-t from-batik-dark to-transparent p-4 text-white absolute inset-0 flex items-end">
+                        <p class="font-heading font-bold">Jetis – Sekar Jagad</p>
+                    </div>
                 </div>
 
-                <!-- Gallery Item 5 -->
-                <div class="gallery-item">
-                    <img src="assets/batik/5_MotifParangJabon.jpg"
-                        alt="Motif Batik Jetis Parang Jabon dengan pola parang khas Jetis" width="400" height="300"
-                        loading="lazy">
-                    <div class="gallery-label">Jetis – Parang Jabon</div>
+                <div class="gallery-item rounded-lg overflow-hidden shadow-md cursor-pointer hover:shadow-xl transition" onclick="openLightbox(4)">
+                    <img src="assets/batik/5_MotifParangJabon.jpg" alt="Motif Batik Jetis Parang Jabon" class="w-full h-64 object-cover" loading="lazy">
+                    <div class="bg-gradient-to-t from-batik-dark to-transparent p-4 text-white absolute inset-0 flex items-end">
+                        <p class="font-heading font-bold">Jetis – Parang Jabon</p>
+                    </div>
                 </div>
 
-                <!-- Gallery Item 6 -->
-                <div class="gallery-item">
-                    <img src="assets/batik/6_MotifLovePutihan.jpg"
-                        alt="Motif Batik Jetis Love Putihan dengan nuansa cinta dan kelembutan" width="400" height="300"
-                        loading="lazy">
-                    <div class="gallery-label">Jetis – Love Putihan</div>
+                <div class="gallery-item rounded-lg overflow-hidden shadow-md cursor-pointer hover:shadow-xl transition" onclick="openLightbox(5)">
+                    <img src="assets/batik/6_MotifLovePutihan.jpg" alt="Motif Batik Jetis Love Putihan" class="w-full h-64 object-cover" loading="lazy">
+                    <div class="bg-gradient-to-t from-batik-dark to-transparent p-4 text-white absolute inset-0 flex items-end">
+                        <p class="font-heading font-bold">Jetis – Love Putihan</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Kontak / Unduh Section -->
-    <section id="kontak" class="section-kontak">
-        <div class="container">
-            <div class="kontak-content">
-                <h2 class="section-title">Siap Belajar Batik?</h2>
-                <p class="kontak-text">Download aplikasi batikARise sekarang dan mulai petualangan Anda menjelajahi
-                    kekayaan motif Batik dengan cara yang modern dan interaktif.</p>
+    <!-- Kontak Section -->
+    <section id="kontak" class="py-20 bg-gradient-to-r from-batik-dark-brown to-batik-dark text-batik-cream">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 text-center">
+            <h2 class="font-heading font-bold text-4xl mb-6">Siap Belajar Batik?</h2>
+            <p class="text-lg mb-8">Download aplikasi BatikAR sekarang dan mulai petualangan Anda menjelajahi kekayaan motif Batik Jetis Sidoarjo.</p>
 
-                <div class="download-buttons">
-                    <a href="#download" class="btn btn-primary btn-large">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                            <polyline points="7 10 12 15 17 10"></polyline>
-                            <line x1="12" y1="15" x2="12" y2="3"></line>
-                        </svg>
-                        Download Android (APK)
-                    </a>
-                    <button class="btn btn-secondary btn-large" disabled>
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path
-                                d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z">
-                            </path>
-                        </svg>
-                        App Store (Coming Soon)
-                    </button>
-                </div>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+                <a href="#download" class="inline-flex items-center justify-center gap-2 bg-batik-gold hover:bg-yellow-600 text-batik-dark font-bold py-3 px-6 rounded-lg transition transform hover:scale-105">
+                    Download Android (APK)
+                </a>
+                <button class="inline-flex items-center justify-center gap-2 border-2 border-batik-gold text-batik-gold font-bold py-3 px-6 rounded-lg opacity-50 cursor-not-allowed">
+                    App Store (Coming Soon)
+                </button>
+            </div>
 
-                <div class="contact-links">
-                    <a href="mailto:dwimulyo@example.com" class="contact-link">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z">
-                            </path>
-                            <polyline points="22,6 12,13 2,6"></polyline>
-                        </svg>
-                        dwimulyo@example.com
-                    </a>
-                    <a href="https://github.com/mulyodwi16" target="_blank" rel="noopener noreferrer"
-                        class="contact-link">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path
-                                d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
-                            </path>
-                        </svg>
-                        GitHub Repository
-                    </a>
-                </div>
+            <div class="flex flex-col sm:flex-row gap-6 justify-center">
+                <a href="mailto:dwimulyo@example.com" class="inline-flex items-center gap-2 hover:text-batik-gold transition">
+                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                    </svg>
+                    dwimulyo@example.com
+                </a>
+                <a href="https://github.com/mulyodwi16/batikARisePortal" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 hover:text-batik-gold transition">
+                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.84 9.49.5.09.68-.22.68-.48 0-.24-.01-.87-.01-1.71-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.89 1.52 2.34 1.08 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.93 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02.8-.22 1.65-.33 2.5-.33s1.7.11 2.5.33c1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.82-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85 0 1.34-.01 2.41-.01 2.74 0 .27.18.58.69.48C19.13 20.17 22 16.42 22 12c0-5.52-4.48-10-10-10z"/>
+                    </svg>
+                    GitHub Repository
+                </a>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-info">
-                    <p class="copyright">&copy; 2025 batikARise</p>
-                    <p class="credit"><strong>Tim Peneliti:</strong></p>
-                    <p class="credit">Dr.-Ing. Hestiasari Rante, ST., M.Sc.</p>
-                    <p class="credit">Prof. Iwan Syarif ,S.Kom., M.Kom., MSc., Ph.D.</p>
-                    <p class="credit">Dr. Tri Budi Santoso, S.T., M.T.</p>
-                    <p class="credit">Dwi Mulyo</p>
-                    <p class="credit">Anisa Faza</p>
+    <footer class="bg-batik-dark text-batik-cream py-12">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                <div>
+                    <p class="font-bold mb-2">&copy; 2025 batikARise</p>
+                    <p class="text-sm"><strong>Tim Peneliti:</strong></p>
+                    <p class="text-xs">Dr.-Ing. Hestiasari Rante, ST., M.Sc.</p>
+                    <p class="text-xs">Prof. Iwan Syarif, S.Kom., M.Kom., MSc., Ph.D.</p>
+                    <p class="text-xs">Dr. Tri Budi Santoso, S.T., M.T.</p>
                 </div>
-
-                <div class="sponsor-logos">
-                    <p class="sponsor-title">Didukung oleh:</p>
-                    <div class="sponsor-grid">
-                        <img src="assets/kemdikbud-pihakpendukung1" alt="Logo Sponsor 1" width="80" height="40">
-                        <img src="assets/Diktisaintek-pihakpendukung2" alt="Logo Sponsor 2" width="80" height="40">
-                        <img src="assets/hiliriset-pihakpendukung3" alt="Logo Sponsor 3" width="80" height="40">
+                <div>
+                    <p class="font-bold mb-2">Didukung oleh:</p>
+                    <div class="flex gap-4 flex-wrap">
+                        <img src="assets/logo.png" alt="Sponsor" class="h-10 opacity-70">
+                        <img src="assets/logo.png" alt="Sponsor" class="h-10 opacity-70">
+                        <img src="assets/logo.png" alt="Sponsor" class="h-10 opacity-70">
                     </div>
                 </div>
             </div>
@@ -310,28 +312,113 @@
     </footer>
 
     <!-- Lightbox Modal -->
-    <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-hidden="true">
-        <button class="lightbox-close" aria-label="Close lightbox">&times;</button>
-        <button class="lightbox-prev" aria-label="Previous image">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="15 18 9 12 15 6"></polyline>
-            </svg>
-        </button>
-        <button class="lightbox-next" aria-label="Next image">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="9 18 15 12 9 6"></polyline>
-            </svg>
-        </button>
-        <div class="lightbox-content">
-            <img id="lightbox-image" src="" alt="">
-            <p id="lightbox-caption" class="lightbox-caption"></p>
+    <div id="lightbox" class="lightbox fixed inset-0 bg-black/95 z-50 items-center justify-center p-4">
+        <button onclick="closeLightbox()" class="absolute top-4 right-4 text-white text-4xl">&times;</button>
+        <button onclick="prevLightbox()" class="absolute left-4 top-1/2 transform -translate-y-1/2 text-white text-3xl">❮</button>
+        <button onclick="nextLightbox()" class="absolute right-4 top-1/2 transform -translate-y-1/2 text-white text-3xl">❯</button>
+        <div class="text-center max-w-2xl">
+            <img id="lightbox-image" src="" alt="" class="max-h-80 rounded">
+            <p id="lightbox-caption" class="text-white mt-4 font-heading font-bold"></p>
         </div>
     </div>
 
     <!-- JavaScript -->
-    <script src="script.js"></script>
+    <script>
+        const galleryItems = [
+            { src: 'assets/batik/1_MotifLiris.jpg', caption: 'Jetis – Udan Liris' },
+            { src: 'assets/batik/2_MotifAlunAlunContong.jpg', caption: 'Jetis – Alun-Alun Contong' },
+            { src: 'assets/batik/3_MotifBurungMerak.jpg', caption: 'Jetis – Burung Merak' },
+            { src: 'assets/batik/4_MotifSekarJagad.jpg', caption: 'Jetis – Sekar Jagad' },
+            { src: 'assets/batik/5_MotifParangJabon.jpg', caption: 'Jetis – Parang Jabon' },
+            { src: 'assets/batik/6_MotifLovePutihan.jpg', caption: 'Jetis – Love Putihan' }
+        ];
+        let currentIndex = 0;
+
+        function openLightbox(index) {
+            currentIndex = index;
+            updateLightbox();
+            document.getElementById('lightbox').classList.add('active');
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
+        }
+
+        function prevLightbox() {
+            currentIndex = (currentIndex - 1 + galleryItems.length) % galleryItems.length;
+            updateLightbox();
+        }
+
+        function nextLightbox() {
+            currentIndex = (currentIndex + 1) % galleryItems.length;
+            updateLightbox();
+        }
+
+        function updateLightbox() {
+            document.getElementById('lightbox-image').src = galleryItems[currentIndex].src;
+            document.getElementById('lightbox-caption').textContent = galleryItems[currentIndex].caption;
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (document.getElementById('lightbox').classList.contains('active')) {
+                if (e.key === 'Escape') closeLightbox();
+                if (e.key === 'ArrowLeft') prevLightbox();
+                if (e.key === 'ArrowRight') nextLightbox();
+            }
+        });
+
+        // Mobile menu toggle
+        document.getElementById('menu-btn').addEventListener('click', function() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+
+        // Navbar background on scroll
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.style.backgroundColor = 'rgba(78, 52, 46, 0.95)';
+                navbar.style.boxShadow = '0 2px 8px rgba(0,0,0,0.2)';
+            } else {
+                navbar.style.backgroundColor = 'transparent';
+                navbar.style.boxShadow = 'none';
+            }
+        });
+
+        // Smooth scroll active link
+        const navLinks = document.querySelectorAll('.nav-link');
+        window.addEventListener('scroll', () => {
+            let current = '';
+            document.querySelectorAll('section').forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+            navLinks.forEach(link => {
+                link.classList.remove('text-batik-gold');
+                if (link.getAttribute('href').slice(1) === current) {
+                    link.classList.add('text-batik-gold');
+                }
+            });
+        });
+
+        // Scroll fade animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.remove('opacity-0', 'translate-y-8');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.scroll-fade').forEach(el => observer.observe(el));
+    </script>
 </body>
 
 </html>
