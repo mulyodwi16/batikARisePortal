@@ -45,12 +45,20 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@600;700;800&display=swap"
         rel="stylesheet">
+    
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <style>
+        * {
+            scroll-behavior: smooth;
+        }
+
         .hero-bg {
             background-image: url('assets/hero-banner.png');
             background-size: cover;
             background-position: center right;
+            background-attachment: fixed;
         }
 
         @keyframes fadeInUp {
@@ -58,10 +66,18 @@
                 opacity: 0;
                 transform: translateY(30px);
             }
-
             to {
                 opacity: 1;
                 transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
             }
         }
 
@@ -69,12 +85,103 @@
             animation: fadeInUp 0.8s ease-out forwards;
         }
 
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-8px) scale(1.02);
+        }
+
+        .gallery-item img {
+            transition: transform 0.6s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(31, 27, 22, 0.95), transparent);
+            display: flex;
+            align-items: flex-end;
+            padding: 1rem;
+            transition: background 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            background: linear-gradient(to top, rgba(192, 151, 83, 0.9), transparent);
+        }
+
         .lightbox {
             display: none !important;
+            backdrop-filter: blur(10px);
         }
 
         .lightbox.active {
             display: flex !important;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .lightbox img {
+            animation: scaleIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        @keyframes scaleIn {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .step-card {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .step-card:hover {
+            transform: translateY(-12px) rotate(-2deg);
+            box-shadow: 0 20px 40px rgba(78, 52, 46, 0.2);
+        }
+
+        .cta-button {
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.5s, height 0.5s;
+        }
+
+        .cta-button:hover::before {
+            width: 300px;
+            height: 300px;
         }
     </style>
 </head>
@@ -112,103 +219,111 @@
 
     <!-- Hero Section -->
     <section id="home" class="hero-bg relative min-h-screen flex items-center pt-20">
-        <div class="absolute inset-0 bg-gradient-to-r from-batik-dark/90 via-batik-dark/60 to-batik-dark/30"></div>
+        <div class="absolute inset-0 bg-gradient-to-r from-batik-dark/95 via-batik-dark/70 to-transparent"></div>
         <div class="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
             <div class="max-w-2xl">
-                <h1 class="font-heading font-bold text-4xl sm:text-5xl lg:text-6xl text-white mb-4 animate-fade-in-up">
+                <h1 class="font-heading font-bold text-4xl sm:text-5xl lg:text-6xl text-white mb-6 animate-fade-in-up" 
+                    data-aos="fade-up" data-aos-duration="1000">
                     batikARise — Belajar Motif Batik Jetis dengan AR
                 </h1>
-                <p class="text-lg sm:text-xl text-batik-cream mb-8 animate-fade-in-up" style="animation-delay: 0.2s;">
+                <p class="text-lg sm:text-xl text-batik-cream mb-8 leading-relaxed" 
+                   data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000">
                     Scan, telusuri, dan pelajari motif Batik Jetis Sidoarjo secara interaktif menggunakan teknologi
                     Augmented Reality dan Artificial Intelligence.
                 </p>
 
                 <!-- CTA Buttons -->
-                <div class="flex flex-col sm:flex-row gap-4 mb-8 animate-fade-in-up" style="animation-delay: 0.4s;">
+                <div class="flex flex-col sm:flex-row gap-4 mb-8" data-aos="fade-up" data-aos-delay="400" data-aos-duration="1000">
                     <a href="#download"
-                        class="inline-flex items-center justify-center gap-2 bg-batik-gold hover:bg-yellow-600 text-batik-dark font-bold py-3 px-6 rounded-lg transition transform hover:scale-105">
+                        class="cta-button inline-flex items-center justify-center gap-2 bg-batik-gold hover:bg-yellow-600 text-batik-dark font-bold py-4 px-8 rounded-xl transition transform hover:scale-105 hover:shadow-2xl relative z-10">
                         <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
-                            <path
-                                d="M12 2c5.5 0 10 4.5 10 10s-4.5 10-10 10S2 17.5 2 12 6.5 2 12 2m0 2c-4.4 0-8 3.6-8 8s3.6 8 8 8 8-3.6 8-8-3.6-8-8-8m3.5 9H13v3.5h-2V13H8.5v-2H11V7.5h2V11h3.5v2z" />
+                            <path d="M12 2c5.5 0 10 4.5 10 10s-4.5 10-10 10S2 17.5 2 12 6.5 2 12 2m0 2c-4.4 0-8 3.6-8 8s3.6 8 8 8 8-3.6 8-8-3.6-8-8-8m3.5 9H13v3.5h-2V13H8.5v-2H11V7.5h2V11h3.5v2z" />
                         </svg>
                         Download Android (APK)
                     </a>
                     <button
-                        class="inline-flex items-center justify-center gap-2 border-2 border-white text-white font-bold py-3 px-6 rounded-lg opacity-50 cursor-not-allowed">
+                        class="inline-flex items-center justify-center gap-2 border-2 border-white/50 text-white/70 font-bold py-4 px-8 rounded-xl backdrop-blur-sm cursor-not-allowed">
                         <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
-                            <path
-                                d="M17.05 13.5c-.91 0-1.82-.33-2.5-.92l-5.5 5.5c.59.68.92 1.59.92 2.5 0 2.21-1.79 4-4 4s-4-1.79-4-4 1.79-4 4-4c.91 0 1.82.33 2.5.92l5.5-5.5c-.59-.68-.92-1.59-.92-2.5 0-2.21 1.79-4 4-4s4 1.79 4 4-1.79 4-4 4z" />
+                            <path d="M17.05 13.5c-.91 0-1.82-.33-2.5-.92l-5.5 5.5c.59.68.92 1.59.92 2.5 0 2.21-1.79 4-4 4s-4-1.79-4-4 1.79-4 4-4c.91 0 1.82.33 2.5.92l5.5-5.5c-.59-.68-.92-1.59-.92-2.5 0-2.21 1.79-4 4-4s4 1.79 4 4-1.79 4-4 4z" />
                         </svg>
                         App Store (Coming Soon)
                     </button>
                 </div>
 
                 <!-- Institution Badge -->
-                <div class="animate-fade-in-up" style="animation-delay: 0.6s;">
-                    <img src="assets/logo.png" alt="Logo Institusi" class="h-16 opacity-80">
+                <div data-aos="fade-up" data-aos-delay="600" data-aos-duration="1000" class="animate-float">
+                    <img src="assets/logo.png" alt="Logo Institusi" class="h-16 opacity-90 hover:opacity-100 transition">
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Cara Penggunaan Section -->
-    <section id="cara" class="py-20 bg-white">
+    <section id="cara" class="py-20 bg-gradient-to-b from-white to-batik-cream/30">
         <div class="max-w-6xl mx-auto px-4 sm:px-6">
-            <h2 class="font-heading font-bold text-4xl text-center text-batik-dark-brown mb-16">Cara Menggunakan</h2>
+            <h2 class="font-heading font-bold text-4xl text-center text-batik-dark-brown mb-4" 
+                data-aos="fade-down" data-aos-duration="800">
+                Cara Menggunakan
+            </h2>
+            <p class="text-center text-batik-dark mb-16 max-w-2xl mx-auto" 
+               data-aos="fade-up" data-aos-delay="100" data-aos-duration="800">
+                Ikuti 4 langkah mudah untuk memulai petualangan Anda dengan batikARise
+            </p>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                 <!-- Step 1 -->
-                <div
-                    class="bg-batik-cream p-6 rounded-lg text-center hover:shadow-lg transition transform hover:-translate-y-2 scroll-fade">
-                    <div class="w-16 h-16 bg-batik-gold rounded-full flex items-center justify-center mx-auto mb-4">
-                        <svg width="32" height="32" fill="currentColor" viewBox="0 0 24 24">
+                <div class="step-card bg-white p-8 rounded-2xl text-center shadow-lg"
+                    data-aos="fade-up" data-aos-delay="0" data-aos-duration="800">
+                    <div class="w-20 h-20 bg-gradient-to-br from-batik-gold to-yellow-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
+                        <svg width="32" height="32" fill="white" viewBox="0 0 24 24">
                             <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
                         </svg>
                     </div>
-                    <h3 class="font-heading font-bold text-lg text-batik-dark-brown mb-2">Unduh & Buka Aplikasi</h3>
-                    <p class="text-sm text-batik-dark">Download aplikasi BatikAR dan buka di perangkat Android Anda.</p>
+                    <div class="w-8 h-8 bg-batik-gold text-white rounded-full flex items-center justify-center mx-auto mb-4 font-bold">1</div>
+                    <h3 class="font-heading font-bold text-xl text-batik-dark-brown mb-3">Unduh & Buka Aplikasi</h3>
+                    <p class="text-sm text-batik-dark leading-relaxed">Download aplikasi BatikAR dan buka di perangkat Android Anda.</p>
                 </div>
 
                 <!-- Step 2 -->
-                <div
-                    class="bg-batik-cream p-6 rounded-lg text-center hover:shadow-lg transition transform hover:-translate-y-2 scroll-fade">
-                    <div class="w-16 h-16 bg-batik-gold rounded-full flex items-center justify-center mx-auto mb-4">
-                        <svg width="32" height="32" fill="currentColor" viewBox="0 0 24 24">
+                <div class="step-card bg-white p-8 rounded-2xl text-center shadow-lg"
+                    data-aos="fade-up" data-aos-delay="100" data-aos-duration="800">
+                    <div class="w-20 h-20 bg-gradient-to-br from-batik-gold to-yellow-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
+                        <svg width="32" height="32" fill="white" viewBox="0 0 24 24">
                             <rect x="3" y="3" width="7" height="7" />
                             <rect x="14" y="3" width="7" height="7" />
                             <rect x="14" y="14" width="7" height="7" />
                             <rect x="3" y="14" width="7" height="7" />
                         </svg>
                     </div>
-                    <h3 class="font-heading font-bold text-lg text-batik-dark-brown mb-2">Pilih Motif</h3>
-                    <p class="text-sm text-batik-dark">Jelajahi dan pilih motif Batik Jetis dari koleksi yang tersedia.
-                    </p>
+                    <div class="w-8 h-8 bg-batik-gold text-white rounded-full flex items-center justify-center mx-auto mb-4 font-bold">2</div>
+                    <h3 class="font-heading font-bold text-xl text-batik-dark-brown mb-3">Pilih Motif</h3>
+                    <p class="text-sm text-batik-dark leading-relaxed">Jelajahi dan pilih motif Batik Jetis dari koleksi yang tersedia.</p>
                 </div>
 
                 <!-- Step 3 -->
-                <div
-                    class="bg-batik-cream p-6 rounded-lg text-center hover:shadow-lg transition transform hover:-translate-y-2 scroll-fade">
-                    <div class="w-16 h-16 bg-batik-gold rounded-full flex items-center justify-center mx-auto mb-4">
-                        <svg width="32" height="32" fill="currentColor" viewBox="0 0 24 24">
+                <div class="step-card bg-white p-8 rounded-2xl text-center shadow-lg"
+                    data-aos="fade-up" data-aos-delay="200" data-aos-duration="800">
+                    <div class="w-20 h-20 bg-gradient-to-br from-batik-gold to-yellow-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
+                        <svg width="32" height="32" fill="white" viewBox="0 0 24 24">
                             <circle cx="12" cy="12" r="3" />
-                            <path
-                                d="M12 4c4.4 0 8 3.6 8 8s-3.6 8-8 8-8-3.6-8-8 3.6-8 8-8m0-2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2z" />
+                            <path d="M12 4c4.4 0 8 3.6 8 8s-3.6 8-8 8-8-3.6-8-8 3.6-8 8-8m0-2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2z" />
                         </svg>
                     </div>
-                    <h3 class="font-heading font-bold text-lg text-batik-dark-brown mb-2">Pindai Motif (AR)</h3>
-                    <p class="text-sm text-batik-dark">Gunakan kamera untuk memindai motif batik melalui AR.</p>
+                    <div class="w-8 h-8 bg-batik-gold text-white rounded-full flex items-center justify-center mx-auto mb-4 font-bold">3</div>
+                    <h3 class="font-heading font-bold text-xl text-batik-dark-brown mb-3">Pindai Motif (AR)</h3>
+                    <p class="text-sm text-batik-dark leading-relaxed">Gunakan kamera untuk memindai motif batik melalui AR.</p>
                 </div>
 
                 <!-- Step 4 -->
-                <div
-                    class="bg-batik-cream p-6 rounded-lg text-center hover:shadow-lg transition transform hover:-translate-y-2 scroll-fade">
-                    <div class="w-16 h-16 bg-batik-gold rounded-full flex items-center justify-center mx-auto mb-4">
-                        <svg width="32" height="32" fill="currentColor" viewBox="0 0 24 24">
-                            <path
-                                d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14zm-5.04-6.71l-2.75-3.54-4.3 5.3h11.25L13.96 12.29z" />
+                <div class="step-card bg-white p-8 rounded-2xl text-center shadow-lg"
+                    data-aos="fade-up" data-aos-delay="300" data-aos-duration="800">
+                    <div class="w-20 h-20 bg-gradient-to-br from-batik-gold to-yellow-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
+                        <svg width="32" height="32" fill="white" viewBox="0 0 24 24">
+                            <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14zm-5.04-6.71l-2.75-3.54-4.3 5.3h11.25L13.96 12.29z" />
                         </svg>
                     </div>
-                    <h3 class="font-heading font-bold text-lg text-batik-dark-brown mb-2">Ikuti Kuis & Info</h3>
-                    <p class="text-sm text-batik-dark">Uji pengetahuan dan pelajari sejarah motif batik.</p>
+                    <div class="w-8 h-8 bg-batik-gold text-white rounded-full flex items-center justify-center mx-auto mb-4 font-bold">4</div>
+                    <h3 class="font-heading font-bold text-xl text-batik-dark-brown mb-3">Ikuti Kuis & Info</h3>
+                    <p class="text-sm text-batik-dark leading-relaxed">Uji pengetahuan dan pelajari sejarah motif batik.</p>
                 </div>
             </div>
         </div>
@@ -217,67 +332,67 @@
     <!-- Galeri Section -->
     <section id="galeri" class="py-20 bg-batik-cream">
         <div class="max-w-6xl mx-auto px-4 sm:px-6">
-            <h2 class="font-heading font-bold text-4xl text-center text-batik-dark-brown mb-16">Galeri Batik yang Dapat
-                Dipindai</h2>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <h2 class="font-heading font-bold text-4xl text-center text-batik-dark-brown mb-4"
+                data-aos="fade-down" data-aos-duration="800">
+                Galeri Batik yang Dapat Dipindai
+            </h2>
+            <p class="text-center text-batik-dark mb-16 max-w-2xl mx-auto"
+               data-aos="fade-up" data-aos-delay="100" data-aos-duration="800">
+                Klik untuk melihat detail setiap motif Batik Jetis Sidoarjo
+            </p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Gallery Items -->
-                <div class="gallery-item rounded-lg overflow-hidden shadow-md cursor-pointer hover:shadow-xl transition"
-                    onclick="openLightbox(0)">
+                <div class="gallery-item rounded-2xl overflow-hidden shadow-xl cursor-pointer"
+                    onclick="openLightbox(0)" data-aos="zoom-in" data-aos-delay="0" data-aos-duration="600">
                     <img src="assets/batik/1_MotifLiris.jpg" alt="Motif Batik Jetis Udan Liris"
-                        class="w-full h-64 object-cover" loading="lazy">
-                    <div
-                        class="bg-gradient-to-t from-batik-dark to-transparent p-4 text-white absolute inset-0 flex items-end">
-                        <p class="font-heading font-bold">Jetis – Udan Liris</p>
+                        class="w-full h-72 object-cover" loading="lazy">
+                    <div class="gallery-overlay">
+                        <p class="font-heading font-bold text-lg text-white">Jetis – Udan Liris</p>
                     </div>
                 </div>
 
-                <div class="gallery-item rounded-lg overflow-hidden shadow-md cursor-pointer hover:shadow-xl transition"
-                    onclick="openLightbox(1)">
+                <div class="gallery-item rounded-2xl overflow-hidden shadow-xl cursor-pointer"
+                    onclick="openLightbox(1)" data-aos="zoom-in" data-aos-delay="100" data-aos-duration="600">
                     <img src="assets/batik/2_MotifAlunAlunContong.jpg" alt="Motif Batik Jetis Alun-Alun Contong"
-                        class="w-full h-64 object-cover" loading="lazy">
-                    <div
-                        class="bg-gradient-to-t from-batik-dark to-transparent p-4 text-white absolute inset-0 flex items-end">
-                        <p class="font-heading font-bold">Jetis – Alun-Alun Contong</p>
+                        class="w-full h-72 object-cover" loading="lazy">
+                    <div class="gallery-overlay">
+                        <p class="font-heading font-bold text-lg text-white">Jetis – Alun-Alun Contong</p>
                     </div>
                 </div>
 
-                <div class="gallery-item rounded-lg overflow-hidden shadow-md cursor-pointer hover:shadow-xl transition"
-                    onclick="openLightbox(2)">
+                <div class="gallery-item rounded-2xl overflow-hidden shadow-xl cursor-pointer"
+                    onclick="openLightbox(2)" data-aos="zoom-in" data-aos-delay="200" data-aos-duration="600">
                     <img src="assets/batik/3_MotifBurungMerak.jpg" alt="Motif Batik Jetis Burung Merak"
-                        class="w-full h-64 object-cover" loading="lazy">
-                    <div
-                        class="bg-gradient-to-t from-batik-dark to-transparent p-4 text-white absolute inset-0 flex items-end">
-                        <p class="font-heading font-bold">Jetis – Burung Merak</p>
+                        class="w-full h-72 object-cover" loading="lazy">
+                    <div class="gallery-overlay">
+                        <p class="font-heading font-bold text-lg text-white">Jetis – Burung Merak</p>
                     </div>
                 </div>
 
-                <div class="gallery-item rounded-lg overflow-hidden shadow-md cursor-pointer hover:shadow-xl transition"
-                    onclick="openLightbox(3)">
+                <div class="gallery-item rounded-2xl overflow-hidden shadow-xl cursor-pointer"
+                    onclick="openLightbox(3)" data-aos="zoom-in" data-aos-delay="0" data-aos-duration="600">
                     <img src="assets/batik/4_MotifSekarJagad.jpg" alt="Motif Batik Jetis Sekar Jagad"
-                        class="w-full h-64 object-cover" loading="lazy">
-                    <div
-                        class="bg-gradient-to-t from-batik-dark to-transparent p-4 text-white absolute inset-0 flex items-end">
-                        <p class="font-heading font-bold">Jetis – Sekar Jagad</p>
+                        class="w-full h-72 object-cover" loading="lazy">
+                    <div class="gallery-overlay">
+                        <p class="font-heading font-bold text-lg text-white">Jetis – Sekar Jagad</p>
                     </div>
                 </div>
 
-                <div class="gallery-item rounded-lg overflow-hidden shadow-md cursor-pointer hover:shadow-xl transition"
-                    onclick="openLightbox(4)">
+                <div class="gallery-item rounded-2xl overflow-hidden shadow-xl cursor-pointer"
+                    onclick="openLightbox(4)" data-aos="zoom-in" data-aos-delay="100" data-aos-duration="600">
                     <img src="assets/batik/5_MotifParangJabon.jpg" alt="Motif Batik Jetis Parang Jabon"
-                        class="w-full h-64 object-cover" loading="lazy">
-                    <div
-                        class="bg-gradient-to-t from-batik-dark to-transparent p-4 text-white absolute inset-0 flex items-end">
-                        <p class="font-heading font-bold">Jetis – Parang Jabon</p>
+                        class="w-full h-72 object-cover" loading="lazy">
+                    <div class="gallery-overlay">
+                        <p class="font-heading font-bold text-lg text-white">Jetis – Parang Jabon</p>
                     </div>
                 </div>
 
-                <div class="gallery-item rounded-lg overflow-hidden shadow-md cursor-pointer hover:shadow-xl transition"
-                    onclick="openLightbox(5)">
+                <div class="gallery-item rounded-2xl overflow-hidden shadow-xl cursor-pointer"
+                    onclick="openLightbox(5)" data-aos="zoom-in" data-aos-delay="200" data-aos-duration="600">
                     <img src="assets/batik/6_MotifLovePutihan.jpg" alt="Motif Batik Jetis Love Putihan"
-                        class="w-full h-64 object-cover" loading="lazy">
-                    <div
-                        class="bg-gradient-to-t from-batik-dark to-transparent p-4 text-white absolute inset-0 flex items-end">
-                        <p class="font-heading font-bold">Jetis – Love Putihan</p>
+                        class="w-full h-72 object-cover" loading="lazy">
+                    <div class="gallery-overlay">
+                        <p class="font-heading font-bold text-lg text-white">Jetis – Love Putihan</p>
                     </div>
                 </div>
             </div>
@@ -285,37 +400,53 @@
     </section>
 
     <!-- Kontak Section -->
-    <section id="kontak" class="py-20 bg-gradient-to-r from-batik-dark-brown to-batik-dark text-batik-cream">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 text-center">
-            <h2 class="font-heading font-bold text-4xl mb-6">Siap Belajar Batik?</h2>
-            <p class="text-lg mb-8">Download aplikasi BatikAR sekarang dan mulai petualangan Anda menjelajahi kekayaan
-                motif Batik Jetis Sidoarjo.</p>
+    <section id="kontak" class="py-20 bg-gradient-to-br from-batik-dark-brown via-batik-dark to-batik-dark-brown text-batik-cream relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute top-10 left-10 w-64 h-64 bg-batik-gold rounded-full blur-3xl"></div>
+            <div class="absolute bottom-10 right-10 w-96 h-96 bg-batik-gold rounded-full blur-3xl"></div>
+        </div>
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 text-center relative z-10">
+            <h2 class="font-heading font-bold text-4xl md:text-5xl mb-6" 
+                data-aos="fade-down" data-aos-duration="800">
+                Siap Belajar Batik?
+            </h2>
+            <p class="text-lg md:text-xl mb-12 leading-relaxed" 
+               data-aos="fade-up" data-aos-delay="100" data-aos-duration="800">
+                Download aplikasi BatikAR sekarang dan mulai petualangan Anda menjelajahi kekayaan
+                motif Batik Jetis Sidoarjo.
+            </p>
 
-            <div class="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+            <div class="flex flex-col sm:flex-row gap-4 justify-center mb-16" 
+                 data-aos="zoom-in" data-aos-delay="200" data-aos-duration="800">
                 <a href="#download"
-                    class="inline-flex items-center justify-center gap-2 bg-batik-gold hover:bg-yellow-600 text-batik-dark font-bold py-3 px-6 rounded-lg transition transform hover:scale-105">
+                    class="cta-button inline-flex items-center justify-center gap-2 bg-batik-gold hover:bg-yellow-600 text-batik-dark font-bold py-4 px-8 rounded-xl transition transform hover:scale-105 shadow-2xl">
+                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2c5.5 0 10 4.5 10 10s-4.5 10-10 10S2 17.5 2 12 6.5 2 12 2m0 2c-4.4 0-8 3.6-8 8s3.6 8 8 8 8-3.6 8-8-3.6-8-8-8m3.5 9H13v3.5h-2V13H8.5v-2H11V7.5h2V11h3.5v2z" />
+                    </svg>
                     Download Android (APK)
                 </a>
                 <button
-                    class="inline-flex items-center justify-center gap-2 border-2 border-batik-gold text-batik-gold font-bold py-3 px-6 rounded-lg opacity-50 cursor-not-allowed">
+                    class="inline-flex items-center justify-center gap-2 border-2 border-white/30 text-white/60 font-bold py-4 px-8 rounded-xl backdrop-blur-sm cursor-not-allowed">
+                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M17.05 13.5c-.91 0-1.82-.33-2.5-.92l-5.5 5.5c.59.68.92 1.59.92 2.5 0 2.21-1.79 4-4 4s-4-1.79-4-4 1.79-4 4-4c.91 0 1.82.33 2.5.92l5.5-5.5c-.59-.68-.92-1.59-.92-2.5 0-2.21 1.79-4 4-4s4 1.79 4 4-1.79 4-4 4z" />
+                    </svg>
                     App Store (Coming Soon)
                 </button>
             </div>
 
-            <div class="flex flex-col sm:flex-row gap-6 justify-center">
+            <div class="flex flex-col sm:flex-row gap-8 justify-center" 
+                 data-aos="fade-up" data-aos-delay="300" data-aos-duration="800">
                 <a href="mailto:dwimulyo@example.com"
-                    class="inline-flex items-center gap-2 hover:text-batik-gold transition">
-                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
-                        <path
-                            d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+                    class="inline-flex items-center gap-3 hover:text-batik-gold transition text-lg group">
+                    <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24" class="group-hover:scale-110 transition">
+                        <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
                     </svg>
                     dwimulyo@example.com
                 </a>
                 <a href="https://github.com/mulyodwi16/batikARisePortal" target="_blank" rel="noopener noreferrer"
-                    class="inline-flex items-center gap-2 hover:text-batik-gold transition">
-                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
-                        <path
-                            d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.84 9.49.5.09.68-.22.68-.48 0-.24-.01-.87-.01-1.71-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.89 1.52 2.34 1.08 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.93 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02.8-.22 1.65-.33 2.5-.33s1.7.11 2.5.33c1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.82-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85 0 1.34-.01 2.41-.01 2.74 0 .27.18.58.69.48C19.13 20.17 22 16.42 22 12c0-5.52-4.48-10-10-10z" />
+                    class="inline-flex items-center gap-3 hover:text-batik-gold transition text-lg group">
+                    <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24" class="group-hover:scale-110 transition">
+                        <path d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.84 9.49.5.09.68-.22.68-.48 0-.24-.01-.87-.01-1.71-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.89 1.52 2.34 1.08 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.93 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02.8-.22 1.65-.33 2.5-.33s1.7.11 2.5.33c1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.82-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85 0 1.34-.01 2.41-.01 2.74 0 .27.18.58.69.48C19.13 20.17 22 16.42 22 12c0-5.52-4.48-10-10-10z" />
                     </svg>
                     GitHub Repository
                 </a>
@@ -348,16 +479,34 @@
 
     <!-- Lightbox Modal -->
     <div id="lightbox" class="lightbox fixed inset-0 bg-black/95 z-50 items-center justify-center p-4">
-        <button onclick="closeLightbox()" class="absolute top-4 right-4 text-white text-4xl">&times;</button>
+        <button onclick="closeLightbox()" 
+            class="absolute top-6 right-6 text-white text-5xl hover:text-batik-gold transition hover:rotate-90 duration-300 z-50">
+            &times;
+        </button>
         <button onclick="prevLightbox()"
-            class="absolute left-4 top-1/2 transform -translate-y-1/2 text-white text-3xl">❮</button>
+            class="absolute left-6 top-1/2 transform -translate-y-1/2 text-white text-5xl hover:text-batik-gold transition hover:scale-125 bg-black/50 w-16 h-16 rounded-full flex items-center justify-center">
+            ❮
+        </button>
         <button onclick="nextLightbox()"
-            class="absolute right-4 top-1/2 transform -translate-y-1/2 text-white text-3xl">❯</button>
-        <div class="text-center max-w-2xl">
-            <img id="lightbox-image" src="" alt="" class="max-h-80 rounded">
-            <p id="lightbox-caption" class="text-white mt-4 font-heading font-bold"></p>
+            class="absolute right-6 top-1/2 transform -translate-y-1/2 text-white text-5xl hover:text-batik-gold transition hover:scale-125 bg-black/50 w-16 h-16 rounded-full flex items-center justify-center">
+            ❯
+        </button>
+        <div class="text-center max-w-4xl">
+            <img id="lightbox-image" src="" alt="" class="max-h-[80vh] rounded-2xl shadow-2xl mx-auto">
+            <p id="lightbox-caption" class="text-white mt-6 font-heading font-bold text-2xl"></p>
         </div>
     </div>
+
+    <!-- AOS Animation Library -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            easing: 'ease-out-cubic',
+            once: true,
+            offset: 100
+        });
+    </script>
 
     <!-- External JavaScript -->
     <script src="script.js"></script>
