@@ -12,7 +12,7 @@
     <meta property="og:description" content="Scan, telusuri, dan pelajari motif Batik Indonesia secara interaktif.">
     <meta property="og:image" content="assets/hero-banner.png">
 
-    <title>batikARise — Belajar Motif Batik dengan AR</title>
+    <title>batikARise: Belajar Motif Batik dengan AR</title>
     <link rel="icon" type="image/png" href="assets/logo.png">
 
     <!-- Tailwind CSS CDN (Official) -->
@@ -249,6 +249,22 @@
             background: rgba(192, 151, 83, 0.2);
             padding-left: 24px;
         }
+
+        /* Decorative divider between sections */
+        .section-divider {
+            height: 8px;
+            background: linear-gradient(90deg,
+                    transparent 0%,
+                    #C09753 25%,
+                    #C09753 75%,
+                    transparent 100%);
+            opacity: 0.3;
+        }
+
+        /* Floating accent shapes */
+        .floating-shape {
+            animation: float 6s ease-in-out infinite;
+        }
     </style>
 </head>
 
@@ -257,8 +273,25 @@
     <nav id="navbar" class="fixed w-full top-0 z-50 shadow-lg" style="background-color: #4E342E !important;">
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
-                <!-- Logo -->
-                <a href="#home" class="flex items-center group">
+                <!-- Logo (always at start on desktop, at end on mobile) -->
+                <a href="#home" class="flex items-center group hidden md:flex">
+                    <img src="assets/logo.png" alt="batikARise Logo"
+                        class="h-16 w-auto transition-all duration-300 group-hover:scale-110">
+                </a>
+
+                <!-- Mobile Menu Button (only visible on mobile, appears on left) -->
+                <button id="menu-btn"
+                    class="md:hidden text-white p-2 rounded-lg hover:bg-white/10 transition-all duration-300">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </button>
+
+                <!-- Logo Mobile (only visible on mobile, at right) -->
+                <a href="#home" class="flex items-center group md:hidden">
                     <img src="assets/logo.png" alt="batikARise Logo"
                         class="h-16 w-auto transition-all duration-300 group-hover:scale-110">
                 </a>
@@ -277,23 +310,12 @@
                             class="nav-link px-4 py-2 text-white font-medium rounded-lg hover:bg-white/10">Kontak</a>
                     </li>
                     <li>
-                        <a href="#download"
+                        <a href="downloads/batikARise.apk" download
                             class="ml-4 px-6 py-2.5 bg-gradient-to-r from-batik-gold to-yellow-600 text-batik-dark font-bold rounded-full hover:shadow-lg hover:shadow-batik-gold/50 transition-all duration-300 hover:scale-105">
                             Download
                         </a>
                     </li>
                 </ul>
-
-                <!-- Mobile Menu Button -->
-                <button id="menu-btn"
-                    class="md:hidden text-white p-2 rounded-lg hover:bg-white/10 transition-all duration-300">
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                        stroke-linecap="round" stroke-linejoin="round">
-                        <line x1="3" y1="12" x2="21" y2="12"></line>
-                        <line x1="3" y1="6" x2="21" y2="6"></line>
-                        <line x1="3" y1="18" x2="21" y2="18"></line>
-                    </svg>
-                </button>
             </div>
         </div>
 
@@ -304,7 +326,7 @@
                 <a href="#cara" class="block text-white font-medium">Cara Pakai</a>
                 <a href="#galeri" class="block text-white font-medium">Galeri</a>
                 <a href="#kontak" class="block text-white font-medium">Kontak</a>
-                <a href="#download"
+                <a href="downloads/batikARise.apk" download
                     class="block text-center mt-4 px-6 py-3 bg-gradient-to-r from-batik-gold to-yellow-600 text-batik-dark font-bold rounded-lg hover:shadow-lg transition-all duration-300">
                     Download App
                 </a>
@@ -319,7 +341,7 @@
             <div class="max-w-2xl">
                 <h1 class="font-heading font-bold text-4xl sm:text-5xl lg:text-6xl text-white mb-6 animate-fade-in-up"
                     data-aos="fade-up" data-aos-duration="1000">
-                    batikARise — Belajar Motif Batik dengan AR
+                    batikARise: Belajar Motif Batik dengan AR
                 </h1>
                 <p class="text-lg sm:text-xl text-white mb-8 leading-relaxed" data-aos="fade-up" data-aos-delay="200"
                     data-aos-duration="1000">
@@ -330,7 +352,7 @@
                 <!-- CTA Buttons -->
                 <div class="flex flex-col sm:flex-row gap-4 mb-8" data-aos="fade-up" data-aos-delay="400"
                     data-aos-duration="1000">
-                    <a href="#download"
+                    <a href="downloads/batikARise.apk" download
                         class="cta-button inline-flex items-center justify-center gap-2 bg-gradient-to-r from-batik-gold to-yellow-600 text-batik-dark font-bold py-4 px-8 rounded-xl transition transform hover:scale-105 hover:shadow-2xl hover:shadow-batik-gold/50 relative z-10">
                         <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
                             <path
@@ -351,18 +373,25 @@
         </div>
     </section>
 
+    <!-- Decorative Divider -->
+    <div class="section-divider"></div>
+
     <!-- Cara Penggunaan Section -->
-    <section id="cara" class="pt-40 pb-20 bg-gradient-to-b from-white to-batik-cream/30">
-        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+    <section id="cara" class="pt-40 pb-20 bg-gradient-to-b from-white to-batik-cream/30 relative overflow-hidden">
+        <!-- Decorative elements -->
+        <div class="absolute top-10 right-0 w-96 h-96 bg-batik-gold/5 rounded-full blur-3xl -z-0"></div>
+        <div class="absolute bottom-10 left-0 w-72 h-72 bg-batik-gold/5 rounded-full blur-3xl -z-0"></div>
+
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
             <h2 class="font-heading font-bold text-4xl text-center text-batik-dark-brown mb-4" data-aos="fade-down"
                 data-aos-duration="800">
                 Cara Menggunakan
             </h2>
             <p class="text-center text-batik-dark mb-16 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="100"
                 data-aos-duration="800">
-                Ikuti 4 langkah mudah untuk memulai petualangan Anda dengan batikARise
+                Ikuti 5 langkah mudah untuk memulai petualangan Anda dengan batikARise
             </p>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
                 <!-- Step 1 -->
                 <div class="step-card bg-white p-8 rounded-2xl text-center shadow-lg" data-aos="fade-up"
                     data-aos-delay="0" data-aos-duration="800">
@@ -376,7 +405,8 @@
                         class="w-8 h-8 bg-batik-gold text-white rounded-full flex items-center justify-center mx-auto mb-4 font-bold">
                         1</div>
                     <h3 class="font-heading font-bold text-xl text-batik-dark-brown mb-3">Unduh & Buka Aplikasi</h3>
-                    <p class="text-sm text-batik-dark leading-relaxed">Download aplikasi BatikAR dan buka di perangkat
+                    <p class="text-sm text-batik-dark leading-relaxed">Download aplikasi batikARise dan buka di
+                        perangkat
                         Android Anda.</p>
                 </div>
 
@@ -422,6 +452,24 @@
 
                 <!-- Step 4 -->
                 <div class="step-card bg-white p-8 rounded-2xl text-center shadow-lg" data-aos="fade-up"
+                    data-aos-delay="400" data-aos-duration="800">
+                    <div
+                        class="w-20 h-20 bg-gradient-to-br from-batik-gold to-yellow-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
+                        <svg width="32" height="32" fill="white" viewBox="0 0 24 24">
+                            <path
+                                d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z" />
+                        </svg>
+                    </div>
+                    <div
+                        class="w-8 h-8 bg-batik-gold text-white rounded-full flex items-center justify-center mx-auto mb-4 font-bold">
+                        5</div>
+                    <h3 class="font-heading font-bold text-xl text-batik-dark-brown mb-3">AR Drawing</h3>
+                    <p class="text-sm text-batik-dark leading-relaxed">Minigames menggambar batik di lingkungan AR.
+                    </p>
+                </div>
+
+                <!-- Step 5 -->
+                <div class="step-card bg-white p-8 rounded-2xl text-center shadow-lg" data-aos="fade-up"
                     data-aos-delay="300" data-aos-duration="800">
                     <div
                         class="w-20 h-20 bg-gradient-to-br from-batik-gold to-yellow-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
@@ -437,13 +485,21 @@
                     <p class="text-sm text-batik-dark leading-relaxed">Uji pengetahuan dan pelajari sejarah motif batik.
                     </p>
                 </div>
+
             </div>
         </div>
     </section>
 
+    <!-- Decorative Divider -->
+    <div class="section-divider"></div>
+
     <!-- Galeri Section -->
-    <section id="galeri" class="py-20 bg-batik-cream">
-        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+    <section id="galeri" class="py-20 bg-batik-cream relative overflow-hidden">
+        <!-- Decorative elements -->
+        <div class="absolute top-0 left-1/4 w-80 h-80 bg-batik-gold/3 rounded-full blur-3xl -z-0"></div>
+        <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-batik-gold/3 rounded-full blur-3xl -z-0"></div>
+
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
             <h2 class="font-heading font-bold text-4xl text-center text-batik-dark-brown mb-4" data-aos="fade-down"
                 data-aos-duration="800">
                 Galeri Batik yang Dapat Dipindai
@@ -456,10 +512,10 @@
                 <!-- Gallery Items -->
                 <div class="gallery-item rounded-2xl overflow-hidden shadow-xl cursor-pointer" onclick="openLightbox(0)"
                     data-aos="zoom-in" data-aos-delay="0" data-aos-duration="600">
-                    <img src="assets/batik/1_MotifLiris.jpg" alt="Motif Batik Udan Liris"
-                        class="w-full h-72 object-cover" loading="lazy">
+                    <img src="assets/batik/1_MotifLiris.jpg" alt="Motif Batik Liris" class="w-full h-72 object-cover"
+                        loading="lazy">
                     <div class="gallery-overlay">
-                        <p class="font-heading font-bold text-lg text-white">Udan Liris</p>
+                        <p class="font-heading font-bold text-lg text-white"> Motif Liris</p>
                     </div>
                 </div>
 
@@ -468,7 +524,7 @@
                     <img src="assets/batik/2_MotifAlunAlunContong.jpg" alt="Motif Batik Alun-Alun Contong"
                         class="w-full h-72 object-cover" loading="lazy">
                     <div class="gallery-overlay">
-                        <p class="font-heading font-bold text-lg text-white">Alun-Alun Contong</p>
+                        <p class="font-heading font-bold text-lg text-white">Motif Alun-Alun Contong</p>
                     </div>
                 </div>
 
@@ -477,7 +533,7 @@
                     <img src="assets/batik/3_MotifBurungMerak.jpg" alt="Motif Batik Burung Merak"
                         class="w-full h-72 object-cover" loading="lazy">
                     <div class="gallery-overlay">
-                        <p class="font-heading font-bold text-lg text-white">Burung Merak</p>
+                        <p class="font-heading font-bold text-lg text-white">Motif Burung Merak</p>
                     </div>
                 </div>
 
@@ -486,7 +542,7 @@
                     <img src="assets/batik/4_MotifSekarJagad.jpg" alt="Motif Batik Sekar Jagad"
                         class="w-full h-72 object-cover" loading="lazy">
                     <div class="gallery-overlay">
-                        <p class="font-heading font-bold text-lg text-white">Sekar Jagad</p>
+                        <p class="font-heading font-bold text-lg text-white">Motif Sekar Jagad</p>
                     </div>
                 </div>
 
@@ -495,7 +551,7 @@
                     <img src="assets/batik/5_MotifParangJabon.jpg" alt="Motif Batik Parang Jabon"
                         class="w-full h-72 object-cover" loading="lazy">
                     <div class="gallery-overlay">
-                        <p class="font-heading font-bold text-lg text-white">Parang Jabon</p>
+                        <p class="font-heading font-bold text-lg text-white">Motif Parang Jabon</p>
                     </div>
                 </div>
 
@@ -504,12 +560,15 @@
                     <img src="assets/batik/6_MotifLovePutihan.jpg" alt="Motif Batik Love Putihan"
                         class="w-full h-72 object-cover" loading="lazy">
                     <div class="gallery-overlay">
-                        <p class="font-heading font-bold text-lg text-white">Love Putihan</p>
+                        <p class="font-heading font-bold text-lg text-white">Motif Love Putihan</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- Decorative Divider -->
+    <div class="section-divider"></div>
 
     <!-- Kontak Section -->
     <section id="kontak"
@@ -520,17 +579,17 @@
         </div>
         <div class="max-w-7xl mx-auto px-6 lg:px-8 text-center relative z-10">
             <h2 class="font-heading font-bold text-4xl md:text-5xl mb-6" data-aos="fade-down" data-aos-duration="800">
-                Siap Belajar Batik?
+                Siap mengenal dan mempelajari motif Batik?
             </h2>
             <p class="text-lg md:text-xl mb-12 leading-relaxed" data-aos="fade-up" data-aos-delay="100"
                 data-aos-duration="800">
-                Download aplikasi BatikAR sekarang dan mulai petualangan Anda menjelajahi kekayaan
+                Download aplikasi batikARise sekarang dan mulai petualangan Anda menjelajahi kekayaan
                 motif Batik.
             </p>
 
             <div class="flex flex-col sm:flex-row gap-4 justify-center mb-16" data-aos="zoom-in" data-aos-delay="200"
                 data-aos-duration="800">
-                <a href="#download"
+                <a href="downloads/batikARise.apk" download
                     class="cta-button inline-flex items-center justify-center gap-2 bg-gradient-to-r from-batik-gold to-yellow-600 text-batik-dark font-bold py-4 px-8 rounded-xl transition transform hover:scale-105 hover:shadow-2xl hover:shadow-batik-gold/50 relative z-10">
                     <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
                         <path
@@ -567,18 +626,18 @@
     <footer class="text-white py-12" style="background-color: #4E342E !important;">
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-                <div>
+                <div class="flex flex-col items-center md:items-start">
                     <p class="font-bold mb-2 text-white">&copy; 2025 batikARise</p>
-                    <p class="text-sm text-white"><strong>Tim Peneliti:</strong></p>
-                    <p class="text-xs text-white">Dr.-Ing. Hestiasari Rante</p>
-                    <p class="text-xs text-white">Prof. Iwan Syarif</p>
-                    <p class="text-xs text-white">Dr. Tri Budi Santoso</p>
-                    <p class="text-xs text-white">Dwi Mulyo, S.Tr.Kom</p>
-                    <p class="text-xs text-white">Anisa Faza</p>
+                    <p class="text-base font-bold mb-3 text-white"><strong>Tim Peneliti:</strong></p>
+                    <p class="text-sm text-white">Dr.-Ing. Hestiasari Rante</p>
+                    <p class="text-sm text-white">Prof. Iwan Syarif</p>
+                    <p class="text-sm text-white">Dr. Tri Budi Santoso</p>
+                    <p class="text-sm text-white">Dwi Mulyo, S.Tr.Kom</p>
+                    <p class="text-sm text-white">Anisa Faza</p>
                 </div>
-                <div>
-                    <p class="font-bold mb-4 text-white">Didukung oleh:</p>
-                    <div class="flex gap-6 flex-wrap items-center">
+                <div class="ml-auto w-fit md:ml-auto flex flex-col items-center md:items-end">
+                    <p class="text-base font-bold mb-3 text-white">Didukung oleh:</p>
+                    <div class="flex gap-6 flex-wrap items-center justify-center md:justify-end">
                         <img src="assets/sponsor1.png" alt="Tut Wuri Handayani"
                             class="h-16 hover:scale-110 transition-transform duration-300">
                         <img src="assets/sponsor2.png" alt="Sponsor Logo"

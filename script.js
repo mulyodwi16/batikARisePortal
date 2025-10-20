@@ -1,11 +1,11 @@
 // Gallery data
 const galleryData = [
-    { src: 'assets/batik/1_MotifLiris.jpg', caption: 'Udan Liris' },
-    { src: 'assets/batik/2_MotifAlunAlunContong.jpg', caption: 'Alun-Alun Contong' },
-    { src: 'assets/batik/3_MotifBurungMerak.jpg', caption: 'Burung Merak' },
-    { src: 'assets/batik/4_MotifSekarJagad.jpg', caption: 'Sekar Jagad' },
-    { src: 'assets/batik/5_MotifParangJabon.jpg', caption: 'Parang Jabon' },
-    { src: 'assets/batik/6_MotifLovePutihan.jpg', caption: 'Love Putihan' }
+    { src: 'assets/batik/1_MotifLiris.jpg', caption: 'Motif Liris' },
+    { src: 'assets/batik/2_MotifAlunAlunContong.jpg', caption: 'Motif Alun-Alun Contong' },
+    { src: 'assets/batik/3_MotifBurungMerak.jpg', caption: 'Motif Burung Merak' },
+    { src: 'assets/batik/4_MotifSekarJagad.jpg', caption: 'Motif Sekar Jagad' },
+    { src: 'assets/batik/5_MotifParangJabon.jpg', caption: 'Motif Parang Jabon' },
+    { src: 'assets/batik/6_MotifLovePutihan.jpg', caption: 'Motif Love Putihan' }
 ];
 
 let currentIndex = 0;
