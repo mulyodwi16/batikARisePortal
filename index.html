@@ -14,13 +14,56 @@
     <title>batikARise — Belajar Motif Batik Jetis dengan AR</title>
     <link rel="icon" type="image/png" href="assets/logo.png">
 
-    <!-- Tailwind CSS Output (Production) -->
-    <link href="./src/output.css" rel="stylesheet">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        batik: {
+                            dark: '#1F1B16',
+                            'dark-brown': '#4E342E',
+                            cream: '#F5E6D3',
+                            gold: '#C09753',
+                        }
+                    },
+                    fontFamily: {
+                        heading: ['Poppins', 'sans-serif'],
+                        body: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        .hero-bg {
+            background-image: url('assets/hero-banner.png');
+            background-size: cover;
+            background-position: center right;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fade-in-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+    </style>
 </head>
 
 <body class="bg-batik-cream font-body text-batik-dark">
