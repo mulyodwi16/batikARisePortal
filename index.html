@@ -89,7 +89,7 @@
                     <li><a href="#cara"
                             class="nav-link px-4 py-2 text-white font-medium rounded-lg hover:bg-white/10">Cara
                             Pakai</a></li>
-                    <li><a href="galeri.html"
+                    <li><a href="#galeri"
                             class="nav-link px-4 py-2 text-white font-medium rounded-lg hover:bg-white/10">Galeri</a>
                     </li>
                     <li><a href="#kontak"
@@ -110,7 +110,7 @@
             <div class="max-w-7xl mx-auto px-6 py-4 space-y-1">
                 <a href="#home" class="block text-white font-medium">Home</a>
                 <a href="#cara" class="block text-white font-medium">Cara Pakai</a>
-                <a href="galeri.html" class="block text-white font-medium">Galeri</a>
+                <a href="#galeri" class="block text-white font-medium">Galeri</a>
                 <a href="#kontak" class="block text-white font-medium">Kontak</a>
                 <a href="downloads/batikARise.apk" download
                     class="block text-center mt-4 px-6 py-3 bg-gradient-to-r from-batik-gold to-yellow-600 text-batik-dark font-bold rounded-lg hover:shadow-lg transition-all duration-300">
@@ -126,11 +126,7 @@
         <div class="batik-pattern absolute inset-0"></div>
         <div class="max-w-7xl mx-auto px-6 lg:px-8 relative z-10 w-full">
             <div class="max-w-2xl">
-                <span class="hero-badge mb-6 animate-fade-in-up" data-aos="fade-up" data-aos-duration="1000">
-                    <span class="dot"></span>
-                    &#10024; Augmented Reality &times; Batik Indonesia
-                </span>
-                <h1 class="font-heading font-bold text-4xl sm:text-5xl lg:text-6xl text-white mb-6 mt-6 leading-tight animate-fade-in-up"
+                <h1 class="font-heading font-bold text-4xl sm:text-5xl lg:text-6xl text-white mb-6 leading-tight animate-fade-in-up"
                     data-aos="fade-up" data-aos-duration="1000">
                     batikARise: Belajar <span class="text-gradient-emas">Motif Batik</span> dengan AR
                 </h1>
@@ -164,27 +160,11 @@
         </div>
     </section>
 
-    <!-- Strip "Didukung oleh" (social proof) -->
-    <section class="bg-batik-gading py-10 border-y border-batik-gold/15">
-        <div class="max-w-7xl mx-auto px-6 lg:px-8">
-            <p class="text-center text-xs font-semibold uppercase tracking-[0.2em] text-batik-dark-brown/70 mb-6"
-                data-aos="fade-up" data-aos-duration="700">
-                Didukung oleh
-            </p>
-            <div class="flex gap-10 flex-wrap items-center justify-center" data-aos="fade-up" data-aos-delay="100"
-                data-aos-duration="700">
-                <img src="assets/sponsor1.png" alt="Tut Wuri Handayani" class="support-logo h-14">
-                <img src="assets/sponsor2.png" alt="Sponsor Logo" class="support-logo h-14">
-                <img src="assets/sponsor3.png" alt="Diktisaintek Berdampak" class="support-logo h-14">
-            </div>
-        </div>
-    </section>
-
     <!-- Decorative Divider -->
     <div class="section-divider"></div>
 
     <!-- Cara Penggunaan Section -->
-    <section id="cara" class="pt-40 pb-20 bg-gradient-to-b from-white to-batik-cream/30 relative overflow-hidden">
+    <section id="cara" class="pt-24 pb-20 bg-gradient-to-b from-white to-batik-cream/30 relative overflow-hidden">
         <!-- Decorative elements -->
         <div class="absolute top-10 right-0 w-96 h-96 bg-batik-gold/5 rounded-full blur-3xl -z-0"></div>
         <div class="absolute bottom-10 left-0 w-72 h-72 bg-batik-gold/5 rounded-full blur-3xl -z-0"></div>
@@ -307,11 +287,6 @@
         <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-batik-gold/3 rounded-full blur-3xl -z-0"></div>
 
         <div class="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
-            <span class="hero-badge mx-auto mb-5 flex w-fit" data-aos="fade-up" data-aos-duration="800"
-                style="color: var(--batik-dark-brown);">
-                <span class="dot"></span>
-                Katalog Motif
-            </span>
             <h2 class="font-heading font-bold text-4xl text-center text-batik-dark-brown mb-4" data-aos="fade-down"
                 data-aos-duration="800">
                 Galeri Batik yang Dapat Dipindai
@@ -324,10 +299,9 @@
             <!-- Status sumber data (disembunyikan saat sukses) -->
             <p id="galeri-status" class="text-center text-sm text-batik-dark/60 mb-10"></p>
 
-            <!-- Grid preview diisi dinamis dari motifs.json (maks. 8) oleh script.js -->
-            <div id="galeri-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            <!-- Grid preview diisi dinamis dari motifs.json (maks. 6) oleh script.js -->
+            <div id="galeri-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Skeleton loading state -->
-                <div class="gallery-skeleton h-72 rounded-2xl bg-batik-dark/10 animate-pulse"></div>
                 <div class="gallery-skeleton h-72 rounded-2xl bg-batik-dark/10 animate-pulse"></div>
                 <div class="gallery-skeleton h-72 rounded-2xl bg-batik-dark/10 animate-pulse"></div>
                 <div class="gallery-skeleton h-72 rounded-2xl bg-batik-dark/10 animate-pulse"></div>
@@ -410,13 +384,14 @@
             <hr class="gold-rule mb-10">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
                 <div class="flex flex-col items-center md:items-start">
-                    <p class="font-bold mb-2 text-white">&copy; 2026 batikARise</p>
+                    <p class="font-bold mb-2 text-white">&copy; 2025 batikARise</p>
                     <p class="text-base font-bold mb-3 text-white"><strong>Tim Peneliti:</strong></p>
                     <p class="text-sm text-white">Dr.-Ing. Hestiasari Rante</p>
                     <p class="text-sm text-white">Prof. Iwan Syarif</p>
                     <p class="text-sm text-white">Dr. Tri Budi Santoso</p>
                     <p class="text-sm text-white">Dwi Mulyo, S.Tr.Kom</p>
                     <p class="text-sm text-white">Anisa Faza</p>
+                    <p class="text-sm text-white">Hanan Hafizah</p>
                 </div>
                 <div class="ml-auto w-fit md:ml-auto flex flex-col items-center md:items-end">
                     <p class="text-base font-bold mb-3 text-white">Didukung oleh:</p>

@@ -2,7 +2,7 @@
 // Logika inti (lightbox, scan view, menu) ada di assets/js/batik-gallery.js.
 // Katalog penuh + pencarian + paginasi ada di galeri.html / galeri.js.
 
-const FEATURED_LIMIT = 8;
+const FEATURED_LIMIT = 6;
 
 async function initLanding() {
     const grid = document.getElementById('galeri-grid');
