@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Galeri lengkap motif Batik Indonesia di batikARise — cari dan telusuri motif untuk dipindai lewat AR.">
+    <meta name="keywords" content="batikARise, galeri batik, motif batik, Augmented Reality, AR">
+    <meta name="author" content="Dwi Mulyo">
+    <meta property="og:title" content="Galeri Motif — batikARise">
+    <meta property="og:description" content="Cari dan telusuri seluruh motif Batik yang dapat dipindai di batikARise.">
+    <meta property="og:image" content="assets/hero-banner.png">
+
+    <title>Galeri Motif — batikARise</title>
+    <link rel="icon" type="image/png" href="assets/logo.png">
+
+    <!-- Tailwind CSS CDN (Official) -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        batik: {
+                            dark: '#1F1B16',
+                            'dark-brown': '#4E342E',
+                            cream: '#F5E6D3',
+                            gold: '#C09753',
+                        }
+                    },
+                    fontFamily: {
+                        heading: ['Poppins', 'sans-serif'],
+                        body: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Gaya bersama (palet batik + komponen) -->
+    <link href="assets/css/batik.css" rel="stylesheet">
+</head>
+
+<body class="bg-batik-cream font-body text-batik-dark">
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed w-full top-0 z-50 shadow-lg" style="background-color: #4E342E !important;">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <a href="index.html" class="flex items-center group hidden md:flex">
+                    <img src="assets/logo.png" alt="batikARise Logo"
+                        class="h-16 w-auto transition-all duration-300 group-hover:scale-110">
+                </a>
+
+                <button id="menu-btn"
+                    class="md:hidden text-white p-2 rounded-lg hover:bg-white/10 transition-all duration-300">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </button>
+
+                <a href="index.html" class="flex items-center group md:hidden">
+                    <img src="assets/logo.png" alt="batikARise Logo"
+                        class="h-16 w-auto transition-all duration-300 group-hover:scale-110">
+                </a>
+
+                <ul class="hidden md:flex items-center gap-2">
+                    <li><a href="index.html#home"
+                            class="nav-link px-4 py-2 text-white font-medium rounded-lg hover:bg-white/10">Home</a></li>
+                    <li><a href="index.html#cara"
+                            class="nav-link px-4 py-2 text-white font-medium rounded-lg hover:bg-white/10">Cara
+                            Pakai</a></li>
+                    <li><a href="galeri.html"
+                            class="nav-link text-batik-gold px-4 py-2 font-medium rounded-lg hover:bg-white/10">Galeri</a>
+                    </li>
+                    <li><a href="index.html#kontak"
+                            class="nav-link px-4 py-2 text-white font-medium rounded-lg hover:bg-white/10">Kontak</a>
+                    </li>
+                    <li>
+                        <a href="downloads/batikARise.apk" download
+                            class="ml-4 px-6 py-2.5 bg-gradient-to-r from-batik-gold to-yellow-600 text-batik-dark font-bold rounded-full hover:shadow-lg hover:shadow-batik-gold/50 transition-all duration-300 hover:scale-105">
+                            Download
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-batik-dark-brown/95 border-t border-batik-gold/20">
+            <div class="max-w-7xl mx-auto px-6 py-4 space-y-1">
+                <a href="index.html#home" class="block text-white font-medium">Home</a>
+                <a href="index.html#cara" class="block text-white font-medium">Cara Pakai</a>
+                <a href="galeri.html" class="block text-batik-gold font-medium">Galeri</a>
+                <a href="index.html#kontak" class="block text-white font-medium">Kontak</a>
+                <a href="downloads/batikARise.apk" download
+                    class="block text-center mt-4 px-6 py-3 bg-gradient-to-r from-batik-gold to-yellow-600 text-batik-dark font-bold rounded-lg hover:shadow-lg transition-all duration-300">
+                    Download App
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header galeri -->
+    <header class="pt-32 pb-10 bg-gradient-to-b from-batik-dark-brown to-batik-dark text-batik-cream relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-96 h-96 bg-batik-gold/10 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-0 left-0 w-80 h-80 bg-batik-gold/10 rounded-full blur-3xl"></div>
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 relative z-10 text-center">
+            <span class="hero-badge mx-auto mb-6 flex w-fit">
+                <span class="dot"></span>
+                Katalog Lengkap
+            </span>
+            <h1 class="font-heading font-bold text-4xl sm:text-5xl mb-4">Galeri Motif Batik</h1>
+            <p class="text-base sm:text-lg text-batik-cream/80 max-w-2xl mx-auto mb-8">
+                Telusuri seluruh koleksi motif yang dapat dipindai. Klik motif untuk melihat besar,
+                lalu tampilkan layar penuh untuk dipindai kamera AR.
+            </p>
+
+            <!-- Search -->
+            <div class="search-wrap">
+                <span class="search-icon">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                </span>
+                <input id="search-input" type="text" class="search-input" placeholder="Cari nama motif…"
+                    autocomplete="off" aria-label="Cari motif batik">
+                <button id="search-clear" class="search-clear" aria-label="Hapus pencarian">&times;</button>
+            </div>
+        </div>
+    </header>
+
+    <div class="section-divider"></div>
+
+    <!-- Grid + status + pagination -->
+    <section class="py-14 bg-batik-cream relative overflow-hidden min-h-[50vh]">
+        <div class="absolute top-0 left-1/4 w-80 h-80 bg-batik-gold/5 rounded-full blur-3xl -z-0"></div>
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
+            <p id="result-count" class="text-center text-sm text-batik-dark/70 mb-8"></p>
+
+            <div id="galeri-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="gallery-skeleton h-72 rounded-2xl bg-batik-dark/10 animate-pulse"></div>
+                <div class="gallery-skeleton h-72 rounded-2xl bg-batik-dark/10 animate-pulse"></div>
+                <div class="gallery-skeleton h-72 rounded-2xl bg-batik-dark/10 animate-pulse"></div>
+                <div class="gallery-skeleton h-72 rounded-2xl bg-batik-dark/10 animate-pulse"></div>
+            </div>
+
+            <!-- Empty state (hasil pencarian kosong) -->
+            <div id="empty-state" class="empty-state" style="display:none;">
+                <p class="font-heading font-bold text-xl text-batik-dark-brown mb-2">Motif tidak ditemukan</p>
+                <p class="text-sm">Coba kata kunci lain.</p>
+            </div>
+
+            <!-- Pagination -->
+            <div id="pagination" class="pagination mt-12" style="display:none;">
+                <button id="page-prev" class="page-btn" aria-label="Halaman sebelumnya">
+                    <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5"
+                        stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                        <polyline points="15 18 9 12 15 6"></polyline>
+                    </svg>
+                    Sebelumnya
+                </button>
+                <span id="page-info" class="page-info"></span>
+                <button id="page-next" class="page-btn" aria-label="Halaman berikutnya">
+                    Berikutnya
+                    <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5"
+                        stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="text-white py-10" style="background-color: #4E342E !important;">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 text-center">
+            <p class="font-bold text-white mb-2">&copy; 2025 batikARise</p>
+            <a href="index.html" class="text-sm text-batik-gold hover:underline">Kembali ke Beranda</a>
+        </div>
+    </footer>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox" class="lightbox fixed inset-0 bg-black/95 z-50 items-center justify-center p-4">
+        <button onclick="closeLightbox()"
+            class="absolute top-6 right-6 text-white text-5xl hover:text-batik-gold transition hover:rotate-90 duration-300 z-50">
+            &times;
+        </button>
+        <button onclick="prevLightbox()"
+            class="absolute left-6 top-1/2 transform -translate-y-1/2 text-white text-5xl hover:text-batik-gold transition hover:scale-125 bg-black/50 w-16 h-16 rounded-full flex items-center justify-center">
+            ❮
+        </button>
+        <button onclick="nextLightbox()"
+            class="absolute right-6 top-1/2 transform -translate-y-1/2 text-white text-5xl hover:text-batik-gold transition hover:scale-125 bg-black/50 w-16 h-16 rounded-full flex items-center justify-center">
+            ❯
+        </button>
+        <div class="text-center max-w-4xl">
+            <img id="lightbox-image" src="" alt="" class="max-h-[72vh] rounded-2xl shadow-2xl mx-auto bg-white">
+            <p id="lightbox-caption" class="text-white mt-6 font-heading font-bold text-2xl"></p>
+            <p id="lightbox-desc" class="text-white/70 mt-2 max-w-2xl mx-auto text-sm"></p>
+            <button onclick="openScanView()"
+                class="mt-6 inline-flex items-center gap-2 bg-gradient-to-r from-batik-gold to-yellow-600 text-batik-dark font-bold py-3 px-6 rounded-xl hover:scale-105 transition">
+                <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M3 5a2 2 0 0 1 2-2h3v2H5v3H3V5zm18 0v3h-2V5h-3V3h3a2 2 0 0 1 2 2zM3 19v-3h2v3h3v2H5a2 2 0 0 1-2-2zm18 0a2 2 0 0 1-2 2h-3v-2h3v-3h2v3zM7 11h10v2H7v-2z"/>
+                </svg>
+                Tampilkan untuk Dipindai
+            </button>
+        </div>
+    </div>
+
+    <!-- Scan View: tampilan bersih layar-penuh untuk dipindai kamera AR -->
+    <div id="scan-view" class="fixed inset-0 z-[60] bg-white flex-col items-center justify-center p-4" style="display:none;">
+        <img id="scan-image" src="" alt="" class="max-h-[88vh] max-w-full object-contain">
+        <p id="scan-caption" class="mt-3 font-heading font-bold text-xl text-batik-dark-brown text-center"></p>
+        <button onclick="closeScanView()"
+            class="absolute top-5 right-5 text-batik-dark-brown bg-batik-cream/80 w-12 h-12 rounded-full text-3xl flex items-center justify-center hover:bg-batik-gold transition">
+            &times;
+        </button>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="assets/js/batik-gallery.js"></script>
+    <script src="galeri.js"></script>
+</body>
+
+</html>
