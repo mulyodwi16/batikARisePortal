@@ -1,14 +1,76 @@
-// Gallery data
-const galleryData = [
-    { src: 'assets/batik/1_MotifLiris.jpg', caption: 'Motif Liris' },
-    { src: 'assets/batik/2_MotifAlunAlunContong.jpg', caption: 'Motif Alun-Alun Contong' },
-    { src: 'assets/batik/3_MotifBurungMerak.jpg', caption: 'Motif Burung Merak' },
-    { src: 'assets/batik/4_MotifSekarJagad.jpg', caption: 'Motif Sekar Jagad' },
-    { src: 'assets/batik/5_MotifParangJabon.jpg', caption: 'Motif Parang Jabon' },
-    { src: 'assets/batik/6_MotifLovePutihan.jpg', caption: 'Motif Love Putihan' }
+// Gallery data — dimuat dinamis dari assets/data/motifs.json.
+// File itu di-generate oleh tools/sync-motifs.mjs (sinkron dari PlayFab MOTIF_LIST),
+// jadi daftar motif di sini mengikuti yang ada di aplikasi Unity.
+let galleryData = [];
+let currentIndex = 0;
+
+// Daftar cadangan kalau motifs.json gagal dimuat (mis. dibuka via file://),
+// sehautomatis galeri tetap menampilkan katalog dasar.
+const fallbackGallery = [
+    { src: 'assets/batik/1_MotifLiris.jpg', caption: 'Motif Liris', desc: '' },
+    { src: 'assets/batik/2_MotifAlunAlunContong.jpg', caption: 'Motif Alun-Alun Contong', desc: '' },
+    { src: 'assets/batik/3_MotifBurungMerak.jpg', caption: 'Motif Burung Merak', desc: '' },
+    { src: 'assets/batik/4_MotifSekarJagad.jpg', caption: 'Motif Sekar Jagad', desc: '' },
+    { src: 'assets/batik/5_MotifParangJabon.jpg', caption: 'Motif Parang Jabon', desc: '' },
+    { src: 'assets/batik/6_MotifLovePutihan.jpg', caption: 'Motif Love Putihan', desc: '' }
 ];
 
-let currentIndex = 0;
+async function loadGallery() {
+    const grid = document.getElementById('galeri-grid');
+    const status = document.getElementById('galeri-status');
+    try {
+        const res = await fetch('assets/data/motifs.json', { cache: 'no-store' });
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        const data = await res.json();
+        const items = Array.isArray(data.items) ? data.items : [];
+        if (items.length === 0) throw new Error('Daftar motif kosong');
+        galleryData = items.map(m => ({
+            src: m.image || m.imageUrl || '',
+            caption: m.nama || 'Motif Batik',
+            desc: m.deskripsi || ''
+        }));
+        if (status) status.textContent = '';
+    } catch (err) {
+        console.warn('[galeri] Gagal memuat motifs.json, memakai daftar cadangan:', err.message);
+        galleryData = fallbackGallery;
+        if (status) {
+            status.textContent = 'Menampilkan katalog dasar (sinkronisasi terbaru belum dimuat).';
+        }
+    }
+    renderGallery(grid);
+}
+
+function renderGallery(grid) {
+    if (!grid) return;
+    grid.innerHTML = '';
+    galleryData.forEach((item, index) => {
+        const card = document.createElement('div');
+        // Sengaja tanpa atribut data-aos: AOS.init() sudah jalan sebelum kartu ini
+        // dibuat, jadi kalau pakai data-aos kartu bisa tersangkut opacity:0.
+        card.className = 'gallery-item rounded-2xl overflow-hidden shadow-xl cursor-pointer';
+        card.style.animation = `fadeInUp 0.6s ease-out ${(index % 3) * 0.1}s both`;
+        card.addEventListener('click', () => openLightbox(index));
+
+        const img = document.createElement('img');
+        img.src = item.src;
+        img.alt = item.caption;
+        img.className = 'w-full h-72 object-cover';
+        img.loading = 'lazy';
+
+        const overlay = document.createElement('div');
+        overlay.className = 'gallery-overlay';
+        const label = document.createElement('p');
+        label.className = 'font-heading font-bold text-lg text-white';
+        label.textContent = item.caption;
+        overlay.appendChild(label);
+
+        card.appendChild(img);
+        card.appendChild(overlay);
+        grid.appendChild(card);
+    });
+}
+
+document.addEventListener('DOMContentLoaded', loadGallery);
 
 // Lightbox functions
 function openLightbox(index) {
@@ -38,19 +100,52 @@ function nextLightbox() {
 function updateLightbox() {
     const img = document.getElementById('lightbox-image');
     const caption = document.getElementById('lightbox-caption');
+    const desc = document.getElementById('lightbox-desc');
+    const item = galleryData[currentIndex];
+    if (!item) return;
 
     // Smooth fade effect
     img.style.opacity = '0';
     setTimeout(() => {
-        img.src = galleryData[currentIndex].src;
-        caption.textContent = galleryData[currentIndex].caption;
+        img.src = item.src;
+        caption.textContent = item.caption;
+        if (desc) desc.textContent = item.desc || '';
         img.style.transition = 'opacity 0.3s ease';
         img.style.opacity = '1';
     }, 150);
 }
 
+// Scan view: tampilan bersih layar-penuh (background putih, tanpa UI)
+// agar motif mudah dipindai kamera AR saat demo.
+function openScanView() {
+    const item = galleryData[currentIndex];
+    if (!item) return;
+    const scan = document.getElementById('scan-view');
+    document.getElementById('scan-image').src = item.src;
+    document.getElementById('scan-caption').textContent = item.caption;
+    scan.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+    const el = document.documentElement;
+    if (el.requestFullscreen) el.requestFullscreen().catch(() => {});
+}
+
+function closeScanView() {
+    const scan = document.getElementById('scan-view');
+    scan.style.display = 'none';
+    document.body.style.overflow = 'hidden'; // lightbox masih terbuka
+    if (document.fullscreenElement && document.exitFullscreen) {
+        document.exitFullscreen().catch(() => {});
+    }
+}
+
 // Keyboard navigation for lightbox
 document.addEventListener('keydown', (e) => {
+    const scan = document.getElementById('scan-view');
+    if (scan && scan.style.display === 'flex') {
+        if (e.key === 'Escape') closeScanView();
+        return;
+    }
+
     const lightbox = document.getElementById('lightbox');
     if (!lightbox.classList.contains('active')) return;
 

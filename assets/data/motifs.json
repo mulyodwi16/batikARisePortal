@@ -1,0 +1,54 @@
+{
+  "generatedAt": "seed",
+  "source": "seed-local",
+  "items": [
+    {
+      "batikId": "motif-liris",
+      "nama": "Motif Liris",
+      "deskripsi": "",
+      "image": "assets/batik/1_MotifLiris.jpg",
+      "artistId": "",
+      "createdAt": ""
+    },
+    {
+      "batikId": "motif-alun-alun-contong",
+      "nama": "Motif Alun-Alun Contong",
+      "deskripsi": "",
+      "image": "assets/batik/2_MotifAlunAlunContong.jpg",
+      "artistId": "",
+      "createdAt": ""
+    },
+    {
+      "batikId": "motif-burung-merak",
+      "nama": "Motif Burung Merak",
+      "deskripsi": "",
+      "image": "assets/batik/3_MotifBurungMerak.jpg",
+      "artistId": "",
+      "createdAt": ""
+    },
+    {
+      "batikId": "motif-sekar-jagad",
+      "nama": "Motif Sekar Jagad",
+      "deskripsi": "",
+      "image": "assets/batik/4_MotifSekarJagad.jpg",
+      "artistId": "",
+      "createdAt": ""
+    },
+    {
+      "batikId": "motif-parang-jabon",
+      "nama": "Motif Parang Jabon",
+      "deskripsi": "",
+      "image": "assets/batik/5_MotifParangJabon.jpg",
+      "artistId": "",
+      "createdAt": ""
+    },
+    {
+      "batikId": "motif-love-putihan",
+      "nama": "Motif Love Putihan",
+      "deskripsi": "",
+      "image": "assets/batik/6_MotifLovePutihan.jpg",
+      "artistId": "",
+      "createdAt": ""
+    }
+  ]
+}

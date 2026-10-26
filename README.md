@@ -2,6 +2,35 @@
 
 Website landing page untuk aplikasi BatikAR - Aplikasi pembelajaran motif Batik Jetis Sidoarjo menggunakan teknologi Augmented Reality dan Artificial Intelligence.
 
+## 🔄 Sinkronisasi Galeri Motif (dari aplikasi Unity)
+
+Galeri batik tidak lagi hardcode. `script.js` membaca `assets/data/motifs.json`, dan
+file itu di-generate dari **katalog yang sama** yang dilihat user di aplikasi Unity
+(PlayFab Title Data `MOTIF_LIST`, berisi motif dari semua Batik Artist).
+
+Saat katalog di Unity berubah, jalankan sekali untuk menyegarkan portal:
+
+```bash
+# pakai akun PlayFab yang SUDAH terdaftar (guest-creation dimatikan di title ini)
+PLAYFAB_EMAIL="you@example.com" PLAYFAB_PASSWORD="rahasia" npm run sync
+```
+
+Skrip (`tools/sync-motifs.mjs`) akan:
+1. Login PlayFab → ambil `MOTIF_LIST`.
+2. Untuk tiap motif, resolve gambar (URL lama dipakai langsung; path Supabase privat
+   ditukar signed URL via Edge Function `get-download-url`).
+3. Download gambar ke `assets/batik/` dan tulis `assets/data/motifs.json`.
+
+Hasilnya portal tetap **100% statis** (aman di GitHub Pages/Vercel/Netlify) dan **tidak
+bergantung server saat demo** — gambar yang tampil = trigger scan AR yang sama persis.
+Kalau mau "live/otomatis", jadwalkan `npm run sync` di CI/cron.
+
+Preview lokal cepat: `npm run serve` lalu buka `http://localhost:5173`
+(harus lewat http, bukan `file://`, agar `fetch` motifs.json jalan).
+
+> **Catatan pindai (demo):** di lightbox galeri ada tombol **"Tampilkan untuk Dipindai"**
+> yang membuka motif layar-penuh dengan latar putih bersih — pas untuk dipindai kamera AR.
+
 ## 📋 Fitur
 
 - **Responsive Design**: Tampilan optimal di mobile (≥375px), tablet, dan desktop
