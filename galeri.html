@@ -27,10 +27,12 @@
                             'dark-brown': '#4E342E',
                             cream: '#F5E6D3',
                             gold: '#C09753',
+                            kunyit: '#D08700',
+                            gading: '#FAF6EF',
                         }
                     },
                     fontFamily: {
-                        heading: ['Poppins', 'sans-serif'],
+                        heading: ['"Playfair Display"', 'serif'],
                         body: ['Inter', 'sans-serif'],
                     }
                 }
@@ -42,7 +44,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@600;700;800&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@600;700;800&display=swap"
         rel="stylesheet">
 
     <!-- Gaya bersama (palet batik + komponen) -->
@@ -115,12 +117,13 @@
     <header class="pt-32 pb-10 bg-gradient-to-b from-batik-dark-brown to-batik-dark text-batik-cream relative overflow-hidden">
         <div class="absolute top-0 right-0 w-96 h-96 bg-batik-gold/10 rounded-full blur-3xl"></div>
         <div class="absolute bottom-0 left-0 w-80 h-80 bg-batik-gold/10 rounded-full blur-3xl"></div>
+        <div class="batik-pattern absolute inset-0"></div>
         <div class="max-w-7xl mx-auto px-6 lg:px-8 relative z-10 text-center">
             <span class="hero-badge mx-auto mb-6 flex w-fit">
                 <span class="dot"></span>
-                Katalog Lengkap
+                &#10024; Katalog Lengkap
             </span>
-            <h1 class="font-heading font-bold text-4xl sm:text-5xl mb-4">Galeri Motif Batik</h1>
+            <h1 class="font-heading font-bold text-4xl sm:text-5xl mb-4">Galeri <span class="text-gradient-emas">Motif Batik</span></h1>
             <p class="text-base sm:text-lg text-batik-cream/80 max-w-2xl mx-auto mb-8">
                 Telusuri seluruh koleksi motif yang dapat dipindai. Klik motif untuk melihat besar,
                 lalu tampilkan layar penuh untuk dipindai kamera AR.

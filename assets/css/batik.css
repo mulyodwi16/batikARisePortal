@@ -5,6 +5,14 @@
    =========================================================================== */
 
 :root {
+    /* Design token palet batik (identitas budaya — jangan diganti) */
+    --sogan: #4E342E;   /* cokelat sogan — judul, navbar, footer */
+    --emas: #C09753;    /* emas batik — aksen, border, ikon, badge */
+    --kunyit: #D08700;  /* kuning kunyit/amber — CTA utama, glow, gradien teks */
+    --malam: #1F1B16;   /* cokelat malam — hero gelap, overlay */
+    --gading: #FAF6EF;  /* krem/putih gading — section terang */
+
+    /* Alias lama agar markup & gaya existing tetap jalan */
     --batik-dark: #1F1B16;
     --batik-dark-brown: #4E342E;
     --batik-cream: #F5E6D3;
@@ -18,6 +26,24 @@
 
 body {
     -webkit-font-smoothing: antialiased;
+}
+
+/* Gradien teks emas -> amber untuk kata kunci di judul */
+.text-gradient-emas {
+    background: linear-gradient(90deg, var(--emas), var(--kunyit));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+}
+
+/* Pola batik halus (kawung) sebagai tekstur latar — SVG inline, ringan.
+   Dipakai dengan menambahkan kelas .batik-pattern pada elemen absolute. */
+.batik-pattern {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cg fill='none' stroke='%23C09753' stroke-width='1.2'%3E%3Ccircle cx='15' cy='15' r='13'/%3E%3Ccircle cx='45' cy='15' r='13'/%3E%3Ccircle cx='15' cy='45' r='13'/%3E%3Ccircle cx='45' cy='45' r='13'/%3E%3Ccircle cx='30' cy='30' r='4'/%3E%3C/g%3E%3C/svg%3E");
+    background-size: 60px 60px;
+    opacity: 0.05;
+    pointer-events: none;
 }
 
 /* --------------------------------------------------------------------------
@@ -371,4 +397,71 @@ body {
     text-align: center;
     padding: 4rem 1rem;
     color: rgba(31, 27, 22, 0.6);
+}
+
+/* --------------------------------------------------------------------------
+   Tombol CTA utama — gradien amber + efek shimmer
+   -------------------------------------------------------------------------- */
+.btn-primary {
+    background: linear-gradient(90deg, var(--emas), var(--kunyit));
+    color: var(--malam);
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+}
+
+.btn-primary::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(120deg, transparent 30%, rgba(255, 255, 255, 0.55) 50%, transparent 70%);
+    transform: translateX(-130%);
+    z-index: -1;
+}
+
+.btn-primary:hover::after {
+    animation: shimmer 0.9s ease;
+}
+
+@keyframes shimmer {
+    to { transform: translateX(130%); }
+}
+
+/* --------------------------------------------------------------------------
+   Ornamen garis emas (dipakai di atas footer / pemisah elegan)
+   -------------------------------------------------------------------------- */
+.gold-rule {
+    height: 2px;
+    border: 0;
+    background: linear-gradient(90deg, transparent, var(--emas), transparent);
+    opacity: 0.6;
+}
+
+/* --------------------------------------------------------------------------
+   Strip "Didukung oleh" — logo grayscale -> berwarna saat hover
+   -------------------------------------------------------------------------- */
+.support-logo {
+    filter: grayscale(100%);
+    opacity: 0.65;
+    transition: all 0.35s ease;
+}
+
+.support-logo:hover {
+    filter: grayscale(0%);
+    opacity: 1;
+    transform: scale(1.08);
+}
+
+/* --------------------------------------------------------------------------
+   Hormati prefers-reduced-motion
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+        scroll-behavior: auto !important;
+    }
 }

@@ -27,10 +27,12 @@
                             'dark-brown': '#4E342E',
                             cream: '#F5E6D3',
                             gold: '#C09753',
+                            kunyit: '#D08700',
+                            gading: '#FAF6EF',
                         }
                     },
                     fontFamily: {
-                        heading: ['Poppins', 'sans-serif'],
+                        heading: ['"Playfair Display"', 'serif'],
                         body: ['Inter', 'sans-serif'],
                     }
                 }
@@ -42,7 +44,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@600;700;800&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@600;700;800&display=swap"
         rel="stylesheet">
 
     <!-- AOS Animation Library -->
@@ -121,15 +123,16 @@
     <!-- Hero Section -->
     <section id="home" class="hero-bg relative min-h-screen flex items-center pt-20">
         <div class="absolute inset-0 bg-gradient-to-r from-black/90 via-batik-dark/85 to-batik-dark/60"></div>
+        <div class="batik-pattern absolute inset-0"></div>
         <div class="max-w-7xl mx-auto px-6 lg:px-8 relative z-10 w-full">
             <div class="max-w-2xl">
                 <span class="hero-badge mb-6 animate-fade-in-up" data-aos="fade-up" data-aos-duration="1000">
                     <span class="dot"></span>
-                    Augmented Reality &times; Batik Indonesia
+                    &#10024; Augmented Reality &times; Batik Indonesia
                 </span>
-                <h1 class="font-heading font-bold text-4xl sm:text-5xl lg:text-6xl text-white mb-6 mt-6 animate-fade-in-up"
+                <h1 class="font-heading font-bold text-4xl sm:text-5xl lg:text-6xl text-white mb-6 mt-6 leading-tight animate-fade-in-up"
                     data-aos="fade-up" data-aos-duration="1000">
-                    batikARise: Belajar Motif Batik dengan AR
+                    batikARise: Belajar <span class="text-gradient-emas">Motif Batik</span> dengan AR
                 </h1>
                 <p class="text-lg sm:text-xl text-white mb-8 leading-relaxed" data-aos="fade-up" data-aos-delay="200"
                     data-aos-duration="1000">
@@ -141,7 +144,7 @@
                 <div class="flex flex-col sm:flex-row gap-4 mb-8" data-aos="fade-up" data-aos-delay="400"
                     data-aos-duration="1000">
                     <a href="downloads/batikARise.apk" download
-                        class="cta-button inline-flex items-center justify-center gap-2 bg-gradient-to-r from-batik-gold to-yellow-600 text-batik-dark font-bold py-4 px-8 rounded-xl transition transform hover:scale-105 hover:shadow-2xl hover:shadow-batik-gold/50 relative z-10">
+                        class="btn-primary cta-button inline-flex items-center justify-center gap-2 font-bold py-4 px-8 rounded-xl transition transform hover:scale-105 hover:shadow-2xl hover:shadow-batik-gold/50 relative z-10">
                         <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
                             <path
                                 d="M12 2c5.5 0 10 4.5 10 10s-4.5 10-10 10S2 17.5 2 12 6.5 2 12 2m0 2c-4.4 0-8 3.6-8 8s3.6 8 8 8 8-3.6 8-8-3.6-8-8-8m3.5 9H13v3.5h-2V13H8.5v-2H11V7.5h2V11h3.5v2z" />
@@ -149,7 +152,7 @@
                         Download Android (APK)
                     </a>
                     <button
-                        class="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-batik-gold/60 to-yellow-600/60 text-batik-dark/70 font-bold py-4 px-8 rounded-xl cursor-not-allowed opacity-60">
+                        class="inline-flex items-center justify-center gap-2 border border-batik-gold/60 text-batik-cream/80 font-bold py-4 px-8 rounded-xl cursor-not-allowed opacity-70">
                         <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
                             <path
                                 d="M17.05 13.5c-.91 0-1.82-.33-2.5-.92l-5.5 5.5c.59.68.92 1.59.92 2.5 0 2.21-1.79 4-4 4s-4-1.79-4-4 1.79-4 4-4c.91 0 1.82.33 2.5.92l5.5-5.5c-.59-.68-.92-1.59-.92-2.5 0-2.21 1.79-4 4-4s4 1.79 4 4-1.79 4-4 4z" />
@@ -157,6 +160,22 @@
                         App Store (Coming Soon)
                     </button>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Strip "Didukung oleh" (social proof) -->
+    <section class="bg-batik-gading py-10 border-y border-batik-gold/15">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <p class="text-center text-xs font-semibold uppercase tracking-[0.2em] text-batik-dark-brown/70 mb-6"
+                data-aos="fade-up" data-aos-duration="700">
+                Didukung oleh
+            </p>
+            <div class="flex gap-10 flex-wrap items-center justify-center" data-aos="fade-up" data-aos-delay="100"
+                data-aos-duration="700">
+                <img src="assets/sponsor1.png" alt="Tut Wuri Handayani" class="support-logo h-14">
+                <img src="assets/sponsor2.png" alt="Sponsor Logo" class="support-logo h-14">
+                <img src="assets/sponsor3.png" alt="Diktisaintek Berdampak" class="support-logo h-14">
             </div>
         </div>
     </section>
@@ -240,6 +259,24 @@
 
                 <!-- Step 4 -->
                 <div class="step-card bg-white p-8 rounded-2xl text-center shadow-lg" data-aos="fade-up"
+                    data-aos-delay="300" data-aos-duration="800">
+                    <div
+                        class="w-20 h-20 bg-gradient-to-br from-batik-gold to-yellow-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
+                        <svg width="32" height="32" fill="white" viewBox="0 0 24 24">
+                            <path
+                                d="M11 18h2v-2h-2v2zm1-16C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-14c-2.21 0-4 1.79-4 4h2c0-1.1.9-2 2-2s2 .9 2 2c0 2-3 1.75-3 5h2c0-2.25 3-2.5 3-5 0-2.21-1.79-4-4-4z" />
+                        </svg>
+                    </div>
+                    <div
+                        class="w-8 h-8 bg-batik-gold text-white rounded-full flex items-center justify-center mx-auto mb-4 font-bold">
+                        4</div>
+                    <h3 class="font-heading font-bold text-xl text-batik-dark-brown mb-3">Ikuti Kuis & Info</h3>
+                    <p class="text-sm text-batik-dark leading-relaxed">Uji pengetahuan dan pelajari sejarah motif batik.
+                    </p>
+                </div>
+
+                <!-- Step 5 -->
+                <div class="step-card bg-white p-8 rounded-2xl text-center shadow-lg" data-aos="fade-up"
                     data-aos-delay="400" data-aos-duration="800">
                     <div
                         class="w-20 h-20 bg-gradient-to-br from-batik-gold to-yellow-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
@@ -253,24 +290,6 @@
                         5</div>
                     <h3 class="font-heading font-bold text-xl text-batik-dark-brown mb-3">AR Drawing</h3>
                     <p class="text-sm text-batik-dark leading-relaxed">Minigames menggambar batik di lingkungan AR.
-                    </p>
-                </div>
-
-                <!-- Step 5 -->
-                <div class="step-card bg-white p-8 rounded-2xl text-center shadow-lg" data-aos="fade-up"
-                    data-aos-delay="300" data-aos-duration="800">
-                    <div
-                        class="w-20 h-20 bg-gradient-to-br from-batik-gold to-yellow-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
-                        <svg width="32" height="32" fill="white" viewBox="0 0 24 24">
-                            <path
-                                d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14zm-5.04-6.71l-2.75-3.54-4.3 5.3h11.25L13.96 12.29z" />
-                        </svg>
-                    </div>
-                    <div
-                        class="w-8 h-8 bg-batik-gold text-white rounded-full flex items-center justify-center mx-auto mb-4 font-bold">
-                        4</div>
-                    <h3 class="font-heading font-bold text-xl text-batik-dark-brown mb-3">Ikuti Kuis & Info</h3>
-                    <p class="text-sm text-batik-dark leading-relaxed">Uji pengetahuan dan pelajari sejarah motif batik.
                     </p>
                 </div>
 
@@ -317,7 +336,7 @@
             <!-- Lihat semua motif -> halaman galeri terpisah (search + pagination) -->
             <div class="text-center mt-12" data-aos="fade-up" data-aos-duration="800">
                 <a href="galeri.html"
-                    class="cta-button inline-flex items-center justify-center gap-2 bg-gradient-to-r from-batik-gold to-yellow-600 text-batik-dark font-bold py-4 px-8 rounded-xl transition transform hover:scale-105 hover:shadow-2xl hover:shadow-batik-gold/50 relative z-10">
+                    class="btn-primary cta-button inline-flex items-center justify-center gap-2 font-bold py-4 px-8 rounded-xl transition transform hover:scale-105 hover:shadow-2xl hover:shadow-batik-gold/50 relative z-10">
                     Lihat Semua Motif
                     <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5"
                         stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
@@ -339,9 +358,10 @@
             <div class="absolute top-10 left-10 w-64 h-64 bg-batik-gold rounded-full blur-3xl"></div>
             <div class="absolute bottom-10 right-10 w-96 h-96 bg-batik-gold rounded-full blur-3xl"></div>
         </div>
+        <div class="batik-pattern absolute inset-0"></div>
         <div class="max-w-7xl mx-auto px-6 lg:px-8 text-center relative z-10">
             <h2 class="font-heading font-bold text-4xl md:text-5xl mb-6" data-aos="fade-down" data-aos-duration="800">
-                Siap mengenal dan mempelajari motif Batik?
+                Siap mengenal dan mempelajari <span class="text-gradient-emas">motif Batik</span>?
             </h2>
             <p class="text-lg md:text-xl mb-12 leading-relaxed" data-aos="fade-up" data-aos-delay="100"
                 data-aos-duration="800">
@@ -352,7 +372,7 @@
             <div class="flex flex-col sm:flex-row gap-4 justify-center mb-16" data-aos="zoom-in" data-aos-delay="200"
                 data-aos-duration="800">
                 <a href="downloads/batikARise.apk" download
-                    class="cta-button inline-flex items-center justify-center gap-2 bg-gradient-to-r from-batik-gold to-yellow-600 text-batik-dark font-bold py-4 px-8 rounded-xl transition transform hover:scale-105 hover:shadow-2xl hover:shadow-batik-gold/50 relative z-10">
+                    class="btn-primary cta-button inline-flex items-center justify-center gap-2 font-bold py-4 px-8 rounded-xl transition transform hover:scale-105 hover:shadow-2xl hover:shadow-batik-gold/50 relative z-10">
                     <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
                         <path
                             d="M12 2c5.5 0 10 4.5 10 10s-4.5 10-10 10S2 17.5 2 12 6.5 2 12 2m0 2c-4.4 0-8 3.6-8 8s3.6 8 8 8 8-3.6 8-8-3.6-8-8-8m3.5 9H13v3.5h-2V13H8.5v-2H11V7.5h2V11h3.5v2z" />
@@ -360,7 +380,7 @@
                     Download Android (APK)
                 </a>
                 <button
-                    class="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-batik-gold/60 to-yellow-600/60 text-batik-dark/70 font-bold py-4 px-8 rounded-xl cursor-not-allowed opacity-60">
+                    class="inline-flex items-center justify-center gap-2 border border-batik-gold/60 text-batik-cream/80 font-bold py-4 px-8 rounded-xl cursor-not-allowed opacity-70">
                     <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
                         <path
                             d="M17.05 13.5c-.91 0-1.82-.33-2.5-.92l-5.5 5.5c.59.68.92 1.59.92 2.5 0 2.21-1.79 4-4 4s-4-1.79-4-4 1.79-4 4-4c.91 0 1.82.33 2.5.92l5.5-5.5c-.59-.68-.92-1.59-.92-2.5 0-2.21 1.79-4 4-4s4 1.79 4 4-1.79 4-4 4z" />
@@ -387,9 +407,10 @@
     <!-- Footer -->
     <footer class="text-white py-12" style="background-color: #4E342E !important;">
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <hr class="gold-rule mb-10">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
                 <div class="flex flex-col items-center md:items-start">
-                    <p class="font-bold mb-2 text-white">&copy; 2025 batikARise</p>
+                    <p class="font-bold mb-2 text-white">&copy; 2026 batikARise</p>
                     <p class="text-base font-bold mb-3 text-white"><strong>Tim Peneliti:</strong></p>
                     <p class="text-sm text-white">Dr.-Ing. Hestiasari Rante</p>
                     <p class="text-sm text-white">Prof. Iwan Syarif</p>
