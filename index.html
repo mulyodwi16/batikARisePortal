@@ -5,14 +5,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
-        content="batikARise - Aplikasi pembelajaran motif Batik Indonesia dengan Augmented Reality dan AI.">
-    <meta name="keywords" content="batikARise, Batik Indonesia, Augmented Reality, AR, pembelajaran">
+        content="batikARise — aplikasi Android yang mengenali motif batik lewat kamera AR, mengajakmu menggambar ulang motifnya, dan membongkar elemennya jadi karya baru.">
+    <meta name="keywords" content="batikARise, batik, Augmented Reality, ARCore, SAM2, motif batik, Android">
     <meta name="author" content="Dwi Mulyo">
-    <meta property="og:title" content="batikARise — Belajar Motif Batik dengan AR">
-    <meta property="og:description" content="Scan, telusuri, dan pelajari motif Batik Indonesia secara interaktif.">
+    <meta property="og:title" content="batikARise — Kenali motif batik lewat kamera">
+    <meta property="og:description"
+        content="Pindai motif batik dengan AR, gambar ulang di ruang nyata, lalu bongkar elemennya jadi desain baru.">
     <meta property="og:image" content="assets/hero-banner.png">
+    <meta name="theme-color" content="#0E0C0A">
 
-    <title>batikARise: Belajar Motif Batik dengan AR</title>
+    <title>batikARise — Kenali motif batik lewat kamera</title>
     <link rel="icon" type="image/png" href="assets/logo.png">
 
     <!-- Tailwind CSS CDN (Official) -->
@@ -23,12 +25,14 @@
                 extend: {
                     colors: {
                         batik: {
+                            ink: '#0E0C0A',
+                            'ink-soft': '#15120F',
                             dark: '#1F1B16',
-                            'dark-brown': '#4E342E',
-                            cream: '#F5E6D3',
+                            sogan: '#4E342E',
                             gold: '#C09753',
                             kunyit: '#D08700',
                             gading: '#FAF6EF',
+                            cream: '#F5E6D3',
                         }
                     },
                     fontFamily: {
@@ -44,7 +48,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@600;700;800&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap"
         rel="stylesheet">
 
     <!-- AOS Animation Library -->
@@ -54,54 +58,42 @@
     <link href="assets/css/batik.css" rel="stylesheet">
 </head>
 
-<body class="bg-batik-cream font-body text-batik-dark">
+<body class="font-body">
     <!-- Indikator progres scroll -->
     <div id="scroll-progress" class="scroll-progress"></div>
 
     <!-- Navigation -->
-    <nav id="navbar" class="navbar-solid fixed w-full top-0 z-50 shadow-lg">
+    <nav id="navbar" class="navbar-solid fixed w-full top-0 z-50">
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
-                <!-- Logo (always at start on desktop, at end on mobile) -->
-                <a href="#home" class="flex items-center group hidden md:flex">
-                    <img src="assets/logo.png" alt="batikARise Logo"
-                        class="h-16 w-auto transition-all duration-300 group-hover:scale-110">
+                <a href="#home" class="hidden md:flex items-center group">
+                    <img src="assets/logo.png" alt="batikARise"
+                        class="h-14 w-auto transition-transform duration-300 group-hover:scale-105">
                 </a>
 
-                <!-- Mobile Menu Button (only visible on mobile, appears on left) -->
                 <button id="menu-btn"
-                    class="md:hidden text-white p-2 rounded-lg hover:bg-white/10 transition-all duration-300">
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                        stroke-linecap="round" stroke-linejoin="round">
-                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                    class="md:hidden text-batik-gading p-2 rounded-lg hover:bg-white/10 transition-all duration-300"
+                    aria-label="Buka menu">
+                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round">
                         <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
                         <line x1="3" y1="18" x2="21" y2="18"></line>
                     </svg>
                 </button>
 
-                <!-- Logo Mobile (only visible on mobile, at right) -->
-                <a href="#home" class="flex items-center group md:hidden">
-                    <img src="assets/logo.png" alt="batikARise Logo"
-                        class="h-16 w-auto transition-all duration-300 group-hover:scale-110">
+                <a href="#home" class="flex items-center md:hidden">
+                    <img src="assets/logo.png" alt="batikARise" class="h-14 w-auto">
                 </a>
 
-                <!-- Desktop Menu -->
-                <ul class="hidden md:flex items-center gap-2">
-                    <li><a href="#home"
-                            class="nav-link px-4 py-2 text-white font-medium rounded-lg hover:bg-white/10">Home</a></li>
-                    <li><a href="#cara"
-                            class="nav-link px-4 py-2 text-white font-medium rounded-lg hover:bg-white/10">Cara
-                            Pakai</a></li>
-                    <li><a href="#galeri"
-                            class="nav-link px-4 py-2 text-white font-medium rounded-lg hover:bg-white/10">Galeri</a>
-                    </li>
-                    <li><a href="#kontak"
-                            class="nav-link px-4 py-2 text-white font-medium rounded-lg hover:bg-white/10">Kontak</a>
-                    </li>
+                <ul class="hidden md:flex items-center gap-8">
+                    <li><a href="#fitur" class="nav-link text-sm">Fitur</a></li>
+                    <li><a href="#cara" class="nav-link text-sm">Cara Pakai</a></li>
+                    <li><a href="#kustomisasi" class="nav-link text-sm">Kustomisasi</a></li>
+                    <li><a href="#galeri" class="nav-link text-sm">Galeri</a></li>
                     <li>
-                        <a href="downloads/batikARise.apk" download
-                            class="ml-4 px-6 py-2.5 bg-gradient-to-r from-batik-gold to-yellow-600 text-batik-dark font-bold rounded-full hover:shadow-lg hover:shadow-batik-gold/50 transition-all duration-300 hover:scale-105">
-                            Download
+                        <a href="downloads/batikARise.apk" download class="btn-primary text-sm !py-2.5 !px-5">
+                            Unduh APK
                         </a>
                     </li>
                 </ul>
@@ -109,89 +101,105 @@
         </div>
 
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-batik-dark-brown/95 border-t border-batik-gold/20">
+        <div id="mobile-menu" class="hidden md:hidden">
             <div class="max-w-7xl mx-auto px-6 py-4 space-y-1">
-                <a href="#home" class="block text-white font-medium">Home</a>
-                <a href="#cara" class="block text-white font-medium">Cara Pakai</a>
-                <a href="#galeri" class="block text-white font-medium">Galeri</a>
-                <a href="#kontak" class="block text-white font-medium">Kontak</a>
-                <a href="downloads/batikARise.apk" download
-                    class="block text-center mt-4 px-6 py-3 bg-gradient-to-r from-batik-gold to-yellow-600 text-batik-dark font-bold rounded-lg hover:shadow-lg transition-all duration-300">
-                    Download App
-                </a>
+                <a href="#fitur" class="block font-medium">Fitur</a>
+                <a href="#cara" class="block font-medium">Cara Pakai</a>
+                <a href="#kustomisasi" class="block font-medium">Kustomisasi</a>
+                <a href="#galeri" class="block font-medium">Galeri</a>
+                <a href="downloads/batikARise.apk" download class="btn-primary w-full mt-4">Unduh APK</a>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero-bg grain relative min-h-screen flex items-center pt-24 pb-16 overflow-hidden">
-        <div class="absolute inset-0 bg-gradient-to-r from-black/92 via-batik-dark/85 to-batik-dark/55"></div>
+    <!-- ===================== HERO ===================== -->
+    <section id="home" class="grain relative min-h-screen flex items-center pt-28 pb-16 overflow-hidden">
+        <div class="absolute inset-0 bg-cover bg-center opacity-20"
+            style="background-image: url('assets/hero-banner.png');"></div>
+        <div class="absolute inset-0 bg-gradient-to-br from-batik-ink via-batik-ink/92 to-batik-sogan/40"></div>
         <div class="batik-pattern absolute inset-0"></div>
-        <div class="absolute -top-20 -right-10 w-[30rem] h-[30rem] bg-batik-gold/10 rounded-full blur-3xl"></div>
-        <div class="max-w-7xl mx-auto px-6 lg:px-8 relative z-10 w-full">
-            <div class="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
-            <div class="max-w-2xl">
-                <h1 class="font-heading font-bold text-4xl sm:text-5xl lg:text-6xl text-white mb-6 leading-tight animate-fade-in-up"
-                    data-aos="fade-up" data-aos-duration="1000">
-                    batikARise: Belajar <span class="text-gradient-emas">Motif Batik</span> dengan AR
-                </h1>
-                <p class="text-lg sm:text-xl text-white mb-8 leading-relaxed" data-aos="fade-up" data-aos-delay="200"
-                    data-aos-duration="1000">
-                    Scan, telusuri, dan pelajari motif Batik Indonesia secara interaktif menggunakan teknologi
-                    Augmented Reality dan Artificial Intelligence.
-                </p>
+        <div class="glow w-[34rem] h-[34rem] -top-32 -right-32"></div>
 
-                <!-- CTA Buttons -->
-                <div class="flex flex-col sm:flex-row gap-4 mb-8" data-aos="fade-up" data-aos-delay="400"
-                    data-aos-duration="1000">
-                    <a href="downloads/batikARise.apk" download
-                        class="btn-primary cta-button inline-flex items-center justify-center gap-2 font-bold py-4 px-8 rounded-xl transition transform hover:scale-105 hover:shadow-2xl hover:shadow-batik-gold/50 relative z-10">
-                        <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
-                            <path
-                                d="M12 2c5.5 0 10 4.5 10 10s-4.5 10-10 10S2 17.5 2 12 6.5 2 12 2m0 2c-4.4 0-8 3.6-8 8s3.6 8 8 8 8-3.6 8-8-3.6-8-8-8m3.5 9H13v3.5h-2V13H8.5v-2H11V7.5h2V11h3.5v2z" />
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 relative z-10 w-full">
+            <div class="grid lg:grid-cols-[1.15fr_0.85fr] gap-14 items-center">
+                <div>
+                    <h1 class="display text-[2.6rem] sm:text-6xl lg:text-7xl mb-7" data-aos="fade-up">
+                        Kenali motif batik<br>
+                        lewat <span class="text-gradient-emas">kamera ponselmu</span>
+                    </h1>
+                    <p class="lead text-lg max-w-xl mb-9" data-aos="fade-up" data-aos-delay="120">
+                        batikARise mengenali motif batik dari kamera menggunakan ARCore, mengajakmu menggambar
+                        ulang motifnya langsung di ruang nyata lalu menilai hasilnya, dan membongkar elemen
+                        batik jadi bahan desain baru.
+                    </p>
+
+                    <div class="flex flex-col sm:flex-row gap-4 mb-9" data-aos="fade-up" data-aos-delay="220">
+                        <a href="downloads/batikARise.apk" download class="btn-primary">
+                            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2"
+                                stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                <polyline points="7 10 12 15 17 10"></polyline>
+                                <line x1="12" y1="15" x2="12" y2="3"></line>
+                            </svg>
+                            Unduh APK — versi 3.0
+                        </a>
+                        <a href="#fitur" class="btn-ghost">Lihat fitur</a>
+                    </div>
+
+                    <div class="flex flex-wrap gap-2.5 mb-10" data-aos="fade-up" data-aos-delay="300">
+                        <span class="pill">
+                            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4"
+                                stroke-linecap="round" viewBox="0 0 24 24">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                            Android 8.0+ (API 26)
+                        </span>
+                        <span class="pill">
+                            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4"
+                                stroke-linecap="round" viewBox="0 0 24 24">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                            Perlu ARCore &amp; kamera
+                        </span>
+                        <span class="pill">
+                            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4"
+                                stroke-linecap="round" viewBox="0 0 24 24">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                            Bisa masuk sebagai tamu
+                        </span>
+                    </div>
+
+                    <a href="#fitur" class="scroll-cue" data-aos="fade-up" data-aos-delay="380">
+                        Gulir
+                        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2"
+                            stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                            <polyline points="6 9 12 15 18 9"></polyline>
                         </svg>
-                        Download Android (APK)
                     </a>
-                    <button
-                        class="inline-flex items-center justify-center gap-2 border border-batik-gold/60 text-batik-cream/80 font-bold py-4 px-8 rounded-xl cursor-not-allowed opacity-70">
-                        <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
-                            <path
-                                d="M17.05 13.5c-.91 0-1.82-.33-2.5-.92l-5.5 5.5c.59.68.92 1.59.92 2.5 0 2.21-1.79 4-4 4s-4-1.79-4-4 1.79-4 4-4c.91 0 1.82.33 2.5.92l5.5-5.5c-.59-.68-.92-1.59-.92-2.5 0-2.21 1.79-4 4-4s4 1.79 4 4-1.79 4-4 4z" />
-                        </svg>
-                        App Store (Coming Soon)
-                    </button>
                 </div>
 
-                <a href="#cara" class="scroll-cue" data-aos="fade-up" data-aos-delay="600">
-                    Gulir untuk mulai
-                    <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2"
-                        stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
-                        <polyline points="6 9 12 15 18 9"></polyline>
-                    </svg>
-                </a>
-            </div>
-
-            <!-- Mockup HP: simulasi motif batik sedang dipindai lewat AR -->
-            <div class="hidden lg:block" data-aos="fade-left" data-aos-delay="300" data-aos-duration="1000">
-                <div class="ar-phone">
-                    <div class="ar-phone-screen">
-                        <img src="assets/batik/4_MotifSekarJagad.jpg"
-                            alt="Simulasi kamera AR batikARise sedang memindai Motif Sekar Jagad">
-                        <div class="ar-reticle"><span></span></div>
-                        <div class="ar-scanline"></div>
-                        <div class="ar-chip">
-                            <span class="dot"></span>
-                            Motif Sekar Jagad terdeteksi
+                <!-- Mockup HP: simulasi motif batik sedang dipindai lewat AR -->
+                <div class="hidden lg:block" data-aos="fade-left" data-aos-delay="250" data-aos-duration="1000">
+                    <div class="ar-phone">
+                        <div class="ar-phone-screen">
+                            <img src="assets/batik/4_MotifSekarJagad.jpg"
+                                alt="Simulasi kamera AR batikARise sedang memindai Motif Sekar Jagad">
+                            <div class="ar-reticle"><span></span></div>
+                            <div class="ar-scanline"></div>
+                            <div class="ar-chip">
+                                <span class="dot"></span>
+                                Motif Sekar Jagad terdeteksi
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            </div>
         </div>
     </section>
 
-    <!-- Marquee motif: memberi gambaran koleksi sekaligus mengisi ruang kosong -->
-    <section aria-label="Pratinjau koleksi motif" class="py-8 bg-batik-dark">
+    <!-- ===================== MARQUEE MOTIF ===================== -->
+    <section aria-label="Pratinjau koleksi motif" class="py-10 bg-batik-ink-soft border-y border-batik-gold/10">
         <div class="marquee">
             <div class="marquee-track">
                 <a href="galeri.html" class="marquee-item"><img src="assets/batik/1_MotifLiris.jpg" alt="Motif Liris" loading="lazy"></a>
@@ -211,250 +219,428 @@
         </div>
     </section>
 
-    <!-- Decorative Divider -->
-    <div class="section-divider"></div>
-
-    <!-- Cara Penggunaan Section -->
-    <section id="cara" class="pt-24 pb-20 bg-gradient-to-b from-white to-batik-cream/30 relative overflow-hidden">
-        <!-- Decorative elements -->
-        <div class="absolute top-10 right-0 w-96 h-96 bg-batik-gold/5 rounded-full blur-3xl -z-0"></div>
-        <div class="absolute bottom-10 left-0 w-72 h-72 bg-batik-gold/5 rounded-full blur-3xl -z-0"></div>
-
+    <!-- ===================== FITUR (BENTO) ===================== -->
+    <section id="fitur" class="relative py-24 overflow-hidden">
+        <div class="glow w-96 h-96 top-20 -left-32"></div>
         <div class="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
-            <h2 class="font-heading font-bold text-4xl text-center text-batik-dark-brown mb-4" data-aos="fade-down"
-                data-aos-duration="800">
-                Cara Menggunakan
-            </h2>
-            <p class="text-center text-batik-dark mb-16 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="100"
-                data-aos-duration="800">
-                Ikuti 5 langkah mudah untuk memulai petualangan Anda dengan batikARise
-            </p>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
-                <!-- Step 1 -->
-                <div class="step-card bg-white p-8 rounded-2xl text-center shadow-lg" data-aos="fade-up"
-                    data-aos-delay="0" data-aos-duration="800">
-                    <div
-                        class="w-20 h-20 bg-gradient-to-br from-batik-gold to-yellow-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
-                        <svg width="32" height="32" fill="white" viewBox="0 0 24 24">
-                            <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
-                        </svg>
-                    </div>
-                    <div
-                        class="w-8 h-8 bg-batik-gold text-white rounded-full flex items-center justify-center mx-auto mb-4 font-bold">
-                        1</div>
-                    <h3 class="font-heading font-bold text-xl text-batik-dark-brown mb-3">Unduh & Buka Aplikasi</h3>
-                    <p class="text-sm text-batik-dark leading-relaxed">Download aplikasi batikARise dan buka di
-                        perangkat
-                        Android Anda.</p>
-                </div>
+            <div class="max-w-3xl mb-14">
+                <span class="meta-label mb-4" data-aos="fade-up">Fitur</span>
+                <h2 class="display text-4xl sm:text-5xl mb-5" data-aos="fade-up" data-aos-delay="80">
+                    Bukan cuma galeri — <span class="text-gradient-emas">batik yang bisa kamu ajak kerja</span>
+                </h2>
+                <p class="lead" data-aos="fade-up" data-aos-delay="140">
+                    Setiap fitur di bawah ini benar-benar ada di dalam aplikasi, bukan rencana.
+                </p>
+            </div>
 
-                <!-- Step 2 -->
-                <div class="step-card bg-white p-8 rounded-2xl text-center shadow-lg" data-aos="fade-up"
-                    data-aos-delay="100" data-aos-duration="800">
-                    <div
-                        class="w-20 h-20 bg-gradient-to-br from-batik-gold to-yellow-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
-                        <svg width="32" height="32" fill="white" viewBox="0 0 24 24">
-                            <rect x="3" y="3" width="7" height="7" />
-                            <rect x="14" y="3" width="7" height="7" />
-                            <rect x="14" y="14" width="7" height="7" />
-                            <rect x="3" y="14" width="7" height="7" />
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+                <!-- Pemindaian AR (lebar 2 kolom) -->
+                <article class="surface lg:col-span-2 p-8" data-aos="fade-up">
+                    <div class="icon-chip mb-5">
+                        <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                            <path d="M3 7V5a2 2 0 0 1 2-2h2"></path>
+                            <path d="M17 3h2a2 2 0 0 1 2 2v2"></path>
+                            <path d="M21 17v2a2 2 0 0 1-2 2h-2"></path>
+                            <path d="M7 21H5a2 2 0 0 1-2-2v-2"></path>
+                            <line x1="3" y1="12" x2="21" y2="12"></line>
                         </svg>
                     </div>
-                    <div
-                        class="w-8 h-8 bg-batik-gold text-white rounded-full flex items-center justify-center mx-auto mb-4 font-bold">
-                        2</div>
-                    <h3 class="font-heading font-bold text-xl text-batik-dark-brown mb-3">Pilih Motif</h3>
-                    <p class="text-sm text-batik-dark leading-relaxed">Jelajahi dan pilih motif Batik Indonesia dari
-                        koleksi
-                        yang tersedia.</p>
-                </div>
-
-                <!-- Step 3 -->
-                <div class="step-card bg-white p-8 rounded-2xl text-center shadow-lg" data-aos="fade-up"
-                    data-aos-delay="200" data-aos-duration="800">
-                    <div
-                        class="w-20 h-20 bg-gradient-to-br from-batik-gold to-yellow-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
-                        <svg width="32" height="32" fill="white" viewBox="0 0 24 24">
-                            <circle cx="12" cy="12" r="3" />
-                            <path
-                                d="M12 4c4.4 0 8 3.6 8 8s-3.6 8-8 8-8-3.6-8-8 3.6-8 8-8m0-2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2z" />
-                        </svg>
-                    </div>
-                    <div
-                        class="w-8 h-8 bg-batik-gold text-white rounded-full flex items-center justify-center mx-auto mb-4 font-bold">
-                        3</div>
-                    <h3 class="font-heading font-bold text-xl text-batik-dark-brown mb-3">Pindai Motif (AR)</h3>
-                    <p class="text-sm text-batik-dark leading-relaxed">Gunakan kamera untuk memindai motif batik melalui
-                        AR.</p>
-                </div>
-
-                <!-- Step 4 -->
-                <div class="step-card bg-white p-8 rounded-2xl text-center shadow-lg" data-aos="fade-up"
-                    data-aos-delay="300" data-aos-duration="800">
-                    <div
-                        class="w-20 h-20 bg-gradient-to-br from-batik-gold to-yellow-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
-                        <svg width="32" height="32" fill="white" viewBox="0 0 24 24">
-                            <path
-                                d="M11 18h2v-2h-2v2zm1-16C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-14c-2.21 0-4 1.79-4 4h2c0-1.1.9-2 2-2s2 .9 2 2c0 2-3 1.75-3 5h2c0-2.25 3-2.5 3-5 0-2.21-1.79-4-4-4z" />
-                        </svg>
-                    </div>
-                    <div
-                        class="w-8 h-8 bg-batik-gold text-white rounded-full flex items-center justify-center mx-auto mb-4 font-bold">
-                        4</div>
-                    <h3 class="font-heading font-bold text-xl text-batik-dark-brown mb-3">Ikuti Kuis & Info</h3>
-                    <p class="text-sm text-batik-dark leading-relaxed">Uji pengetahuan dan pelajari sejarah motif batik.
+                    <h3 class="font-heading font-bold text-2xl mb-3">Pemindaian motif dengan AR</h3>
+                    <p class="lead text-sm">
+                        Dibangun di atas AR Foundation dan ARCore. Saat kamu memilih sebuah motif, aplikasi
+                        menyusun pustaka gambar referensi secara langsung di perangkat untuk motif itu — jadi
+                        hanya motif yang kamu pilih yang dianggap cocok. Mengarahkan kamera ke motif lain akan
+                        ditolak, bukan salah dikenali.
                     </p>
-                </div>
+                </article>
 
-                <!-- Step 5 -->
-                <div class="step-card bg-white p-8 rounded-2xl text-center shadow-lg" data-aos="fade-up"
-                    data-aos-delay="400" data-aos-duration="800">
-                    <div
-                        class="w-20 h-20 bg-gradient-to-br from-batik-gold to-yellow-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
-                        <svg width="32" height="32" fill="white" viewBox="0 0 24 24">
-                            <path
-                                d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z" />
+                <!-- AR Draw -->
+                <article class="surface p-8" data-aos="fade-up" data-aos-delay="80">
+                    <div class="icon-chip mb-5">
+                        <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                            <path d="M12 19l7-7 3 3-7 7-3-3z"></path>
+                            <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path>
+                            <line x1="2" y1="2" x2="11" y2="11"></line>
                         </svg>
                     </div>
-                    <div
-                        class="w-8 h-8 bg-batik-gold text-white rounded-full flex items-center justify-center mx-auto mb-4 font-bold">
-                        5</div>
-                    <h3 class="font-heading font-bold text-xl text-batik-dark-brown mb-3">AR Drawing</h3>
-                    <p class="text-sm text-batik-dark leading-relaxed">Minigames menggambar batik di lingkungan AR.
+                    <h3 class="font-heading font-bold text-2xl mb-3">AR Draw &amp; skor bintang</h3>
+                    <p class="lead text-sm">
+                        Setelah motif terdeteksi, tombol <em>Let's Draw</em> membuka mode menggambar di ruang AR.
+                        Hasil gambarmu dibandingkan dengan motif aslinya oleh layanan kemiripan, lalu diubah
+                        menjadi rating 1–5 bintang yang tersimpan per motif.
                     </p>
-                </div>
+                </article>
 
+                <!-- Kuis -->
+                <article class="surface p-8" data-aos="fade-up">
+                    <div class="icon-chip mb-5">
+                        <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 2.5-3 4"></path>
+                            <line x1="12" y1="17.5" x2="12" y2="17.5"></line>
+                        </svg>
+                    </div>
+                    <h3 class="font-heading font-bold text-2xl mb-3">Kuis benar/salah</h3>
+                    <p class="lead text-sm">
+                        Lima soal diacak dari kumpulan 25 setiap kali bermain, dengan 20 poin per jawaban benar.
+                        Jadi dua sesi tidak pernah persis sama.
+                    </p>
+                </article>
+
+                <!-- Leaderboard -->
+                <article class="surface p-8" data-aos="fade-up" data-aos-delay="80">
+                    <div class="icon-chip mb-5">
+                        <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                            <line x1="6" y1="20" x2="6" y2="13"></line>
+                            <line x1="12" y1="20" x2="12" y2="4"></line>
+                            <line x1="18" y1="20" x2="18" y2="9"></line>
+                        </svg>
+                    </div>
+                    <h3 class="font-heading font-bold text-2xl mb-3">Leaderboard</h3>
+                    <p class="lead text-sm">
+                        Skor kuis dikirim ke server dan diperingkat, sehingga satu kelas atau satu komunitas bisa
+                        saling berlomba.
+                    </p>
+                </article>
+
+                <!-- Ekstraksi elemen -->
+                <article class="surface p-8" data-aos="fade-up" data-aos-delay="160">
+                    <div class="icon-chip mb-5">
+                        <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                            <path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7z"></path>
+                            <circle cx="12" cy="9" r="2.5"></circle>
+                        </svg>
+                    </div>
+                    <h3 class="font-heading font-bold text-2xl mb-3">Ekstraksi elemen</h3>
+                    <p class="lead text-sm">
+                        Ketuk satu elemen di foto batik dan aplikasi memotongnya jadi objek tersendiri. Mode
+                        <strong class="text-batik-gading font-semibold">ISEN-ISEN</strong> memakai OpenCV, mode
+                        <strong class="text-batik-gading font-semibold">ELEMENTS</strong> memakai model segmentasi
+                        SAM2.
+                    </p>
+                </article>
+
+                <!-- Kanvas berlapis (lebar 2 kolom) -->
+                <article class="surface lg:col-span-2 p-8" data-aos="fade-up">
+                    <div class="icon-chip mb-5">
+                        <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                            <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                            <polyline points="2 17 12 22 22 17"></polyline>
+                            <polyline points="2 12 12 17 22 12"></polyline>
+                        </svg>
+                    </div>
+                    <h3 class="font-heading font-bold text-2xl mb-3">Kanvas kustomisasi berlapis</h3>
+                    <p class="lead text-sm">
+                        Setiap elemen yang kamu ekstrak menjadi satu lapisan sendiri di kanvas — bisa digeser,
+                        diputar, dan diubah ukurannya secara terpisah. Lengkap dengan mode menggambar bebas dan
+                        pewarnaan, supaya kamu bisa menyusun motif baru dari potongan motif lama.
+                    </p>
+                </article>
+
+                <!-- Peran Batik Artist -->
+                <article class="surface p-8" data-aos="fade-up" data-aos-delay="80">
+                    <div class="icon-chip mb-5">
+                        <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="9" cy="7" r="4"></circle>
+                            <line x1="19" y1="8" x2="19" y2="14"></line>
+                            <line x1="22" y1="11" x2="16" y2="11"></line>
+                        </svg>
+                    </div>
+                    <h3 class="font-heading font-bold text-2xl mb-3">Peran Batik Artist</h3>
+                    <p class="lead text-sm">
+                        Selain pengguna biasa, ada peran Batik Artist dan Administrator yang bisa mengunggah serta
+                        mengelola motif di katalog. Motif baru langsung tersedia untuk dipindai semua pengguna.
+                    </p>
+                </article>
             </div>
         </div>
     </section>
 
-    <!-- Decorative Divider -->
-    <div class="section-divider"></div>
-
-    <!-- Galeri Section -->
-    <section id="galeri" class="py-20 bg-batik-cream relative overflow-hidden">
-        <!-- Decorative elements -->
-        <div class="absolute top-0 left-1/4 w-80 h-80 bg-batik-gold/3 rounded-full blur-3xl -z-0"></div>
-        <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-batik-gold/3 rounded-full blur-3xl -z-0"></div>
-
+    <!-- ===================== CARA PAKAI ===================== -->
+    <section id="cara" class="relative py-24 bg-batik-ink-soft overflow-hidden">
+        <div class="batik-pattern absolute inset-0"></div>
         <div class="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
-            <h2 class="font-heading font-bold text-4xl text-center text-batik-dark-brown mb-4" data-aos="fade-down"
-                data-aos-duration="800">
-                Galeri Batik yang Dapat Dipindai
-            </h2>
-            <p class="text-center text-batik-dark mb-6 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="100"
-                data-aos-duration="800">
-                Sorotan motif dari koleksi batikARise. Klik untuk melihat besar, lalu pindai lewat aplikasi.
-            </p>
+            <div class="grid lg:grid-cols-[0.8fr_1.2fr] gap-14">
+                <div>
+                    <span class="meta-label mb-4" data-aos="fade-up">Cara Pakai</span>
+                    <h2 class="display text-4xl sm:text-5xl mb-5" data-aos="fade-up" data-aos-delay="80">
+                        Dari pasang<br>sampai <span class="text-gradient-emas">dapat bintang</span>
+                    </h2>
+                    <p class="lead mb-8" data-aos="fade-up" data-aos-delay="140">
+                        Lima langkah, mengikuti alur yang benar-benar ada di aplikasi.
+                    </p>
+                    <a href="downloads/batikARise.apk" download class="btn-primary" data-aos="fade-up"
+                        data-aos-delay="200">
+                        Mulai sekarang
+                    </a>
+                </div>
 
-            <!-- Status sumber data (disembunyikan saat sukses) -->
-            <p id="galeri-status" class="text-center text-sm text-batik-dark/60 mb-10"></p>
+                <div data-aos="fade-up" data-aos-delay="120">
+                    <div class="step-row">
+                        <div class="step-num">01</div>
+                        <div>
+                            <h3 class="font-heading font-bold text-xl mb-2">Masuk, daftar, atau pakai mode tamu</h3>
+                            <p class="lead text-sm">
+                                Buat akun dengan email, atau langsung lanjut sebagai tamu kalau hanya ingin
+                                mencoba. Akunmu dipakai untuk menyimpan bintang dan skor kuis.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="step-row">
+                        <div class="step-num">02</div>
+                        <div>
+                            <h3 class="font-heading font-bold text-xl mb-2">Pilih motif dari katalog</h3>
+                            <p class="lead text-sm">
+                                Katalog motif diambil dari server, jadi daftarnya ikut bertambah setiap kali
+                                seorang Batik Artist mengunggah motif baru — tanpa perlu memperbarui aplikasi.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="step-row">
+                        <div class="step-num">03</div>
+                        <div>
+                            <h3 class="font-heading font-bold text-xl mb-2">Arahkan kamera ke motif itu</h3>
+                            <p class="lead text-sm">
+                                Aplikasi hanya mengenali motif yang baru kamu pilih. Kamu bisa memindai kain
+                                aslinya, atau menampilkan motifnya di layar lain — halaman
+                                <a href="galeri.html" class="text-batik-gold hover:underline">Galeri</a> di situs
+                                ini punya mode layar penuh khusus untuk itu.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="step-row">
+                        <div class="step-num">04</div>
+                        <div>
+                            <h3 class="font-heading font-bold text-xl mb-2">Tekan "Let's Draw" dan gambar ulang</h3>
+                            <p class="lead text-sm">
+                                Gambar ulang motifnya langsung di ruang AR. Hasilnya dinilai berdasarkan
+                                kemiripan dengan motif asli, lalu kamu dapat 1–5 bintang untuk motif tersebut.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="step-row">
+                        <div class="step-num">05</div>
+                        <div>
+                            <h3 class="font-heading font-bold text-xl mb-2">Main kuis dan cek leaderboard</h3>
+                            <p class="lead text-sm">
+                                Uji pengetahuanmu dengan lima soal benar/salah yang diacak, lalu bandingkan
+                                skormu dengan pemain lain.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-            <!-- Grid preview diisi dinamis dari motifs.json (maks. 6) oleh script.js -->
-            <div id="galeri-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Skeleton loading state -->
-                <div class="gallery-skeleton h-72 rounded-2xl bg-batik-dark/10 animate-pulse"></div>
-                <div class="gallery-skeleton h-72 rounded-2xl bg-batik-dark/10 animate-pulse"></div>
-                <div class="gallery-skeleton h-72 rounded-2xl bg-batik-dark/10 animate-pulse"></div>
+    <!-- ===================== KUSTOMISASI ===================== -->
+    <section id="kustomisasi" class="relative py-24 overflow-hidden">
+        <div class="glow w-[28rem] h-[28rem] bottom-0 -right-32"></div>
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
+            <div class="max-w-3xl mb-14">
+                <span class="meta-label mb-4" data-aos="fade-up">Kustomisasi</span>
+                <h2 class="display text-4xl sm:text-5xl mb-5" data-aos="fade-up" data-aos-delay="80">
+                    Bongkar motif lama,<br><span class="text-gradient-emas">susun jadi motif baru</span>
+                </h2>
+                <p class="lead" data-aos="fade-up" data-aos-delay="140">
+                    Ini bagian yang paling jarang ada di aplikasi batik lain: kamu tidak hanya melihat motif,
+                    tapi memotong elemennya satu per satu dan menyusunnya ulang jadi karyamu sendiri.
+                </p>
             </div>
 
-            <!-- Lihat semua motif -> halaman galeri terpisah (search + pagination) -->
-            <div class="text-center mt-12" data-aos="fade-up" data-aos-duration="800">
-                <a href="galeri.html"
-                    class="btn-primary cta-button inline-flex items-center justify-center gap-2 font-bold py-4 px-8 rounded-xl transition transform hover:scale-105 hover:shadow-2xl hover:shadow-batik-gold/50 relative z-10">
-                    Lihat Semua Motif
-                    <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5"
+            <div class="grid md:grid-cols-2 lg:grid-cols-5 gap-5">
+                <div class="surface p-7" data-aos="fade-up">
+                    <div class="step-num mb-5">01</div>
+                    <h3 class="font-heading font-bold text-lg mb-2">Foto atau unggah</h3>
+                    <p class="lead text-sm">
+                        Ambil foto kain batik atau pilih dari galeri. Kamera memberi panduan perataan langsung
+                        di layar supaya hasil jepretannya rapi.
+                    </p>
+                </div>
+                <div class="surface p-7" data-aos="fade-up" data-aos-delay="70">
+                    <div class="step-num mb-5">02</div>
+                    <h3 class="font-heading font-bold text-lg mb-2">Luruskan perspektif</h3>
+                    <p class="lead text-sm">
+                        Foto yang miring diperbaiki jadi tampak lurus dari depan, supaya elemennya mudah
+                        dipotong.
+                    </p>
+                </div>
+                <div class="surface p-7" data-aos="fade-up" data-aos-delay="140">
+                    <div class="step-num mb-5">03</div>
+                    <h3 class="font-heading font-bold text-lg mb-2">Pilih mode ekstraksi</h3>
+                    <p class="lead text-sm">
+                        <strong class="text-batik-gading font-semibold">ISEN-ISEN</strong> untuk isian batik yang
+                        halus, atau <strong class="text-batik-gading font-semibold">ELEMENTS</strong> untuk objek
+                        utuh seperti daun dan burung.
+                    </p>
+                </div>
+                <div class="surface p-7" data-aos="fade-up" data-aos-delay="210">
+                    <div class="step-num mb-5">04</div>
+                    <h3 class="font-heading font-bold text-lg mb-2">Ketuk elemen, tekan ADD</h3>
+                    <p class="lead text-sm">
+                        Ketuk satu titik pada elemen yang kamu mau. Hasil potongannya ditambahkan ke kanvas
+                        sebagai lapisan baru.
+                    </p>
+                </div>
+                <div class="surface p-7" data-aos="fade-up" data-aos-delay="280">
+                    <div class="step-num mb-5">05</div>
+                    <h3 class="font-heading font-bold text-lg mb-2">Susun di kanvas</h3>
+                    <p class="lead text-sm">
+                        Geser, putar, dan ubah ukuran tiap lapisan. Tambahkan gambar bebas dan warna untuk
+                        menyelesaikan desainmu.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== GALERI PREVIEW ===================== -->
+    <section id="galeri" class="relative py-24 bg-batik-ink-soft overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
+            <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
+                <div class="max-w-2xl">
+                    <span class="meta-label mb-4" data-aos="fade-up">Galeri</span>
+                    <h2 class="display text-4xl sm:text-5xl mb-5" data-aos="fade-up" data-aos-delay="80">
+                        Motif yang <span class="text-gradient-emas">siap dipindai</span>
+                    </h2>
+                    <p class="lead" data-aos="fade-up" data-aos-delay="140">
+                        Gambar di sini adalah penanda yang sama dengan yang dikenali aplikasi. Klik satu motif,
+                        tampilkan layar penuh, lalu pindai dari ponsel.
+                    </p>
+                </div>
+                <a href="galeri.html" class="btn-ghost shrink-0" data-aos="fade-up" data-aos-delay="180">
+                    Lihat semua motif
+                    <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.4"
                         stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
                         <line x1="5" y1="12" x2="19" y2="12"></line>
                         <polyline points="12 5 19 12 12 19"></polyline>
                     </svg>
                 </a>
             </div>
+
+            <!-- Status sumber data (disembunyikan saat sukses) -->
+            <p id="galeri-status" class="text-sm text-center mb-8" style="color: var(--faint);"></p>
+
+            <!-- Grid preview diisi dinamis dari motifs.json (maks. 6) oleh script.js -->
+            <div id="galeri-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="gallery-skeleton"></div>
+                <div class="gallery-skeleton"></div>
+                <div class="gallery-skeleton"></div>
+            </div>
         </div>
     </section>
 
-    <!-- Decorative Divider -->
-    <div class="section-divider"></div>
-
-    <!-- Kontak Section -->
-    <section id="kontak"
-        class="grain py-20 bg-gradient-to-br from-batik-dark-brown via-batik-dark to-batik-dark-brown text-batik-cream relative overflow-hidden">
-        <div class="absolute inset-0 opacity-10">
-            <div class="absolute top-10 left-10 w-64 h-64 bg-batik-gold rounded-full blur-3xl"></div>
-            <div class="absolute bottom-10 right-10 w-96 h-96 bg-batik-gold rounded-full blur-3xl"></div>
-        </div>
+    <!-- ===================== UNDUH & SPESIFIKASI ===================== -->
+    <section id="unduh" class="grain relative py-24 overflow-hidden">
         <div class="batik-pattern absolute inset-0"></div>
-        <div class="max-w-7xl mx-auto px-6 lg:px-8 text-center relative z-10">
-            <h2 class="font-heading font-bold text-4xl md:text-5xl mb-6" data-aos="fade-down" data-aos-duration="800">
-                Siap mengenal dan mempelajari <span class="text-gradient-emas">motif Batik</span>?
-            </h2>
-            <p class="text-lg md:text-xl mb-12 leading-relaxed" data-aos="fade-up" data-aos-delay="100"
-                data-aos-duration="800">
-                Download aplikasi batikARise sekarang dan mulai petualangan Anda menjelajahi kekayaan
-                motif Batik.
-            </p>
-
-            <div class="flex flex-col sm:flex-row gap-4 justify-center mb-16" data-aos="zoom-in" data-aos-delay="200"
-                data-aos-duration="800">
-                <a href="downloads/batikARise.apk" download
-                    class="btn-primary cta-button inline-flex items-center justify-center gap-2 font-bold py-4 px-8 rounded-xl transition transform hover:scale-105 hover:shadow-2xl hover:shadow-batik-gold/50 relative z-10">
-                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
-                        <path
-                            d="M12 2c5.5 0 10 4.5 10 10s-4.5 10-10 10S2 17.5 2 12 6.5 2 12 2m0 2c-4.4 0-8 3.6-8 8s3.6 8 8 8 8-3.6 8-8-3.6-8-8-8m3.5 9H13v3.5h-2V13H8.5v-2H11V7.5h2V11h3.5v2z" />
-                    </svg>
-                    Download Android (APK)
-                </a>
-                <button
-                    class="inline-flex items-center justify-center gap-2 border border-batik-gold/60 text-batik-cream/80 font-bold py-4 px-8 rounded-xl cursor-not-allowed opacity-70">
-                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
-                        <path
-                            d="M17.05 13.5c-.91 0-1.82-.33-2.5-.92l-5.5 5.5c.59.68.92 1.59.92 2.5 0 2.21-1.79 4-4 4s-4-1.79-4-4 1.79-4 4-4c.91 0 1.82.33 2.5.92l5.5-5.5c-.59-.68-.92-1.59-.92-2.5 0-2.21 1.79-4 4-4s4 1.79 4 4-1.79 4-4 4z" />
-                    </svg>
-                    App Store (Coming Soon)
-                </button>
-            </div>
-
-            <div class="flex flex-col sm:flex-row gap-8 justify-center" data-aos="fade-up" data-aos-delay="300"
-                data-aos-duration="800">
-                <a href="https://github.com/mulyodwi16/batikARisePortal" target="_blank" rel="noopener noreferrer"
-                    class="inline-flex items-center gap-3 hover:text-batik-gold transition text-lg group">
-                    <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"
-                        class="group-hover:scale-110 transition">
-                        <path
-                            d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.84 9.49.5.09.68-.22.68-.48 0-.24-.01-.87-.01-1.71-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.89 1.52 2.34 1.08 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.93 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02.8-.22 1.65-.33 2.5-.33s1.7.11 2.5.33c1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.82-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85 0 1.34-.01 2.41-.01 2.74 0 .27.18.58.69.48C19.13 20.17 22 16.42 22 12c0-5.52-4.48-10-10-10z" />
-                    </svg>
-                    GitHub Repository
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="text-white py-12" style="background-color: #4E342E !important;">
-        <div class="max-w-7xl mx-auto px-6 lg:px-8">
-            <hr class="gold-rule mb-10">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-                <div class="flex flex-col items-center md:items-start">
-                    <p class="font-bold mb-2 text-white">&copy; 2025 batikARise</p>
-                    <p class="text-base font-bold mb-3 text-white"><strong>Tim Peneliti:</strong></p>
-                    <p class="text-sm text-white">Dr.-Ing. Hestiasari Rante</p>
-                    <p class="text-sm text-white">Prof. Iwan Syarif</p>
-                    <p class="text-sm text-white">Dr. Tri Budi Santoso</p>
-                    <p class="text-sm text-white">Dwi Mulyo, S.Tr.Kom</p>
-                    <p class="text-sm text-white">Anisa Faza</p>
-                    <p class="text-sm text-white">Hanan Hafizah</p>
-                </div>
-                <div class="ml-auto w-fit md:ml-auto flex flex-col items-center md:items-end">
-                    <p class="text-base font-bold mb-3 text-white">Didukung oleh:</p>
-                    <div class="flex gap-6 flex-wrap items-center justify-center md:justify-end">
-                        <img src="assets/sponsor1.png" alt="Tut Wuri Handayani"
-                            class="h-16 hover:scale-110 transition-transform duration-300">
-                        <img src="assets/sponsor2.png" alt="Sponsor Logo"
-                            class="h-16 hover:scale-110 transition-transform duration-300">
-                        <img src="assets/sponsor3.png" alt="Diktisaintek Berdampak"
-                            class="h-16 hover:scale-110 transition-transform duration-300">
+        <div class="glow w-[30rem] h-[30rem] -top-20 left-1/4"></div>
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
+            <div class="grid lg:grid-cols-2 gap-14 items-center">
+                <div>
+                    <span class="meta-label mb-4" data-aos="fade-up">Unduh</span>
+                    <h2 class="display text-4xl sm:text-5xl mb-5" data-aos="fade-up" data-aos-delay="80">
+                        Siap mencoba <span class="text-gradient-emas">batikARise</span>?
+                    </h2>
+                    <p class="lead mb-9" data-aos="fade-up" data-aos-delay="140">
+                        Pasang berkas APK-nya langsung di perangkat Android. Pastikan ponselmu mendukung ARCore
+                        agar fitur pemindaian dan menggambar di ruang AR bisa berjalan.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4" data-aos="fade-up" data-aos-delay="200">
+                        <a href="downloads/batikARise.apk" download class="btn-primary">
+                            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2"
+                                stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                <polyline points="7 10 12 15 17 10"></polyline>
+                                <line x1="12" y1="15" x2="12" y2="3"></line>
+                            </svg>
+                            Unduh APK — versi 3.0
+                        </a>
+                        <a href="https://github.com/mulyodwi16/batikARisePortal" target="_blank"
+                            rel="noopener noreferrer" class="btn-ghost">
+                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.84 9.49.5.09.68-.22.68-.48 0-.24-.01-.87-.01-1.71-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.89 1.52 2.34 1.08 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.93 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02.8-.22 1.65-.33 2.5-.33s1.7.11 2.5.33c1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.82-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85 0 1.34-.01 2.41-.01 2.74 0 .27.18.58.69.48C19.13 20.17 22 16.42 22 12c0-5.52-4.48-10-10-10z" />
+                            </svg>
+                            Repositori
+                        </a>
                     </div>
                 </div>
+
+                <dl class="grid sm:grid-cols-2 gap-4" data-aos="fade-up" data-aos-delay="160">
+                    <div class="surface p-6">
+                        <dt class="meta-label mb-2">Platform</dt>
+                        <dd class="font-heading font-bold text-xl">Android 8.0+</dd>
+                        <dd class="lead text-sm mt-1">API level 26 ke atas</dd>
+                    </div>
+                    <div class="surface p-6">
+                        <dt class="meta-label mb-2">Versi</dt>
+                        <dd class="font-heading font-bold text-xl">3.0</dd>
+                        <dd class="lead text-sm mt-1">Berkas APK, pasang manual</dd>
+                    </div>
+                    <div class="surface p-6">
+                        <dt class="meta-label mb-2">Teknologi AR</dt>
+                        <dd class="font-heading font-bold text-xl">ARCore</dd>
+                        <dd class="lead text-sm mt-1">Lewat Unity AR Foundation</dd>
+                    </div>
+                    <div class="surface p-6">
+                        <dt class="meta-label mb-2">Izin</dt>
+                        <dd class="font-heading font-bold text-xl">Kamera &amp; internet</dd>
+                        <dd class="lead text-sm mt-1">Untuk AR dan sinkronisasi katalog</dd>
+                    </div>
+                </dl>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== FOOTER ===================== -->
+    <footer class="bg-batik-ink-soft border-t border-batik-gold/15 pt-16 pb-10">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="grid md:grid-cols-3 gap-12 mb-12">
+                <div>
+                    <img src="assets/logo.png" alt="batikARise" class="h-14 w-auto mb-5">
+                    <p class="lead text-sm max-w-xs">
+                        Aplikasi pembelajaran motif batik berbasis Augmented Reality, dikembangkan sebagai
+                        bagian dari penelitian di Politeknik Elektronika Negeri Surabaya.
+                    </p>
+                </div>
+
+                <div>
+                    <p class="meta-label mb-5">Tim Peneliti</p>
+                    <ul class="space-y-2 text-sm" style="color: var(--muted);">
+                        <li>Dr.-Ing. Hestiasari Rante</li>
+                        <li>Prof. Iwan Syarif</li>
+                        <li>Dr. Tri Budi Santoso</li>
+                        <li>Dwi Mulyo, S.Tr.Kom</li>
+                        <li>Anisa Faza</li>
+                        <li>Hanan Hafizah</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <p class="meta-label mb-5">Didukung oleh</p>
+                    <div class="flex gap-5 flex-wrap items-center">
+                        <img src="assets/sponsor1.png" alt="Tut Wuri Handayani" class="support-logo h-14">
+                        <img src="assets/sponsor2.png" alt="Logo pendukung" class="support-logo h-14">
+                        <img src="assets/sponsor3.png" alt="Diktisaintek Berdampak" class="support-logo h-14">
+                    </div>
+                </div>
+            </div>
+
+            <hr class="gold-rule mb-7">
+
+            <div class="flex flex-col sm:flex-row items-center justify-between gap-4 text-sm"
+                style="color: var(--faint);">
+                <p>&copy; 2025 batikARise</p>
+                <a href="https://github.com/mulyodwi16/batikARisePortal" target="_blank" rel="noopener noreferrer"
+                    class="hover:text-batik-gold transition">github.com/mulyodwi16/batikARisePortal</a>
             </div>
         </div>
     </footer>
@@ -462,37 +648,49 @@
     <!-- Lightbox Modal -->
     <div id="lightbox" class="lightbox fixed inset-0 bg-black/95 z-50 items-center justify-center p-4">
         <button onclick="closeLightbox()"
-            class="absolute top-6 right-6 text-white text-5xl hover:text-batik-gold transition hover:rotate-90 duration-300 z-50">
+            class="absolute top-6 right-6 text-white text-4xl hover:text-batik-gold transition hover:rotate-90 duration-300 z-50"
+            aria-label="Tutup">
             &times;
         </button>
         <button onclick="prevLightbox()"
-            class="absolute left-6 top-1/2 transform -translate-y-1/2 text-white text-5xl hover:text-batik-gold transition hover:scale-125 bg-black/50 w-16 h-16 rounded-full flex items-center justify-center">
-            ❮
+            class="absolute left-4 sm:left-6 top-1/2 -translate-y-1/2 text-white hover:text-batik-gold transition bg-white/10 border border-white/15 w-12 h-12 rounded-full flex items-center justify-center"
+            aria-label="Motif sebelumnya">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                stroke-linejoin="round" viewBox="0 0 24 24">
+                <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
         </button>
         <button onclick="nextLightbox()"
-            class="absolute right-6 top-1/2 transform -translate-y-1/2 text-white text-5xl hover:text-batik-gold transition hover:scale-125 bg-black/50 w-16 h-16 rounded-full flex items-center justify-center">
-            ❯
+            class="absolute right-4 sm:right-6 top-1/2 -translate-y-1/2 text-white hover:text-batik-gold transition bg-white/10 border border-white/15 w-12 h-12 rounded-full flex items-center justify-center"
+            aria-label="Motif berikutnya">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                stroke-linejoin="round" viewBox="0 0 24 24">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
         </button>
         <div class="text-center max-w-4xl">
-            <img id="lightbox-image" src="" alt="" class="max-h-[72vh] rounded-2xl shadow-2xl mx-auto bg-white">
+            <img id="lightbox-image" src="" alt="" class="max-h-[70vh] rounded-2xl shadow-2xl mx-auto bg-white">
             <p id="lightbox-caption" class="text-white mt-6 font-heading font-bold text-2xl"></p>
-            <p id="lightbox-desc" class="text-white/70 mt-2 max-w-2xl mx-auto text-sm"></p>
-            <button onclick="openScanView()"
-                class="mt-6 inline-flex items-center gap-2 bg-gradient-to-r from-batik-gold to-yellow-600 text-batik-dark font-bold py-3 px-6 rounded-xl hover:scale-105 transition">
+            <p id="lightbox-desc" class="mt-2 max-w-2xl mx-auto text-sm" style="color: var(--muted);"></p>
+            <button onclick="openScanView()" class="btn-primary mt-7">
                 <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M3 5a2 2 0 0 1 2-2h3v2H5v3H3V5zm18 0v3h-2V5h-3V3h3a2 2 0 0 1 2 2zM3 19v-3h2v3h3v2H5a2 2 0 0 1-2-2zm18 0a2 2 0 0 1-2 2h-3v-2h3v-3h2v3zM7 11h10v2H7v-2z"/>
+                    <path
+                        d="M3 5a2 2 0 0 1 2-2h3v2H5v3H3V5zm18 0v3h-2V5h-3V3h3a2 2 0 0 1 2 2zM3 19v-3h2v3h3v2H5a2 2 0 0 1-2-2zm18 0a2 2 0 0 1-2 2h-3v-2h3v-3h2v3zM7 11h10v2H7v-2z" />
                 </svg>
-                Tampilkan untuk Dipindai
+                Tampilkan untuk dipindai
             </button>
         </div>
     </div>
 
-    <!-- Scan View: tampilan bersih layar-penuh untuk dipindai kamera AR -->
-    <div id="scan-view" class="fixed inset-0 z-[60] bg-white flex-col items-center justify-center p-4" style="display:none;">
+    <!-- Scan View: tampilan bersih layar-penuh untuk dipindai kamera AR.
+         Sengaja putih & tanpa animasi agar tidak mengganggu deteksi gambar. -->
+    <div id="scan-view" class="fixed inset-0 z-[60] bg-white flex-col items-center justify-center p-4"
+        style="display:none;">
         <img id="scan-image" src="" alt="" class="max-h-[88vh] max-w-full object-contain">
-        <p id="scan-caption" class="mt-3 font-heading font-bold text-xl text-batik-dark-brown text-center"></p>
+        <p id="scan-caption" class="mt-3 font-heading font-bold text-xl text-center" style="color: #4E342E;"></p>
         <button onclick="closeScanView()"
-            class="absolute top-5 right-5 text-batik-dark-brown bg-batik-cream/80 w-12 h-12 rounded-full text-3xl flex items-center justify-center hover:bg-batik-gold transition">
+            class="absolute top-5 right-5 w-12 h-12 rounded-full text-3xl flex items-center justify-center transition"
+            style="color: #4E342E; background: #F5E6D3;" aria-label="Tutup tampilan pindai">
             &times;
         </button>
     </div>
@@ -500,12 +698,7 @@
     <!-- AOS Animation Library -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        AOS.init({
-            duration: 800,
-            easing: 'ease-out-cubic',
-            once: true,
-            offset: 100
-        });
+        AOS.init({ duration: 700, easing: 'ease-out-cubic', once: true, offset: 80 });
     </script>
 
     <!-- External JavaScript -->

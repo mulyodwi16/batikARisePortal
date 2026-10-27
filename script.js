@@ -39,22 +39,19 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // Highlight link navigasi aktif saat scroll (khusus landing dengan section anchor).
-const navLinks = document.querySelectorAll('.nav-link');
+// Hanya section yang punya id dan dirujuk nav yang dihitung, biar section dekoratif
+// tanpa id tidak mereset penanda aktif.
+const navLinks = Array.from(document.querySelectorAll('.nav-link[href^="#"]'));
+
 window.addEventListener('scroll', () => {
     let current = '';
-    document.querySelectorAll('section').forEach(section => {
-        const sectionTop = section.offsetTop;
-        if (pageYOffset >= sectionTop - 200) {
-            current = section.getAttribute('id');
+    navLinks.forEach(link => {
+        const section = document.getElementById(link.getAttribute('href').slice(1));
+        if (section && window.scrollY >= section.offsetTop - 200) {
+            current = section.id;
         }
     });
     navLinks.forEach(link => {
-        const href = link.getAttribute('href') || '';
-        link.classList.remove('text-batik-gold');
-        link.style.transform = 'scale(1)';
-        if (href.startsWith('#') && href.slice(1) === current) {
-            link.classList.add('text-batik-gold');
-            link.style.transform = 'scale(1.1)';
-        }
+        link.classList.toggle('is-active', link.getAttribute('href').slice(1) === current);
     });
 }, { passive: true });
