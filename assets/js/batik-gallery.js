@@ -63,6 +63,13 @@ const BatikGallery = (() => {
         card.style.animation = `fadeInUp 0.5s ease-out ${(index % 3) * 0.08}s both`;
         card.addEventListener('click', () => onClick(index));
 
+        // Spotlight mengikuti kursor — dibaca oleh .gallery-item::before via --mx/--my.
+        card.addEventListener('mousemove', (e) => {
+            const r = card.getBoundingClientRect();
+            card.style.setProperty('--mx', `${e.clientX - r.left}px`);
+            card.style.setProperty('--my', `${e.clientY - r.top}px`);
+        });
+
         const img = document.createElement('img');
         img.src = item.src;
         img.alt = item.caption;
@@ -210,6 +217,25 @@ const BatikGallery = (() => {
         });
     }
 
+    // -- Efek saat scroll: navbar jadi kaca berembun + progress bar emas ------
+    function initScrollFx() {
+        const navbar = document.getElementById('navbar');
+        const bar = document.getElementById('scroll-progress');
+        if (!navbar && !bar) return;
+
+        const onScroll = () => {
+            const y = window.scrollY;
+            if (navbar) navbar.classList.toggle('nav-scrolled', y > 40);
+            if (bar) {
+                const max = document.documentElement.scrollHeight - window.innerHeight;
+                bar.style.width = max > 0 ? `${Math.min(100, (y / max) * 100)}%` : '0%';
+            }
+        };
+
+        onScroll();
+        window.addEventListener('scroll', onScroll, { passive: true });
+    }
+
     return {
         loadMotifs,
         didUseFallback,
@@ -223,7 +249,8 @@ const BatikGallery = (() => {
         closeScanView,
         initLightboxControls,
         initMobileMenu,
-        initAnchorScroll
+        initAnchorScroll,
+        initScrollFx
     };
 })();
 

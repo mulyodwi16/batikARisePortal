@@ -34,6 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
     BatikGallery.initLightboxControls();
     BatikGallery.initMobileMenu();
     BatikGallery.initAnchorScroll();
+    BatikGallery.initScrollFx();
     initLanding();
 });
 

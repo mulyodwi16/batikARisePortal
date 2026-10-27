@@ -80,6 +80,7 @@ function goToPage(p) {
 async function initGaleri() {
     BatikGallery.initLightboxControls();
     BatikGallery.initMobileMenu();
+    BatikGallery.initScrollFx();
 
     allMotifs = await BatikGallery.loadMotifs();
     filtered = allMotifs.slice();

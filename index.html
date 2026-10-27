@@ -55,8 +55,11 @@
 </head>
 
 <body class="bg-batik-cream font-body text-batik-dark">
+    <!-- Indikator progres scroll -->
+    <div id="scroll-progress" class="scroll-progress"></div>
+
     <!-- Navigation -->
-    <nav id="navbar" class="fixed w-full top-0 z-50 shadow-lg" style="background-color: #4E342E !important;">
+    <nav id="navbar" class="navbar-solid fixed w-full top-0 z-50 shadow-lg">
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
                 <!-- Logo (always at start on desktop, at end on mobile) -->
@@ -121,10 +124,12 @@
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="hero-bg relative min-h-screen flex items-center pt-20">
-        <div class="absolute inset-0 bg-gradient-to-r from-black/90 via-batik-dark/85 to-batik-dark/60"></div>
+    <section id="home" class="hero-bg grain relative min-h-screen flex items-center pt-24 pb-16 overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-r from-black/92 via-batik-dark/85 to-batik-dark/55"></div>
         <div class="batik-pattern absolute inset-0"></div>
+        <div class="absolute -top-20 -right-10 w-[30rem] h-[30rem] bg-batik-gold/10 rounded-full blur-3xl"></div>
         <div class="max-w-7xl mx-auto px-6 lg:px-8 relative z-10 w-full">
+            <div class="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
             <div class="max-w-2xl">
                 <h1 class="font-heading font-bold text-4xl sm:text-5xl lg:text-6xl text-white mb-6 leading-tight animate-fade-in-up"
                     data-aos="fade-up" data-aos-duration="1000">
@@ -156,6 +161,52 @@
                         App Store (Coming Soon)
                     </button>
                 </div>
+
+                <a href="#cara" class="scroll-cue" data-aos="fade-up" data-aos-delay="600">
+                    Gulir untuk mulai
+                    <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2"
+                        stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </a>
+            </div>
+
+            <!-- Mockup HP: simulasi motif batik sedang dipindai lewat AR -->
+            <div class="hidden lg:block" data-aos="fade-left" data-aos-delay="300" data-aos-duration="1000">
+                <div class="ar-phone">
+                    <div class="ar-phone-screen">
+                        <img src="assets/batik/4_MotifSekarJagad.jpg"
+                            alt="Simulasi kamera AR batikARise sedang memindai Motif Sekar Jagad">
+                        <div class="ar-reticle"><span></span></div>
+                        <div class="ar-scanline"></div>
+                        <div class="ar-chip">
+                            <span class="dot"></span>
+                            Motif Sekar Jagad terdeteksi
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Marquee motif: memberi gambaran koleksi sekaligus mengisi ruang kosong -->
+    <section aria-label="Pratinjau koleksi motif" class="py-8 bg-batik-dark">
+        <div class="marquee">
+            <div class="marquee-track">
+                <a href="galeri.html" class="marquee-item"><img src="assets/batik/1_MotifLiris.jpg" alt="Motif Liris" loading="lazy"></a>
+                <a href="galeri.html" class="marquee-item"><img src="assets/batik/2_MotifAlunAlunContong.jpg" alt="Motif Alun-Alun Contong" loading="lazy"></a>
+                <a href="galeri.html" class="marquee-item"><img src="assets/batik/3_MotifBurungMerak.jpg" alt="Motif Burung Merak" loading="lazy"></a>
+                <a href="galeri.html" class="marquee-item"><img src="assets/batik/4_MotifSekarJagad.jpg" alt="Motif Sekar Jagad" loading="lazy"></a>
+                <a href="galeri.html" class="marquee-item"><img src="assets/batik/5_MotifParangJabon.jpg" alt="Motif Parang Jabon" loading="lazy"></a>
+                <a href="galeri.html" class="marquee-item"><img src="assets/batik/6_MotifLovePutihan.jpg" alt="Motif Love Putihan" loading="lazy"></a>
+                <!-- Duplikat (aria-hidden) agar loop terlihat mulus -->
+                <a href="galeri.html" class="marquee-item" aria-hidden="true" tabindex="-1"><img src="assets/batik/1_MotifLiris.jpg" alt="" loading="lazy"></a>
+                <a href="galeri.html" class="marquee-item" aria-hidden="true" tabindex="-1"><img src="assets/batik/2_MotifAlunAlunContong.jpg" alt="" loading="lazy"></a>
+                <a href="galeri.html" class="marquee-item" aria-hidden="true" tabindex="-1"><img src="assets/batik/3_MotifBurungMerak.jpg" alt="" loading="lazy"></a>
+                <a href="galeri.html" class="marquee-item" aria-hidden="true" tabindex="-1"><img src="assets/batik/4_MotifSekarJagad.jpg" alt="" loading="lazy"></a>
+                <a href="galeri.html" class="marquee-item" aria-hidden="true" tabindex="-1"><img src="assets/batik/5_MotifParangJabon.jpg" alt="" loading="lazy"></a>
+                <a href="galeri.html" class="marquee-item" aria-hidden="true" tabindex="-1"><img src="assets/batik/6_MotifLovePutihan.jpg" alt="" loading="lazy"></a>
             </div>
         </div>
     </section>
@@ -327,7 +378,7 @@
 
     <!-- Kontak Section -->
     <section id="kontak"
-        class="py-20 bg-gradient-to-br from-batik-dark-brown via-batik-dark to-batik-dark-brown text-batik-cream relative overflow-hidden">
+        class="grain py-20 bg-gradient-to-br from-batik-dark-brown via-batik-dark to-batik-dark-brown text-batik-cream relative overflow-hidden">
         <div class="absolute inset-0 opacity-10">
             <div class="absolute top-10 left-10 w-64 h-64 bg-batik-gold rounded-full blur-3xl"></div>
             <div class="absolute bottom-10 right-10 w-96 h-96 bg-batik-gold rounded-full blur-3xl"></div>

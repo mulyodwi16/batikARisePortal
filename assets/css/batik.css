@@ -453,6 +453,284 @@ body {
 }
 
 /* --------------------------------------------------------------------------
+   Navbar: solid di atas, kaca berembun saat di-scroll
+   -------------------------------------------------------------------------- */
+.navbar-solid {
+    background-color: var(--sogan);
+    transition: background-color 0.35s ease, box-shadow 0.35s ease;
+}
+
+.navbar-solid.nav-scrolled {
+    background-color: rgba(78, 52, 46, 0.78);
+    backdrop-filter: blur(14px) saturate(1.2);
+    -webkit-backdrop-filter: blur(14px) saturate(1.2);
+    box-shadow: 0 10px 30px rgba(31, 27, 22, 0.35);
+    border-bottom: 1px solid rgba(192, 151, 83, 0.25);
+}
+
+/* --------------------------------------------------------------------------
+   Progress bar scroll (garis emas tipis di paling atas)
+   -------------------------------------------------------------------------- */
+.scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3px;
+    width: 0;
+    z-index: 60;
+    background: linear-gradient(90deg, var(--emas), var(--kunyit));
+    box-shadow: 0 0 12px rgba(208, 135, 0, 0.6);
+    pointer-events: none;
+}
+
+/* --------------------------------------------------------------------------
+   Tekstur grain halus — menambah kedalaman pada section gelap
+   -------------------------------------------------------------------------- */
+.grain::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.05;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* --------------------------------------------------------------------------
+   Mockup HP + simulasi pemindaian AR (hero)
+   -------------------------------------------------------------------------- */
+.ar-phone {
+    position: relative;
+    width: 100%;
+    max-width: 19rem;
+    margin-inline: auto;
+    border-radius: 2.5rem;
+    padding: 0.7rem;
+    background: linear-gradient(160deg, #2b2520, #110f0c);
+    box-shadow:
+        0 0 0 1px rgba(192, 151, 83, 0.35),
+        0 30px 70px rgba(0, 0, 0, 0.55),
+        0 0 90px rgba(192, 151, 83, 0.18);
+    animation: float 6s ease-in-out infinite;
+}
+
+.ar-phone::before {
+    content: '';
+    position: absolute;
+    top: 1.15rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4.5rem;
+    height: 0.35rem;
+    border-radius: 9999px;
+    background: rgba(255, 255, 255, 0.18);
+    z-index: 3;
+}
+
+.ar-phone-screen {
+    position: relative;
+    overflow: hidden;
+    border-radius: 2rem;
+    aspect-ratio: 9 / 18;
+    background: #000;
+}
+
+.ar-phone-screen > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Bracket sudut gaya viewfinder AR */
+.ar-reticle {
+    position: absolute;
+    inset: 16% 12%;
+    pointer-events: none;
+}
+
+.ar-reticle::before,
+.ar-reticle::after,
+.ar-reticle > span::before,
+.ar-reticle > span::after {
+    content: '';
+    position: absolute;
+    width: 1.6rem;
+    height: 1.6rem;
+    border: 3px solid var(--emas);
+    filter: drop-shadow(0 0 6px rgba(192, 151, 83, 0.7));
+}
+
+.ar-reticle::before {
+    top: 0;
+    left: 0;
+    border-right: 0;
+    border-bottom: 0;
+    border-radius: 0.5rem 0 0 0;
+}
+
+.ar-reticle::after {
+    top: 0;
+    right: 0;
+    border-left: 0;
+    border-bottom: 0;
+    border-radius: 0 0.5rem 0 0;
+}
+
+.ar-reticle > span::before {
+    bottom: 0;
+    left: 0;
+    border-right: 0;
+    border-top: 0;
+    border-radius: 0 0 0 0.5rem;
+}
+
+.ar-reticle > span::after {
+    bottom: 0;
+    right: 0;
+    border-left: 0;
+    border-top: 0;
+    border-radius: 0 0 0.5rem 0;
+}
+
+/* Garis pemindai yang menyapu dari atas ke bawah */
+.ar-scanline {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--kunyit), transparent);
+    box-shadow: 0 0 18px 4px rgba(208, 135, 0, 0.55);
+    animation: scanSweep 2.8s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes scanSweep {
+    0% { top: 14%; opacity: 0; }
+    12% { opacity: 1; }
+    88% { opacity: 1; }
+    100% { top: 84%; opacity: 0; }
+}
+
+/* Label hasil deteksi di dalam layar mockup */
+.ar-chip {
+    position: absolute;
+    left: 50%;
+    bottom: 1.1rem;
+    transform: translateX(-50%);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    white-space: nowrap;
+    padding: 0.4rem 0.8rem;
+    border-radius: 9999px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: var(--gading);
+    background: rgba(31, 27, 22, 0.72);
+    border: 1px solid rgba(192, 151, 83, 0.45);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+}
+
+.ar-chip .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 9999px;
+    background: #4ade80;
+    box-shadow: 0 0 0 3px rgba(74, 222, 128, 0.25);
+    animation: pulseDot 1.6s ease-in-out infinite;
+}
+
+/* --------------------------------------------------------------------------
+   Marquee motif — ticker horizontal tanpa henti (hanya di landing)
+   -------------------------------------------------------------------------- */
+.marquee {
+    overflow: hidden;
+    mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+}
+
+.marquee-track {
+    display: flex;
+    width: max-content;
+    gap: 1.25rem;
+    animation: marqueeSlide 45s linear infinite;
+}
+
+.marquee:hover .marquee-track {
+    animation-play-state: paused;
+}
+
+@keyframes marqueeSlide {
+    to { transform: translateX(-50%); }
+}
+
+.marquee-item {
+    flex: 0 0 auto;
+    width: 13rem;
+    height: 9rem;
+    border-radius: 1rem;
+    overflow: hidden;
+    border: 1px solid rgba(192, 151, 83, 0.3);
+    box-shadow: 0 10px 26px rgba(31, 27, 22, 0.25);
+}
+
+.marquee-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.marquee-item:hover img {
+    transform: scale(1.12);
+}
+
+/* --------------------------------------------------------------------------
+   Spotlight mengikuti kursor pada kartu galeri
+   -------------------------------------------------------------------------- */
+.gallery-item::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.35s ease;
+    background: radial-gradient(16rem circle at var(--mx, 50%) var(--my, 50%),
+            rgba(192, 151, 83, 0.3), transparent 62%);
+}
+
+.gallery-item:hover::before {
+    opacity: 1;
+}
+
+/* --------------------------------------------------------------------------
+   Petunjuk scroll di dasar hero
+   -------------------------------------------------------------------------- */
+.scroll-cue {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    color: rgba(245, 230, 211, 0.7);
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+}
+
+.scroll-cue svg {
+    animation: float 2.4s ease-in-out infinite;
+    color: var(--emas);
+}
+
+/* Parallax murah di desktop (dihindari di mobile karena janky) */
+@media (min-width: 1024px) {
+    .hero-bg {
+        background-attachment: fixed;
+    }
+}
+
+/* --------------------------------------------------------------------------
    Hormati prefers-reduced-motion
    -------------------------------------------------------------------------- */
 @media (prefers-reduced-motion: reduce) {
@@ -463,5 +741,14 @@ body {
         animation-iteration-count: 1 !important;
         transition-duration: 0.001ms !important;
         scroll-behavior: auto !important;
+    }
+
+    .marquee-track {
+        animation: none;
+        transform: none;
+    }
+
+    .hero-bg {
+        background-attachment: scroll;
     }
 }
