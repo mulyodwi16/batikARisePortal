@@ -1,4 +1,4 @@
-// galeri.html — katalog penuh dengan pencarian + paginasi sisi-klien.
+// galeri.html: katalog penuh dengan pencarian + paginasi sisi-klien.
 // Inti (lightbox, scan view, kartu, menu) ada di assets/js/batik-gallery.js.
 
 const PAGE_SIZE = 12;
@@ -48,7 +48,7 @@ function render() {
         resultCount().textContent = `Menampilkan ${items.length} dari ${filtered.length} motif`;
     }
 
-    // Paginasi — sembunyikan kalau cuma 1 halaman
+    // Paginasi: sembunyikan kalau cuma 1 halaman
     const pages = totalPages();
     if (isEmpty || pages <= 1) {
         pagination().style.display = 'none';

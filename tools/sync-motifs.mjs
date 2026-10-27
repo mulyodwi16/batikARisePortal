@@ -3,7 +3,7 @@
 // dengan aplikasi Unity). Dijalankan manual/di CI tiap motif berubah.
 //
 // Alurnya persis seperti user biasa di aplikasi:
-//   1. Login PlayFab (akun yang sudah ada — guest-creation dimatikan di title ini).
+//   1. Login PlayFab (akun yang sudah ada, guest-creation dimatikan di title ini).
 //   2. GetTitleData(MOTIF_LIST) -> daftar motif global semua Batik Artist.
 //   3. Tiap imageUrl di-resolve: URL http(s) lama dipakai langsung; path Supabase
 //      ditukar signed URL lewat Edge Function get-download-url (butuh ticket).
@@ -162,7 +162,7 @@ async function main() {
     };
     await writeFile(DATA_FILE, JSON.stringify(payload, null, 2) + '\n', 'utf8');
     console.log(`\n[sync-motifs] Selesai. ${out.length} motif ditulis ke assets/data/motifs.json`);
-    console.log('[sync-motifs] Jalankan `npm run optimize` — gambar hasil unduh masih mentah (~1 MB/motif).');
+    console.log('[sync-motifs] Jalankan `npm run optimize`. Gambar hasil unduh masih mentah (~1 MB/motif).');
 }
 
 main().catch(e => die(e.stack || e.message));

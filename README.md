@@ -22,14 +22,14 @@ Skrip (`tools/sync-motifs.mjs`) akan:
 3. Download gambar ke `assets/batik/` dan tulis `assets/data/motifs.json`.
 
 Hasilnya portal tetap **100% statis** (aman di GitHub Pages/Vercel/Netlify) dan **tidak
-bergantung server saat demo** — gambar yang tampil = trigger scan AR yang sama persis.
+bergantung server saat demo**. Gambar yang tampil = trigger scan AR yang sama persis.
 Kalau mau "live/otomatis", jadwalkan `npm run sync` di CI/cron.
 
 Preview lokal cepat: `npm run serve` lalu buka `http://localhost:5173`
 (harus lewat http, bukan `file://`, agar `fetch` motifs.json jalan).
 
 > **Catatan pindai (demo):** di lightbox galeri ada tombol **"Tampilkan untuk Dipindai"**
-> yang membuka motif layar-penuh dengan latar putih bersih — pas untuk dipindai kamera AR.
+> yang membuka motif layar-penuh dengan latar putih bersih, pas untuk dipindai kamera AR.
 
 ## 📋 Fitur
 

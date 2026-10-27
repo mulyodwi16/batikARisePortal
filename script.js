@@ -1,4 +1,4 @@
-// Landing page (index.html) — menampilkan SOROTAN motif (maks. 8).
+// Landing page (index.html): menampilkan SOROTAN motif (maks. 8).
 // Logika inti (lightbox, scan view, menu) ada di assets/js/batik-gallery.js.
 // Katalog penuh + pencarian + paginasi ada di galeri.html / galeri.js.
 

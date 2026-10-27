@@ -1,5 +1,5 @@
 // ===========================================================================
-// batik-gallery.js — inti bersama untuk index.html (preview) & galeri.html (penuh).
+// batik-gallery.js: inti bersama untuk index.html (preview) & galeri.html (penuh).
 //
 // Menyediakan BatikGallery global:
 //   - loadMotifs()           : fetch assets/data/motifs.json (fallback ke seed)
@@ -54,7 +54,7 @@ const BatikGallery = (() => {
     }
 
     // -- Pembuatan kartu -----------------------------------------------------
-    // onClick(index) dipanggil saat kartu diklik — pemanggil yang mengatur
+    // onClick(index) dipanggil saat kartu diklik. Pemanggil yang mengatur
     // setActiveList sebelum render agar index lightbox cocok.
     function createMotifCard(item, index, onClick) {
         const card = document.createElement('div');
@@ -63,7 +63,7 @@ const BatikGallery = (() => {
         card.style.animation = `fadeInUp 0.5s ease-out ${(index % 3) * 0.08}s both`;
         card.addEventListener('click', () => onClick(index));
 
-        // Spotlight mengikuti kursor — dibaca oleh .gallery-item::before via --mx/--my.
+        // Spotlight mengikuti kursor, dibaca oleh .gallery-item::before via --mx/--my.
         card.addEventListener('mousemove', (e) => {
             const r = card.getBoundingClientRect();
             card.style.setProperty('--mx', `${e.clientX - r.left}px`);

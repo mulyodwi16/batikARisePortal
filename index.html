@@ -5,16 +5,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
-        content="batikARise — aplikasi Android yang mengenali motif batik lewat kamera AR, mengajakmu menggambar ulang motifnya, dan membongkar elemennya jadi karya baru.">
+        content="batikARise adalah aplikasi Android yang mengenali motif batik lewat kamera AR, mengajakmu menggambar ulang motifnya, dan membongkar elemennya jadi karya baru.">
     <meta name="keywords" content="batikARise, batik, Augmented Reality, ARCore, SAM2, motif batik, Android">
     <meta name="author" content="Dwi Mulyo">
-    <meta property="og:title" content="batikARise — Kenali motif batik lewat kamera">
+    <meta property="og:title" content="batikARise: Kenali motif batik lewat kamera">
     <meta property="og:description"
         content="Pindai motif batik dengan AR, gambar ulang di ruang nyata, lalu bongkar elemennya jadi desain baru.">
     <meta property="og:image" content="assets/hero-banner.jpg">
     <meta name="theme-color" content="#0E0C0A">
 
-    <title>batikARise — Kenali motif batik lewat kamera</title>
+    <title>batikARise: Kenali motif batik lewat kamera</title>
     <link rel="icon" type="image/png" href="assets/logo.png">
 
     <!-- Tailwind CSS CDN (Official) -->
@@ -114,26 +114,33 @@
 
     <!-- ===================== HERO ===================== -->
     <section id="home" class="grain relative min-h-screen flex items-center pt-28 pb-16 overflow-hidden">
-        <div class="absolute inset-0 bg-cover bg-center opacity-20"
+        <div class="absolute inset-0 bg-cover bg-center opacity-[0.28]"
             style="background-image: url('assets/hero-banner.jpg');"></div>
-        <div class="absolute inset-0 bg-gradient-to-br from-batik-ink via-batik-ink/92 to-batik-sogan/40"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-batik-ink/85 via-batik-ink/75 to-batik-ink"></div>
         <div class="batik-pattern absolute inset-0"></div>
         <div class="glow w-[34rem] h-[34rem] -top-32 -right-32"></div>
 
+        <!-- Overlay viewfinder: seluruh hero dibaca sebagai bidikan kamera AR -->
+        <div class="hero-view" aria-hidden="true">
+            <div class="hero-crosshair"></div>
+            <div class="hero-frame"><span></span></div>
+            <div class="hero-scan"></div>
+        </div>
+
         <div class="max-w-7xl mx-auto px-6 lg:px-8 relative z-10 w-full">
-            <div class="grid lg:grid-cols-[1.15fr_0.85fr] gap-14 items-center">
-                <div>
+            <div class="max-w-3xl mx-auto text-center">
                     <h1 class="display text-[2.6rem] sm:text-6xl lg:text-7xl mb-7" data-aos="fade-up">
                         Kenali motif batik<br>
                         lewat <span class="text-gradient-emas">kamera ponselmu</span>
                     </h1>
-                    <p class="lead text-lg max-w-xl mb-9" data-aos="fade-up" data-aos-delay="120">
+                    <p class="lead text-lg max-w-2xl mx-auto mb-9" data-aos="fade-up" data-aos-delay="120">
                         batikARise mengenali motif batik dari kamera menggunakan ARCore, mengajakmu menggambar
                         ulang motifnya langsung di ruang nyata lalu menilai hasilnya, dan membongkar elemen
                         batik jadi bahan desain baru.
                     </p>
 
-                    <div class="flex flex-col sm:flex-row gap-4 mb-9" data-aos="fade-up" data-aos-delay="220">
+                    <div class="flex flex-col sm:flex-row gap-4 mb-9 justify-center" data-aos="fade-up"
+                        data-aos-delay="220">
                         <a href="downloads/batikARise.apk" download class="btn-primary">
                             <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2"
                                 stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
@@ -141,12 +148,12 @@
                                 <polyline points="7 10 12 15 17 10"></polyline>
                                 <line x1="12" y1="15" x2="12" y2="3"></line>
                             </svg>
-                            Unduh APK — versi 3.0
+                            Unduh APK versi 3.0
                         </a>
                         <a href="#fitur" class="btn-ghost">Lihat fitur</a>
                     </div>
 
-                    <div class="flex flex-wrap gap-2.5 mb-10" data-aos="fade-up" data-aos-delay="300">
+                    <div class="flex flex-wrap gap-2.5 mb-10 justify-center" data-aos="fade-up" data-aos-delay="300">
                         <span class="pill">
                             <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4"
                                 stroke-linecap="round" viewBox="0 0 24 24">
@@ -177,23 +184,6 @@
                             <polyline points="6 9 12 15 18 9"></polyline>
                         </svg>
                     </a>
-                </div>
-
-                <!-- Mockup HP: simulasi motif batik sedang dipindai lewat AR -->
-                <div class="hidden lg:block" data-aos="fade-left" data-aos-delay="250" data-aos-duration="1000">
-                    <div class="ar-phone">
-                        <div class="ar-phone-screen">
-                            <img src="assets/batik/4_MotifSekarJagad.jpg"
-                                alt="Simulasi kamera AR batikARise sedang memindai Motif Sekar Jagad">
-                            <div class="ar-reticle"><span></span></div>
-                            <div class="ar-scanline"></div>
-                            <div class="ar-chip">
-                                <span class="dot"></span>
-                                Motif Sekar Jagad terdeteksi
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
@@ -226,7 +216,7 @@
             <div class="max-w-3xl mb-14">
                 <span class="meta-label mb-4" data-aos="fade-up">Fitur</span>
                 <h2 class="display text-4xl sm:text-5xl mb-5" data-aos="fade-up" data-aos-delay="80">
-                    Bukan cuma galeri — <span class="text-gradient-emas">batik yang bisa kamu ajak kerja</span>
+                    Bukan cuma galeri: <span class="text-gradient-emas">batik yang bisa kamu ajak kerja</span>
                 </h2>
                 <p class="lead" data-aos="fade-up" data-aos-delay="140">
                     Setiap fitur di bawah ini benar-benar ada di dalam aplikasi, bukan rencana.
@@ -249,7 +239,7 @@
                     <h3 class="font-heading font-bold text-2xl mb-3">Pemindaian motif dengan AR</h3>
                     <p class="lead text-sm">
                         Dibangun di atas AR Foundation dan ARCore. Saat kamu memilih sebuah motif, aplikasi
-                        menyusun pustaka gambar referensi secara langsung di perangkat untuk motif itu — jadi
+                        menyusun pustaka gambar referensi secara langsung di perangkat untuk motif itu, jadi
                         hanya motif yang kamu pilih yang dianggap cocok. Mengarahkan kamera ke motif lain akan
                         ditolak, bukan salah dikenali.
                     </p>
@@ -337,7 +327,7 @@
                     </div>
                     <h3 class="font-heading font-bold text-2xl mb-3">Kanvas kustomisasi berlapis</h3>
                     <p class="lead text-sm">
-                        Setiap elemen yang kamu ekstrak menjadi satu lapisan sendiri di kanvas — bisa digeser,
+                        Setiap elemen yang kamu ekstrak menjadi satu lapisan sendiri di kanvas, bisa digeser,
                         diputar, dan diubah ukurannya secara terpisah. Lengkap dengan mode menggambar bebas dan
                         pewarnaan, supaya kamu bisa menyusun motif baru dari potongan motif lama.
                     </p>
@@ -400,7 +390,7 @@
                             <h3 class="font-heading font-bold text-xl mb-2">Pilih motif dari katalog</h3>
                             <p class="lead text-sm">
                                 Katalog motif diambil dari server, jadi daftarnya ikut bertambah setiap kali
-                                seorang Batik Artist mengunggah motif baru — tanpa perlu memperbarui aplikasi.
+                                seorang Batik Artist mengunggah motif baru, tanpa perlu memperbarui aplikasi.
                             </p>
                         </div>
                     </div>
@@ -410,7 +400,7 @@
                             <h3 class="font-heading font-bold text-xl mb-2">Arahkan kamera ke motif itu</h3>
                             <p class="lead text-sm">
                                 Aplikasi hanya mengenali motif yang baru kamu pilih. Kamu bisa memindai kain
-                                aslinya, atau menampilkan motifnya di layar lain — halaman
+                                aslinya, atau menampilkan motifnya di layar lain. Halaman
                                 <a href="galeri.html" class="text-batik-gold hover:underline">Galeri</a> di situs
                                 ini punya mode layar penuh khusus untuk itu.
                             </p>
@@ -561,7 +551,7 @@
                                 <polyline points="7 10 12 15 17 10"></polyline>
                                 <line x1="12" y1="15" x2="12" y2="3"></line>
                             </svg>
-                            Unduh APK — versi 3.0
+                            Unduh APK versi 3.0
                         </a>
                         <a href="https://github.com/mulyodwi16/batikARisePortal" target="_blank"
                             rel="noopener noreferrer" class="btn-ghost">

@@ -28,7 +28,7 @@ LOGO_MAX_PX = 256  # logo tampil setinggi 56px; 256px sudah cukup untuk layar 3x
 def optimize_motif(path: Path):
     with Image.open(path) as im:
         # Hasil skrip ini selalu progressive. Kalau sudah progressive berarti
-        # pernah diproses — kompresi ulang cuma menambah kehilangan kualitas.
+        # pernah diproses, kompresi ulang cuma menambah kehilangan kualitas.
         if im.info.get('progressive') or im.info.get('progression'):
             return False
         im.convert('RGB').save(
