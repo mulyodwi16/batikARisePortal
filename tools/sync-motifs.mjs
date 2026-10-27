@@ -162,6 +162,7 @@ async function main() {
     };
     await writeFile(DATA_FILE, JSON.stringify(payload, null, 2) + '\n', 'utf8');
     console.log(`\n[sync-motifs] Selesai. ${out.length} motif ditulis ke assets/data/motifs.json`);
+    console.log('[sync-motifs] Jalankan `npm run optimize` — gambar hasil unduh masih mentah (~1 MB/motif).');
 }
 
 main().catch(e => die(e.stack || e.message));
