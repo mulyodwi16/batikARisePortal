@@ -2,33 +2,30 @@
 // batik-gallery.js: inti bersama untuk index.html (preview) & galeri.html (penuh).
 //
 // Menyediakan BatikGallery global:
-//   - loadMotifs()           : fetch assets/data/motifs.json (fallback ke seed)
+//   - loadMotifs()           : fetch assets/data/motifs.json
 //   - createMotifCard(item,i): bikin kartu galeri + klik -> buka lightbox
+//   - renderMarquee(items)   : isi .marquee-track di landing
 //   - setActiveList(list)    : daftar yang sedang ditampilkan (untuk navigasi lightbox)
 //   - openLightbox / scan view / navigasi keyboard : dipakai kedua halaman
 //   - initMobileMenu()       : toggle menu mobile (markup sama di kedua halaman)
 //
 // Sumber data = assets/data/motifs.json (di-generate tools/sync-motifs.mjs dari
 // PlayFab MOTIF_LIST). Gambar yang tampil = trigger scan AR yang sama di Unity.
+//
+// Tiap item punya dua URL gambar: `thumb` (WebP 560px) untuk kartu & marquee,
+// `src` (JPEG ukuran penuh) untuk lightbox & mode dipindai yang butuh ketajaman.
 // ===========================================================================
 
 const BatikGallery = (() => {
-    // Daftar cadangan kalau motifs.json gagal dimuat (mis. dibuka via file://).
-    const fallbackGallery = [
-        { src: 'assets/batik/1_MotifLiris.jpg', caption: 'Motif Liris', desc: '' },
-        { src: 'assets/batik/2_MotifAlunAlunContong.jpg', caption: 'Motif Alun-Alun Contong', desc: '' },
-        { src: 'assets/batik/3_MotifBurungMerak.jpg', caption: 'Motif Burung Merak', desc: '' },
-        { src: 'assets/batik/4_MotifSekarJagad.jpg', caption: 'Motif Sekar Jagad', desc: '' },
-        { src: 'assets/batik/5_MotifParangJabon.jpg', caption: 'Motif Parang Jabon', desc: '' },
-        { src: 'assets/batik/6_MotifLovePutihan.jpg', caption: 'Motif Love Putihan', desc: '' }
-    ];
-
     // activeList = apa yang saat ini bisa dinavigasi di lightbox (hasil filter/paginasi).
     let activeList = [];
     let currentIndex = 0;
-    let usedFallback = false;
+    let loadError = '';
 
     // -- Pemuatan data -------------------------------------------------------
+    // Sengaja TANPA katalog cadangan. Daftar seed 6 motif yang dulu dipakai di
+    // sini membuat sinkronisasi yang gagal terlihat seperti galeri normal, jadi
+    // katalog basi berbulan-bulan tanpa ada yang sadar.
     async function loadMotifs() {
         try {
             const res = await fetch('assets/data/motifs.json', { cache: 'no-store' });
@@ -36,21 +33,22 @@ const BatikGallery = (() => {
             const data = await res.json();
             const items = Array.isArray(data.items) ? data.items : [];
             if (items.length === 0) throw new Error('Daftar motif kosong');
-            usedFallback = false;
+            loadError = '';
             return items.map(m => ({
                 src: m.image || m.imageUrl || '',
+                thumb: m.thumb || m.image || m.imageUrl || '',
                 caption: m.nama || 'Motif Batik',
                 desc: m.deskripsi || ''
             }));
         } catch (err) {
-            console.warn('[galeri] Gagal memuat motifs.json, memakai daftar cadangan:', err.message);
-            usedFallback = true;
-            return fallbackGallery.slice();
+            console.error('[galeri] Gagal memuat assets/data/motifs.json:', err.message);
+            loadError = err.message;
+            return [];
         }
     }
 
-    function didUseFallback() {
-        return usedFallback;
+    function getLoadError() {
+        return loadError;
     }
 
     // -- Pembuatan kartu -----------------------------------------------------
@@ -71,7 +69,7 @@ const BatikGallery = (() => {
         });
 
         const img = document.createElement('img');
-        img.src = item.src;
+        img.src = item.thumb || item.src;
         img.alt = item.caption;
         img.className = 'w-full h-72 object-cover';
         img.loading = 'lazy';
@@ -86,6 +84,40 @@ const BatikGallery = (() => {
         card.appendChild(img);
         card.appendChild(overlay);
         return card;
+    }
+
+    // -- Marquee (landing) ---------------------------------------------------
+    // Track diisi dua kali: daftar asli + duplikat aria-hidden, karena animasi
+    // berhenti di translateX(-50%) sehingga separuh kedua yang menutup loop.
+    //
+    // Durasi WAJIB dihitung dari jumlah item. CSS memakai nilai tetap, jadi
+    // menambah motif mempercepat scroll (6 motif ~25px/s, 23 motif ~96px/s).
+    // `limit` menahan landing agar tidak menarik seluruh katalog dua kali.
+    function renderMarquee(items, options) {
+        const track = document.querySelector('.marquee-track');
+        if (!track) return;
+        const list = items.slice(0, (options && options.limit) || 10);
+        track.innerHTML = '';
+        if (list.length === 0) return;
+
+        for (const isDuplicate of [false, true]) {
+            for (const item of list) {
+                const link = document.createElement('a');
+                link.href = 'galeri.html';
+                link.className = 'marquee-item';
+                if (isDuplicate) {
+                    link.setAttribute('aria-hidden', 'true');
+                    link.tabIndex = -1;
+                }
+                const img = document.createElement('img');
+                img.src = item.thumb || item.src;
+                img.alt = isDuplicate ? '' : item.caption;
+                img.loading = 'lazy';
+                link.appendChild(img);
+                track.appendChild(link);
+            }
+        }
+        track.style.animationDuration = Math.max(30, list.length * 8) + 's';
     }
 
     // -- Lightbox ------------------------------------------------------------
@@ -238,8 +270,9 @@ const BatikGallery = (() => {
 
     return {
         loadMotifs,
-        didUseFallback,
+        getLoadError,
         createMotifCard,
+        renderMarquee,
         setActiveList,
         openLightbox,
         closeLightbox,

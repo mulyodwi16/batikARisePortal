@@ -41,11 +41,14 @@ function render() {
     emptyState().style.display = isEmpty ? 'block' : 'none';
     g.style.display = isEmpty ? 'none' : 'grid';
 
-    // Hitungan hasil
+    // Hitungan hasil. `count` memilih bentuk plural (EN membedakan 1 vs banyak),
+    // sementara {shown}/{total} yang benar-benar dicetak.
     if (isEmpty) {
         resultCount().textContent = '';
     } else {
-        resultCount().textContent = `Menampilkan ${items.length} dari ${filtered.length} motif`;
+        resultCount().textContent = t('galeriPage.resultCount', {
+            shown: items.length, total: filtered.length, count: filtered.length
+        });
     }
 
     // Paginasi: sembunyikan kalau cuma 1 halaman
@@ -54,10 +57,25 @@ function render() {
         pagination().style.display = 'none';
     } else {
         pagination().style.display = 'flex';
-        pageInfo().textContent = `Halaman ${currentPage} / ${pages}`;
+        pageInfo().textContent = t('galeriPage.pageInfo', { page: currentPage, pages });
         prevBtn().disabled = currentPage <= 1;
         nextBtn().disabled = currentPage >= pages;
     }
+}
+
+// Dipakai saat motifs.json tak terbaca. Dibedakan dari empty state pencarian
+// karena "Motif tidak ditemukan" akan menyamarkan kegagalan sinkronisasi.
+function renderLoadError() {
+    grid().innerHTML = '';
+    grid().style.display = 'none';
+    pagination().style.display = 'none';
+    resultCount().textContent = '';
+    document.getElementById('search-input').disabled = true;
+
+    const empty = emptyState();
+    empty.style.display = 'block';
+    empty.querySelector('[data-empty-title]').textContent = t('galeriPage.errorTitle');
+    empty.querySelector('[data-empty-hint]').textContent = t('galeriPage.errorHint');
 }
 
 function applySearch(query) {
@@ -83,6 +101,11 @@ async function initGaleri() {
     BatikGallery.initScrollFx();
 
     allMotifs = await BatikGallery.loadMotifs();
+    if (BatikGallery.getLoadError()) {
+        renderLoadError();
+        return;
+    }
+
     filtered = allMotifs.slice();
     render();
 
@@ -106,3 +129,12 @@ async function initGaleri() {
 }
 
 document.addEventListener('DOMContentLoaded', initGaleri);
+
+// I18n.apply() mengembalikan teks empty state ke varian pencarian dan tidak tahu
+// soal hitungan hasil, jadi render ulang di sini yang memasang keduanya kembali.
+// Dilewati kalau katalog belum selesai dimuat, supaya tidak sempat menampilkan
+// empty state atas daftar yang masih kosong.
+document.addEventListener('i18n:changed', () => {
+    if (BatikGallery.getLoadError()) renderLoadError();
+    else if (allMotifs.length > 0) render();
+});

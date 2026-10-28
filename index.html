@@ -4,17 +4,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description"
+    <meta name="description" data-i18n-attr="content:meta.index.desc"
         content="batikARise adalah aplikasi Android yang mengenali motif batik lewat kamera AR, mengajakmu menggambar ulang motifnya, dan membongkar elemennya jadi karya baru.">
     <meta name="keywords" content="batikARise, batik, Augmented Reality, ARCore, SAM2, motif batik, Android">
     <meta name="author" content="Dwi Mulyo">
+    <!-- Tag og: sengaja TIDAK diterjemahkan: crawler membaca HTML yang diserve,
+         jadi penulisan ulang sisi klien tidak pernah sampai ke mereka. -->
     <meta property="og:title" content="batikARise: Kenali motif batik lewat kamera">
     <meta property="og:description"
         content="Pindai motif batik dengan AR, gambar ulang di ruang nyata, lalu bongkar elemennya jadi desain baru.">
     <meta property="og:image" content="assets/hero-banner.jpg">
     <meta name="theme-color" content="#0E0C0A">
 
-    <title>batikARise: Kenali motif batik lewat kamera</title>
+    <title data-i18n="meta.index.title">batikARise: Kenali motif batik lewat kamera</title>
     <link rel="icon" type="image/png" href="assets/logo.png">
 
     <!-- Tailwind CSS CDN (Official) -->
@@ -73,7 +75,7 @@
 
                 <button id="menu-btn"
                     class="md:hidden text-batik-gading p-2 rounded-lg hover:bg-white/10 transition-all duration-300"
-                    aria-label="Buka menu">
+                    data-i18n-attr="aria-label:nav.menuLabel" aria-label="Buka menu">
                     <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                         stroke-linecap="round">
                         <line x1="3" y1="6" x2="21" y2="6"></line>
@@ -87,12 +89,21 @@
                 </a>
 
                 <ul class="hidden md:flex items-center gap-8">
-                    <li><a href="#fitur" class="nav-link text-sm">Fitur</a></li>
-                    <li><a href="#cara" class="nav-link text-sm">Cara Pakai</a></li>
-                    <li><a href="#kustomisasi" class="nav-link text-sm">Kustomisasi</a></li>
-                    <li><a href="#galeri" class="nav-link text-sm">Galeri</a></li>
+                    <li><a href="#fitur" class="nav-link text-sm" data-i18n="nav.fitur">Fitur</a></li>
+                    <li><a href="#cara" class="nav-link text-sm" data-i18n="nav.cara">Cara Pakai</a></li>
+                    <li><a href="#kustomisasi" class="nav-link text-sm" data-i18n="nav.kustomisasi">Kustomisasi</a></li>
+                    <li><a href="#galeri" class="nav-link text-sm" data-i18n="nav.galeri">Galeri</a></li>
                     <li>
-                        <a href="downloads/batikARise.apk" download class="btn-primary text-sm !py-2.5 !px-5">
+                        <!-- Label ditulis dalam bahasanya sendiri, jadi sengaja di luar kamus. -->
+                        <div class="lang-switch" role="group" data-i18n-attr="aria-label:nav.langGroup"
+                            aria-label="Bahasa / Language">
+                            <button type="button" data-lang="id" aria-pressed="true">Indonesia</button>
+                            <button type="button" data-lang="en" lang="en" aria-pressed="false">English</button>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="downloads/batikARise.apk" download class="btn-primary text-sm !py-2.5 !px-5"
+                            data-i18n="nav.unduhApk">
                             Unduh APK
                         </a>
                     </li>
@@ -103,11 +114,17 @@
         <!-- Mobile Menu -->
         <div id="mobile-menu" class="hidden md:hidden">
             <div class="max-w-7xl mx-auto px-6 py-4 space-y-1">
-                <a href="#fitur" class="block font-medium">Fitur</a>
-                <a href="#cara" class="block font-medium">Cara Pakai</a>
-                <a href="#kustomisasi" class="block font-medium">Kustomisasi</a>
-                <a href="#galeri" class="block font-medium">Galeri</a>
-                <a href="downloads/batikARise.apk" download class="btn-primary w-full mt-4">Unduh APK</a>
+                <a href="#fitur" class="block font-medium" data-i18n="nav.fitur">Fitur</a>
+                <a href="#cara" class="block font-medium" data-i18n="nav.cara">Cara Pakai</a>
+                <a href="#kustomisasi" class="block font-medium" data-i18n="nav.kustomisasi">Kustomisasi</a>
+                <a href="#galeri" class="block font-medium" data-i18n="nav.galeri">Galeri</a>
+                <div class="lang-switch mt-3" role="group" data-i18n-attr="aria-label:nav.langGroup"
+                    aria-label="Bahasa / Language">
+                    <button type="button" data-lang="id" aria-pressed="true">Indonesia</button>
+                    <button type="button" data-lang="en" lang="en" aria-pressed="false">English</button>
+                </div>
+                <a href="downloads/batikARise.apk" download class="btn-primary w-full mt-4"
+                    data-i18n="nav.unduhApk">Unduh APK</a>
             </div>
         </div>
     </nav>
@@ -129,11 +146,14 @@
 
         <div class="max-w-7xl mx-auto px-6 lg:px-8 relative z-10 w-full">
             <div class="max-w-3xl mx-auto text-center">
+                    <!-- Tanpa <br> keras: panjang judul berbeda antar bahasa,
+                         pemotongan baris diserahkan ke text-wrap: balance. -->
                     <h1 class="display text-[2.6rem] sm:text-6xl lg:text-7xl mb-7" data-aos="fade-up">
-                        Kenali motif batik<br>
-                        lewat <span class="text-gradient-emas">kamera ponselmu</span>
+                        <span data-i18n="hero.titleLead">Kenali motif batik lewat</span>
+                        <span class="text-gradient-emas" data-i18n="hero.titleAccent">kamera ponselmu</span>
                     </h1>
-                    <p class="lead text-lg max-w-2xl mx-auto mb-9" data-aos="fade-up" data-aos-delay="120">
+                    <p class="lead text-lg max-w-2xl mx-auto mb-9" data-aos="fade-up" data-aos-delay="120"
+                        data-i18n="hero.lead">
                         batikARise mengenali motif batik dari kamera menggunakan ARCore, mengajakmu menggambar
                         ulang motifnya langsung di ruang nyata lalu menilai hasilnya, dan membongkar elemen
                         batik jadi bahan desain baru.
@@ -148,9 +168,9 @@
                                 <polyline points="7 10 12 15 17 10"></polyline>
                                 <line x1="12" y1="15" x2="12" y2="3"></line>
                             </svg>
-                            Unduh APK versi 3.0
+                            <span data-i18n="hero.ctaDownload">Unduh APK versi 3.0</span>
                         </a>
-                        <a href="#fitur" class="btn-ghost">Lihat fitur</a>
+                        <a href="#fitur" class="btn-ghost" data-i18n="hero.ctaFeatures">Lihat fitur</a>
                     </div>
 
                     <div class="flex flex-wrap gap-2.5 mb-10 justify-center" data-aos="fade-up" data-aos-delay="300">
@@ -166,19 +186,19 @@
                                 stroke-linecap="round" viewBox="0 0 24 24">
                                 <polyline points="20 6 9 17 4 12"></polyline>
                             </svg>
-                            Perlu ARCore &amp; kamera
+                            <span data-i18n="hero.pillArcore">Perlu ARCore &amp; kamera</span>
                         </span>
                         <span class="pill">
                             <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4"
                                 stroke-linecap="round" viewBox="0 0 24 24">
                                 <polyline points="20 6 9 17 4 12"></polyline>
                             </svg>
-                            Bisa masuk sebagai tamu
+                            <span data-i18n="hero.pillGuest">Bisa masuk sebagai tamu</span>
                         </span>
                     </div>
 
                     <a href="#fitur" class="scroll-cue" data-aos="fade-up" data-aos-delay="380">
-                        Gulir
+                        <span data-i18n="hero.scroll">Gulir</span>
                         <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2"
                             stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
                             <polyline points="6 9 12 15 18 9"></polyline>
@@ -189,23 +209,12 @@
     </section>
 
     <!-- ===================== MARQUEE MOTIF ===================== -->
-    <section aria-label="Pratinjau koleksi motif" class="py-10 bg-batik-ink-soft border-y border-batik-gold/10">
+    <section data-i18n-attr="aria-label:marquee.label" aria-label="Pratinjau koleksi motif"
+        class="py-10 bg-batik-ink-soft border-y border-batik-gold/10">
         <div class="marquee">
-            <div class="marquee-track">
-                <a href="galeri.html" class="marquee-item"><img src="assets/batik/1_MotifLiris.jpg" alt="Motif Liris" loading="lazy"></a>
-                <a href="galeri.html" class="marquee-item"><img src="assets/batik/2_MotifAlunAlunContong.jpg" alt="Motif Alun-Alun Contong" loading="lazy"></a>
-                <a href="galeri.html" class="marquee-item"><img src="assets/batik/3_MotifBurungMerak.jpg" alt="Motif Burung Merak" loading="lazy"></a>
-                <a href="galeri.html" class="marquee-item"><img src="assets/batik/4_MotifSekarJagad.jpg" alt="Motif Sekar Jagad" loading="lazy"></a>
-                <a href="galeri.html" class="marquee-item"><img src="assets/batik/5_MotifParangJabon.jpg" alt="Motif Parang Jabon" loading="lazy"></a>
-                <a href="galeri.html" class="marquee-item"><img src="assets/batik/6_MotifLovePutihan.jpg" alt="Motif Love Putihan" loading="lazy"></a>
-                <!-- Duplikat (aria-hidden) agar loop terlihat mulus -->
-                <a href="galeri.html" class="marquee-item" aria-hidden="true" tabindex="-1"><img src="assets/batik/1_MotifLiris.jpg" alt="" loading="lazy"></a>
-                <a href="galeri.html" class="marquee-item" aria-hidden="true" tabindex="-1"><img src="assets/batik/2_MotifAlunAlunContong.jpg" alt="" loading="lazy"></a>
-                <a href="galeri.html" class="marquee-item" aria-hidden="true" tabindex="-1"><img src="assets/batik/3_MotifBurungMerak.jpg" alt="" loading="lazy"></a>
-                <a href="galeri.html" class="marquee-item" aria-hidden="true" tabindex="-1"><img src="assets/batik/4_MotifSekarJagad.jpg" alt="" loading="lazy"></a>
-                <a href="galeri.html" class="marquee-item" aria-hidden="true" tabindex="-1"><img src="assets/batik/5_MotifParangJabon.jpg" alt="" loading="lazy"></a>
-                <a href="galeri.html" class="marquee-item" aria-hidden="true" tabindex="-1"><img src="assets/batik/6_MotifLovePutihan.jpg" alt="" loading="lazy"></a>
-            </div>
+            <!-- Diisi BatikGallery.renderMarquee(): daftar tampil + duplikat
+                 aria-hidden, dan durasi animasi yang ikut jumlah item. -->
+            <div class="marquee-track"></div>
         </div>
     </section>
 
@@ -214,11 +223,12 @@
         <div class="glow w-96 h-96 top-20 -left-32"></div>
         <div class="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
             <div class="max-w-3xl mb-14">
-                <span class="meta-label mb-4" data-aos="fade-up">Fitur</span>
+                <span class="meta-label mb-4" data-aos="fade-up" data-i18n="fitur.label">Fitur</span>
                 <h2 class="display text-4xl sm:text-5xl mb-5" data-aos="fade-up" data-aos-delay="80">
-                    Bukan cuma galeri: <span class="text-gradient-emas">batik yang bisa kamu ajak kerja</span>
+                    <span data-i18n="fitur.titleLead">Bukan cuma galeri:</span>
+                    <span class="text-gradient-emas" data-i18n="fitur.titleAccent">batik yang bisa kamu ajak kerja</span>
                 </h2>
-                <p class="lead" data-aos="fade-up" data-aos-delay="140">
+                <p class="lead" data-aos="fade-up" data-aos-delay="140" data-i18n="fitur.lead">
                     Setiap fitur di bawah ini benar-benar ada di dalam aplikasi, bukan rencana.
                 </p>
             </div>
@@ -236,8 +246,8 @@
                             <line x1="3" y1="12" x2="21" y2="12"></line>
                         </svg>
                     </div>
-                    <h3 class="font-heading font-bold text-2xl mb-3">Pemindaian motif dengan AR</h3>
-                    <p class="lead text-sm">
+                    <h3 class="font-heading font-bold text-2xl mb-3" data-i18n="fitur.ar.title">Pemindaian motif dengan AR</h3>
+                    <p class="lead text-sm" data-i18n="fitur.ar.body">
                         Dibangun di atas AR Foundation dan ARCore. Saat kamu memilih sebuah motif, aplikasi
                         menyusun pustaka gambar referensi secara langsung di perangkat untuk motif itu, jadi
                         hanya motif yang kamu pilih yang dianggap cocok. Mengarahkan kamera ke motif lain akan
@@ -255,9 +265,9 @@
                             <line x1="2" y1="2" x2="11" y2="11"></line>
                         </svg>
                     </div>
-                    <h3 class="font-heading font-bold text-2xl mb-3">AR Draw &amp; skor bintang</h3>
-                    <p class="lead text-sm">
-                        Setelah motif terdeteksi, tombol <em>Let's Draw</em> membuka mode menggambar di ruang AR.
+                    <h3 class="font-heading font-bold text-2xl mb-3" data-i18n="fitur.draw.title">AR Draw &amp; skor bintang</h3>
+                    <p class="lead text-sm" data-i18n-html="fitur.draw.body">
+                        Setelah motif terdeteksi, tombol <em>Let’s Draw</em> membuka mode menggambar di ruang AR.
                         Hasil gambarmu dibandingkan dengan motif aslinya oleh layanan kemiripan, lalu diubah
                         menjadi rating 1–5 bintang yang tersimpan per motif.
                     </p>
@@ -273,8 +283,8 @@
                             <line x1="12" y1="17.5" x2="12" y2="17.5"></line>
                         </svg>
                     </div>
-                    <h3 class="font-heading font-bold text-2xl mb-3">Kuis benar/salah</h3>
-                    <p class="lead text-sm">
+                    <h3 class="font-heading font-bold text-2xl mb-3" data-i18n="fitur.kuis.title">Kuis benar/salah</h3>
+                    <p class="lead text-sm" data-i18n="fitur.kuis.body">
                         Lima soal diacak dari kumpulan 25 setiap kali bermain, dengan 20 poin per jawaban benar.
                         Jadi dua sesi tidak pernah persis sama.
                     </p>
@@ -290,8 +300,8 @@
                             <line x1="18" y1="20" x2="18" y2="9"></line>
                         </svg>
                     </div>
-                    <h3 class="font-heading font-bold text-2xl mb-3">Leaderboard</h3>
-                    <p class="lead text-sm">
+                    <h3 class="font-heading font-bold text-2xl mb-3" data-i18n="fitur.leaderboard.title">Leaderboard</h3>
+                    <p class="lead text-sm" data-i18n="fitur.leaderboard.body">
                         Skor kuis dikirim ke server dan diperingkat, sehingga satu kelas atau satu komunitas bisa
                         saling berlomba.
                     </p>
@@ -306,11 +316,11 @@
                             <circle cx="12" cy="9" r="2.5"></circle>
                         </svg>
                     </div>
-                    <h3 class="font-heading font-bold text-2xl mb-3">Ekstraksi elemen</h3>
-                    <p class="lead text-sm">
+                    <h3 class="font-heading font-bold text-2xl mb-3" data-i18n="fitur.ekstraksi.title">Ekstraksi elemen</h3>
+                    <p class="lead text-sm" data-i18n-html="fitur.ekstraksi.body">
                         Ketuk satu elemen di foto batik dan aplikasi memotongnya jadi objek tersendiri. Mode
-                        <strong class="text-batik-gading font-semibold">ISEN-ISEN</strong> memakai OpenCV, mode
-                        <strong class="text-batik-gading font-semibold">ELEMENTS</strong> memakai model segmentasi
+                        <strong class="kw">ISEN-ISEN</strong> memakai OpenCV, mode
+                        <strong class="kw">ELEMENTS</strong> memakai model segmentasi
                         SAM2.
                     </p>
                 </article>
@@ -325,8 +335,8 @@
                             <polyline points="2 12 12 17 22 12"></polyline>
                         </svg>
                     </div>
-                    <h3 class="font-heading font-bold text-2xl mb-3">Kanvas kustomisasi berlapis</h3>
-                    <p class="lead text-sm">
+                    <h3 class="font-heading font-bold text-2xl mb-3" data-i18n="fitur.kanvas.title">Kanvas kustomisasi berlapis</h3>
+                    <p class="lead text-sm" data-i18n="fitur.kanvas.body">
                         Setiap elemen yang kamu ekstrak menjadi satu lapisan sendiri di kanvas, bisa digeser,
                         diputar, dan diubah ukurannya secara terpisah. Lengkap dengan mode menggambar bebas dan
                         pewarnaan, supaya kamu bisa menyusun motif baru dari potongan motif lama.
@@ -344,8 +354,8 @@
                             <line x1="22" y1="11" x2="16" y2="11"></line>
                         </svg>
                     </div>
-                    <h3 class="font-heading font-bold text-2xl mb-3">Peran Batik Artist</h3>
-                    <p class="lead text-sm">
+                    <h3 class="font-heading font-bold text-2xl mb-3" data-i18n="fitur.artist.title">Peran Batik Artist</h3>
+                    <p class="lead text-sm" data-i18n="fitur.artist.body">
                         Selain pengguna biasa, ada peran Batik Artist dan Administrator yang bisa mengunggah serta
                         mengelola motif di katalog. Motif baru langsung tersedia untuk dipindai semua pengguna.
                     </p>
@@ -360,15 +370,16 @@
         <div class="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
             <div class="grid lg:grid-cols-[0.8fr_1.2fr] gap-14">
                 <div>
-                    <span class="meta-label mb-4" data-aos="fade-up">Cara Pakai</span>
+                    <span class="meta-label mb-4" data-aos="fade-up" data-i18n="cara.label">Cara Pakai</span>
                     <h2 class="display text-4xl sm:text-5xl mb-5" data-aos="fade-up" data-aos-delay="80">
-                        Dari pasang<br>sampai <span class="text-gradient-emas">dapat bintang</span>
+                        <span data-i18n="cara.titleLead">Dari pasang sampai</span>
+                        <span class="text-gradient-emas" data-i18n="cara.titleAccent">dapat bintang</span>
                     </h2>
-                    <p class="lead mb-8" data-aos="fade-up" data-aos-delay="140">
+                    <p class="lead mb-8" data-aos="fade-up" data-aos-delay="140" data-i18n="cara.lead">
                         Lima langkah, mengikuti alur yang benar-benar ada di aplikasi.
                     </p>
                     <a href="downloads/batikARise.apk" download class="btn-primary" data-aos="fade-up"
-                        data-aos-delay="200">
+                        data-aos-delay="200" data-i18n="cara.cta">
                         Mulai sekarang
                     </a>
                 </div>
@@ -377,8 +388,8 @@
                     <div class="step-row">
                         <div class="step-num">01</div>
                         <div>
-                            <h3 class="font-heading font-bold text-xl mb-2">Masuk, daftar, atau pakai mode tamu</h3>
-                            <p class="lead text-sm">
+                            <h3 class="font-heading font-bold text-xl mb-2" data-i18n="cara.step1.title">Masuk, daftar, atau pakai mode tamu</h3>
+                            <p class="lead text-sm" data-i18n="cara.step1.body">
                                 Buat akun dengan email, atau langsung lanjut sebagai tamu kalau hanya ingin
                                 mencoba. Akunmu dipakai untuk menyimpan bintang dan skor kuis.
                             </p>
@@ -387,8 +398,8 @@
                     <div class="step-row">
                         <div class="step-num">02</div>
                         <div>
-                            <h3 class="font-heading font-bold text-xl mb-2">Pilih motif dari katalog</h3>
-                            <p class="lead text-sm">
+                            <h3 class="font-heading font-bold text-xl mb-2" data-i18n="cara.step2.title">Pilih motif dari katalog</h3>
+                            <p class="lead text-sm" data-i18n="cara.step2.body">
                                 Katalog motif diambil dari server, jadi daftarnya ikut bertambah setiap kali
                                 seorang Batik Artist mengunggah motif baru, tanpa perlu memperbarui aplikasi.
                             </p>
@@ -397,11 +408,11 @@
                     <div class="step-row">
                         <div class="step-num">03</div>
                         <div>
-                            <h3 class="font-heading font-bold text-xl mb-2">Arahkan kamera ke motif itu</h3>
-                            <p class="lead text-sm">
+                            <h3 class="font-heading font-bold text-xl mb-2" data-i18n="cara.step3.title">Arahkan kamera ke motif itu</h3>
+                            <p class="lead text-sm" data-i18n-html="cara.step3.body">
                                 Aplikasi hanya mengenali motif yang baru kamu pilih. Kamu bisa memindai kain
                                 aslinya, atau menampilkan motifnya di layar lain. Halaman
-                                <a href="galeri.html" class="text-batik-gold hover:underline">Galeri</a> di situs
+                                <a href="galeri.html" class="link-emas">Galeri</a> di situs
                                 ini punya mode layar penuh khusus untuk itu.
                             </p>
                         </div>
@@ -409,8 +420,8 @@
                     <div class="step-row">
                         <div class="step-num">04</div>
                         <div>
-                            <h3 class="font-heading font-bold text-xl mb-2">Tekan "Let's Draw" dan gambar ulang</h3>
-                            <p class="lead text-sm">
+                            <h3 class="font-heading font-bold text-xl mb-2" data-i18n="cara.step4.title">Tekan “Let’s Draw” dan gambar ulang</h3>
+                            <p class="lead text-sm" data-i18n="cara.step4.body">
                                 Gambar ulang motifnya langsung di ruang AR. Hasilnya dinilai berdasarkan
                                 kemiripan dengan motif asli, lalu kamu dapat 1–5 bintang untuk motif tersebut.
                             </p>
@@ -419,8 +430,8 @@
                     <div class="step-row">
                         <div class="step-num">05</div>
                         <div>
-                            <h3 class="font-heading font-bold text-xl mb-2">Main kuis dan cek leaderboard</h3>
-                            <p class="lead text-sm">
+                            <h3 class="font-heading font-bold text-xl mb-2" data-i18n="cara.step5.title">Main kuis dan cek leaderboard</h3>
+                            <p class="lead text-sm" data-i18n="cara.step5.body">
                                 Uji pengetahuanmu dengan lima soal benar/salah yang diacak, lalu bandingkan
                                 skormu dengan pemain lain.
                             </p>
@@ -436,11 +447,12 @@
         <div class="glow w-[28rem] h-[28rem] bottom-0 -right-32"></div>
         <div class="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
             <div class="max-w-3xl mb-14">
-                <span class="meta-label mb-4" data-aos="fade-up">Kustomisasi</span>
+                <span class="meta-label mb-4" data-aos="fade-up" data-i18n="kustomisasi.label">Kustomisasi</span>
                 <h2 class="display text-4xl sm:text-5xl mb-5" data-aos="fade-up" data-aos-delay="80">
-                    Bongkar motif lama,<br><span class="text-gradient-emas">susun jadi motif baru</span>
+                    <span data-i18n="kustomisasi.titleLead">Bongkar motif lama,</span>
+                    <span class="text-gradient-emas" data-i18n="kustomisasi.titleAccent">susun jadi motif baru</span>
                 </h2>
-                <p class="lead" data-aos="fade-up" data-aos-delay="140">
+                <p class="lead" data-aos="fade-up" data-aos-delay="140" data-i18n="kustomisasi.lead">
                     Ini bagian yang paling jarang ada di aplikasi batik lain: kamu tidak hanya melihat motif,
                     tapi memotong elemennya satu per satu dan menyusunnya ulang jadi karyamu sendiri.
                 </p>
@@ -449,41 +461,41 @@
             <div class="grid md:grid-cols-2 lg:grid-cols-5 gap-5">
                 <div class="surface p-7" data-aos="fade-up">
                     <div class="step-num mb-5">01</div>
-                    <h3 class="font-heading font-bold text-lg mb-2">Foto atau unggah</h3>
-                    <p class="lead text-sm">
+                    <h3 class="font-heading font-bold text-lg mb-2" data-i18n="kustomisasi.step1.title">Foto atau unggah</h3>
+                    <p class="lead text-sm" data-i18n="kustomisasi.step1.body">
                         Ambil foto kain batik atau pilih dari galeri. Kamera memberi panduan perataan langsung
                         di layar supaya hasil jepretannya rapi.
                     </p>
                 </div>
                 <div class="surface p-7" data-aos="fade-up" data-aos-delay="70">
                     <div class="step-num mb-5">02</div>
-                    <h3 class="font-heading font-bold text-lg mb-2">Luruskan perspektif</h3>
-                    <p class="lead text-sm">
+                    <h3 class="font-heading font-bold text-lg mb-2" data-i18n="kustomisasi.step2.title">Luruskan perspektif</h3>
+                    <p class="lead text-sm" data-i18n="kustomisasi.step2.body">
                         Foto yang miring diperbaiki jadi tampak lurus dari depan, supaya elemennya mudah
                         dipotong.
                     </p>
                 </div>
                 <div class="surface p-7" data-aos="fade-up" data-aos-delay="140">
                     <div class="step-num mb-5">03</div>
-                    <h3 class="font-heading font-bold text-lg mb-2">Pilih mode ekstraksi</h3>
-                    <p class="lead text-sm">
-                        <strong class="text-batik-gading font-semibold">ISEN-ISEN</strong> untuk isian batik yang
-                        halus, atau <strong class="text-batik-gading font-semibold">ELEMENTS</strong> untuk objek
+                    <h3 class="font-heading font-bold text-lg mb-2" data-i18n="kustomisasi.step3.title">Pilih mode ekstraksi</h3>
+                    <p class="lead text-sm" data-i18n-html="kustomisasi.step3.body">
+                        <strong class="kw">ISEN-ISEN</strong> untuk isian batik yang
+                        halus, atau <strong class="kw">ELEMENTS</strong> untuk objek
                         utuh seperti daun dan burung.
                     </p>
                 </div>
                 <div class="surface p-7" data-aos="fade-up" data-aos-delay="210">
                     <div class="step-num mb-5">04</div>
-                    <h3 class="font-heading font-bold text-lg mb-2">Ketuk elemen, tekan ADD</h3>
-                    <p class="lead text-sm">
+                    <h3 class="font-heading font-bold text-lg mb-2" data-i18n="kustomisasi.step4.title">Ketuk elemen, tekan ADD</h3>
+                    <p class="lead text-sm" data-i18n="kustomisasi.step4.body">
                         Ketuk satu titik pada elemen yang kamu mau. Hasil potongannya ditambahkan ke kanvas
                         sebagai lapisan baru.
                     </p>
                 </div>
                 <div class="surface p-7" data-aos="fade-up" data-aos-delay="280">
                     <div class="step-num mb-5">05</div>
-                    <h3 class="font-heading font-bold text-lg mb-2">Susun di kanvas</h3>
-                    <p class="lead text-sm">
+                    <h3 class="font-heading font-bold text-lg mb-2" data-i18n="kustomisasi.step5.title">Susun di kanvas</h3>
+                    <p class="lead text-sm" data-i18n="kustomisasi.step5.body">
                         Geser, putar, dan ubah ukuran tiap lapisan. Tambahkan gambar bebas dan warna untuk
                         menyelesaikan desainmu.
                     </p>
@@ -497,17 +509,21 @@
         <div class="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
             <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
                 <div class="max-w-2xl">
-                    <span class="meta-label mb-4" data-aos="fade-up">Galeri</span>
+                    <span class="meta-label mb-4" data-aos="fade-up" data-i18n="galeri.label">Galeri</span>
                     <h2 class="display text-4xl sm:text-5xl mb-5" data-aos="fade-up" data-aos-delay="80">
-                        Motif yang <span class="text-gradient-emas">siap dipindai</span>
+                        <span data-i18n="galeri.titleLead">Motif yang</span>
+                        <span class="text-gradient-emas" data-i18n="galeri.titleAccent">siap dipindai</span>
                     </h2>
-                    <p class="lead" data-aos="fade-up" data-aos-delay="140">
+                    <p class="lead" data-aos="fade-up" data-aos-delay="140" data-i18n="galeri.lead">
                         Gambar di sini adalah penanda yang sama dengan yang dikenali aplikasi. Klik satu motif,
                         tampilkan layar penuh, lalu pindai dari ponsel.
                     </p>
                 </div>
                 <a href="galeri.html" class="btn-ghost shrink-0" data-aos="fade-up" data-aos-delay="180">
-                    Lihat semua motif
+                    <!-- galeri.ctaAll hanya label sementara: script.js menimpanya dengan
+                         galeri.ctaCount begitu jumlah motif diketahui (termasuk setelah
+                         i18n:changed, yang dikirim SETELAH apply()). -->
+                    <span id="galeri-cta-count" data-i18n="galeri.ctaAll">Lihat semua motif</span>
                     <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.4"
                         stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
                         <line x1="5" y1="12" x2="19" y2="12"></line>
@@ -535,11 +551,12 @@
         <div class="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
             <div class="grid lg:grid-cols-2 gap-14 items-center">
                 <div>
-                    <span class="meta-label mb-4" data-aos="fade-up">Unduh</span>
+                    <span class="meta-label mb-4" data-aos="fade-up" data-i18n="unduh.label">Unduh</span>
                     <h2 class="display text-4xl sm:text-5xl mb-5" data-aos="fade-up" data-aos-delay="80">
-                        Siap mencoba <span class="text-gradient-emas">batikARise</span>?
+                        <span data-i18n="unduh.titleLead">Siap mencoba</span>
+                        <span class="text-gradient-emas">batikARise</span>?
                     </h2>
-                    <p class="lead mb-9" data-aos="fade-up" data-aos-delay="140">
+                    <p class="lead mb-9" data-aos="fade-up" data-aos-delay="140" data-i18n="unduh.lead">
                         Pasang berkas APK-nya langsung di perangkat Android. Pastikan ponselmu mendukung ARCore
                         agar fitur pemindaian dan menggambar di ruang AR bisa berjalan.
                     </p>
@@ -551,7 +568,7 @@
                                 <polyline points="7 10 12 15 17 10"></polyline>
                                 <line x1="12" y1="15" x2="12" y2="3"></line>
                             </svg>
-                            Unduh APK versi 3.0
+                            <span data-i18n="hero.ctaDownload">Unduh APK versi 3.0</span>
                         </a>
                         <a href="https://github.com/mulyodwi16/batikARisePortal" target="_blank"
                             rel="noopener noreferrer" class="btn-ghost">
@@ -559,31 +576,33 @@
                                 <path
                                     d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.84 9.49.5.09.68-.22.68-.48 0-.24-.01-.87-.01-1.71-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.89 1.52 2.34 1.08 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.93 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02.8-.22 1.65-.33 2.5-.33s1.7.11 2.5.33c1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.82-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85 0 1.34-.01 2.41-.01 2.74 0 .27.18.58.69.48C19.13 20.17 22 16.42 22 12c0-5.52-4.48-10-10-10z" />
                             </svg>
-                            Repositori
+                            <span data-i18n="unduh.repo">Repositori</span>
                         </a>
                     </div>
                 </div>
 
                 <dl class="grid sm:grid-cols-2 gap-4" data-aos="fade-up" data-aos-delay="160">
+                    <!-- Nilai "Android 8.0+", "3.0", dan "ARCore" sama di kedua bahasa,
+                         jadi sengaja tidak masuk kamus. -->
                     <div class="surface p-6">
-                        <dt class="meta-label mb-2">Platform</dt>
+                        <dt class="meta-label mb-2" data-i18n="unduh.specPlatform">Platform</dt>
                         <dd class="font-heading font-bold text-xl">Android 8.0+</dd>
-                        <dd class="lead text-sm mt-1">API level 26 ke atas</dd>
+                        <dd class="lead text-sm mt-1" data-i18n="unduh.specPlatformNote">API level 26 ke atas</dd>
                     </div>
                     <div class="surface p-6">
-                        <dt class="meta-label mb-2">Versi</dt>
+                        <dt class="meta-label mb-2" data-i18n="unduh.specVersion">Versi</dt>
                         <dd class="font-heading font-bold text-xl">3.0</dd>
-                        <dd class="lead text-sm mt-1">Berkas APK, pasang manual</dd>
+                        <dd class="lead text-sm mt-1" data-i18n="unduh.specVersionNote">Berkas APK, pasang manual</dd>
                     </div>
                     <div class="surface p-6">
-                        <dt class="meta-label mb-2">Teknologi AR</dt>
+                        <dt class="meta-label mb-2" data-i18n="unduh.specAr">Teknologi AR</dt>
                         <dd class="font-heading font-bold text-xl">ARCore</dd>
-                        <dd class="lead text-sm mt-1">Lewat Unity AR Foundation</dd>
+                        <dd class="lead text-sm mt-1" data-i18n="unduh.specArNote">Lewat Unity AR Foundation</dd>
                     </div>
                     <div class="surface p-6">
-                        <dt class="meta-label mb-2">Izin</dt>
-                        <dd class="font-heading font-bold text-xl">Kamera &amp; internet</dd>
-                        <dd class="lead text-sm mt-1">Untuk AR dan sinkronisasi katalog</dd>
+                        <dt class="meta-label mb-2" data-i18n="unduh.specPerms">Izin</dt>
+                        <dd class="font-heading font-bold text-xl" data-i18n="unduh.specPermsValue">Kamera &amp; internet</dd>
+                        <dd class="lead text-sm mt-1" data-i18n="unduh.specPermsNote">Untuk AR dan sinkronisasi katalog</dd>
                     </div>
                 </dl>
             </div>
@@ -596,14 +615,15 @@
             <div class="grid md:grid-cols-3 gap-12 mb-12">
                 <div>
                     <img loading="lazy" decoding="async" src="assets/logo.png" alt="batikARise" class="h-14 w-auto mb-5">
-                    <p class="lead text-sm max-w-xs">
+                    <p class="lead text-sm max-w-xs" data-i18n="footer.about">
                         Aplikasi pembelajaran motif batik berbasis Augmented Reality, dikembangkan sebagai
                         bagian dari penelitian di Politeknik Elektronika Negeri Surabaya.
                     </p>
                 </div>
 
                 <div>
-                    <p class="meta-label mb-5">Tim Peneliti</p>
+                    <!-- Nama anggota tim tidak diterjemahkan. -->
+                    <p class="meta-label mb-5" data-i18n="footer.tim">Tim Peneliti</p>
                     <ul class="space-y-2 text-sm" style="color: var(--muted);">
                         <li>Dr.-Ing. Hestiasari Rante</li>
                         <li>Prof. Iwan Syarif</li>
@@ -615,10 +635,12 @@
                 </div>
 
                 <div>
-                    <p class="meta-label mb-5">Didukung oleh</p>
+                    <p class="meta-label mb-5" data-i18n="footer.support">Didukung oleh</p>
                     <div class="flex gap-5 flex-wrap items-center">
+                        <!-- "Tut Wuri Handayani" & "Diktisaintek Berdampak" adalah nama
+                             program/lambang, jadi alt-nya tidak diterjemahkan. -->
                         <img loading="lazy" decoding="async" src="assets/sponsor1.png" alt="Tut Wuri Handayani" class="support-logo h-14">
-                        <img loading="lazy" decoding="async" src="assets/sponsor2.png" alt="Logo pendukung" class="support-logo h-14">
+                        <img loading="lazy" decoding="async" src="assets/sponsor2.png" data-i18n-attr="alt:footer.sponsorAlt" alt="Logo pendukung" class="support-logo h-14">
                         <img loading="lazy" decoding="async" src="assets/sponsor3.png" alt="Diktisaintek Berdampak" class="support-logo h-14">
                     </div>
                 </div>
@@ -639,12 +661,12 @@
     <div id="lightbox" class="lightbox fixed inset-0 bg-black/95 z-50 items-center justify-center p-4">
         <button onclick="closeLightbox()"
             class="absolute top-6 right-6 text-white text-4xl hover:text-batik-gold transition hover:rotate-90 duration-300 z-50"
-            aria-label="Tutup">
+            data-i18n-attr="aria-label:lightbox.close" aria-label="Tutup">
             &times;
         </button>
         <button onclick="prevLightbox()"
             class="absolute left-4 sm:left-6 top-1/2 -translate-y-1/2 text-white hover:text-batik-gold transition bg-white/10 border border-white/15 w-12 h-12 rounded-full flex items-center justify-center"
-            aria-label="Motif sebelumnya">
+            data-i18n-attr="aria-label:lightbox.prev" aria-label="Motif sebelumnya">
             <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
                 stroke-linejoin="round" viewBox="0 0 24 24">
                 <polyline points="15 18 9 12 15 6"></polyline>
@@ -652,7 +674,7 @@
         </button>
         <button onclick="nextLightbox()"
             class="absolute right-4 sm:right-6 top-1/2 -translate-y-1/2 text-white hover:text-batik-gold transition bg-white/10 border border-white/15 w-12 h-12 rounded-full flex items-center justify-center"
-            aria-label="Motif berikutnya">
+            data-i18n-attr="aria-label:lightbox.next" aria-label="Motif berikutnya">
             <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
                 stroke-linejoin="round" viewBox="0 0 24 24">
                 <polyline points="9 18 15 12 9 6"></polyline>
@@ -667,7 +689,7 @@
                     <path
                         d="M3 5a2 2 0 0 1 2-2h3v2H5v3H3V5zm18 0v3h-2V5h-3V3h3a2 2 0 0 1 2 2zM3 19v-3h2v3h3v2H5a2 2 0 0 1-2-2zm18 0a2 2 0 0 1-2 2h-3v-2h3v-3h2v3zM7 11h10v2H7v-2z" />
                 </svg>
-                Tampilkan untuk dipindai
+                <span data-i18n="lightbox.scanCta">Tampilkan untuk dipindai</span>
             </button>
         </div>
     </div>
@@ -680,16 +702,25 @@
         <p id="scan-caption" class="mt-3 font-heading font-bold text-xl text-center" style="color: #4E342E;"></p>
         <button onclick="closeScanView()"
             class="absolute top-5 right-5 w-12 h-12 rounded-full text-3xl flex items-center justify-center transition"
-            style="color: #4E342E; background: #F5E6D3;" aria-label="Tutup tampilan pindai">
+            style="color: #4E342E; background: #F5E6D3;" data-i18n-attr="aria-label:scan.close"
+            aria-label="Tutup tampilan pindai">
             &times;
         </button>
     </div>
+
+    <!-- Pengumuman pergantian bahasa untuk screen reader (diisi i18n.js). -->
+    <p id="lang-live" class="sr-only" role="status" aria-live="polite"></p>
 
     <!-- AOS Animation Library -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init({ duration: 700, easing: 'ease-out-cubic', once: true, offset: 80 });
     </script>
+
+    <!-- i18n harus sebelum script yang memakai t(). Keduanya sinkron dan duduk di
+         akhir <body>, jadi terjemahan terpasang sebelum frame pertama. -->
+    <script src="assets/i18n/dict.js"></script>
+    <script src="assets/js/i18n.js"></script>
 
     <!-- External JavaScript -->
     <script src="assets/js/batik-gallery.js"></script>
