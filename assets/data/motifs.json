@@ -1,54 +1,69 @@
 {
-  "generatedAt": "seed",
-  "source": "seed-local",
+  "generatedAt": "2026-10-28T08:27:18.196Z",
+  "source": "playfab:MOTIF_LIST",
   "items": [
     {
-      "batikId": "motif-liris",
+      "batikId": "d51232e4-260c-4acd-838a-b0ca1085f3c7",
+      "nama": "hhbbnn",
+      "deskripsi": "hhjjk",
+      "image": "assets/batik/hhbbnn-f5bd43.jpg",
+      "thumb": "assets/batik/thumb/hhbbnn-f5bd43.webp",
+      "artistId": "FFAAD4E1B5D84A2A",
+      "createdAt": "2026-09-29T17:45:57.576Z"
+    },
+    {
+      "batikId": "95e9f998-63e5-4e58-9d21-e8763a630308",
+      "nama": "jhfdtuii",
+      "deskripsi": "yjjggu",
+      "image": "assets/batik/jhfdtuii-5a601f.jpg",
+      "thumb": "assets/batik/thumb/jhfdtuii-5a601f.webp",
+      "artistId": "FFAAD4E1B5D84A2A",
+      "createdAt": "2026-09-29T18:01:30.414Z"
+    },
+    {
+      "batikId": "43272279-19d1-4cbc-915e-925859a87dda",
+      "nama": "test",
+      "deskripsi": "batik ini berasal dari Aaaa",
+      "image": "assets/batik/test-7edd0a.jpg",
+      "thumb": "assets/batik/thumb/test-7edd0a.webp",
+      "artistId": "FFAAD4E1B5D84A2A",
+      "createdAt": "2026-10-02T15:40:17.331Z"
+    },
+    {
+      "batikId": "b765a8e2-065d-422d-9d11-5f4cc4abfd0c",
+      "nama": "Motif Abhiboyo",
+      "deskripsi": "testing description",
+      "image": "assets/batik/motif-abhiboyo-a1c5a3.jpg",
+      "thumb": "assets/batik/thumb/motif-abhiboyo-a1c5a3.webp",
+      "artistId": "FFAAD4E1B5D84A2A",
+      "createdAt": "2026-10-04T03:15:03.817Z"
+    },
+    {
+      "batikId": "4655c095-2e9a-4684-8e10-3f335ee2d432",
+      "nama": "Kembang Bungur",
+      "deskripsi": "Test Description kembang bungur",
+      "image": "assets/batik/kembang-bungur-a8d8ef.jpg",
+      "thumb": "assets/batik/thumb/kembang-bungur-a8d8ef.webp",
+      "artistId": "FFAAD4E1B5D84A2A",
+      "createdAt": "2026-10-04T04:18:12.560Z"
+    },
+    {
+      "batikId": "a1b71f29-9b01-44c7-848d-d9584d1942b2",
+      "nama": "Batik Liris Motif",
+      "deskripsi": "Test Drive Batik Liris",
+      "image": "assets/batik/batik-liris-motif-829062.jpg",
+      "thumb": "assets/batik/thumb/batik-liris-motif-829062.webp",
+      "artistId": "FFAAD4E1B5D84A2A",
+      "createdAt": "2026-10-04T16:49:08.873Z"
+    },
+    {
+      "batikId": "4aac2a46-09ab-4bc1-b9bd-24812edca171",
       "nama": "Motif Liris",
-      "deskripsi": "",
-      "image": "assets/batik/1_MotifLiris.jpg",
-      "artistId": "",
-      "createdAt": ""
-    },
-    {
-      "batikId": "motif-alun-alun-contong",
-      "nama": "Motif Alun-Alun Contong",
-      "deskripsi": "",
-      "image": "assets/batik/2_MotifAlunAlunContong.jpg",
-      "artistId": "",
-      "createdAt": ""
-    },
-    {
-      "batikId": "motif-burung-merak",
-      "nama": "Motif Burung Merak",
-      "deskripsi": "",
-      "image": "assets/batik/3_MotifBurungMerak.jpg",
-      "artistId": "",
-      "createdAt": ""
-    },
-    {
-      "batikId": "motif-sekar-jagad",
-      "nama": "Motif Sekar Jagad",
-      "deskripsi": "",
-      "image": "assets/batik/4_MotifSekarJagad.jpg",
-      "artistId": "",
-      "createdAt": ""
-    },
-    {
-      "batikId": "motif-parang-jabon",
-      "nama": "Motif Parang Jabon",
-      "deskripsi": "",
-      "image": "assets/batik/5_MotifParangJabon.jpg",
-      "artistId": "",
-      "createdAt": ""
-    },
-    {
-      "batikId": "motif-love-putihan",
-      "nama": "Motif Love Putihan",
-      "deskripsi": "",
-      "image": "assets/batik/6_MotifLovePutihan.jpg",
-      "artistId": "",
-      "createdAt": ""
+      "deskripsi": "Motif Liris is the batik from Sidoarjo",
+      "image": "assets/batik/motif-liris-a01d0f.jpg",
+      "thumb": "assets/batik/thumb/motif-liris-a01d0f.webp",
+      "artistId": "FFAAD4E1B5D84A2A",
+      "createdAt": "2026-10-05T03:28:21.476Z"
     }
   ]
 }
