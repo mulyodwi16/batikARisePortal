@@ -1,0 +1,77 @@
+# Menyegarkan katalog motif portal dari PlayFab MOTIF_LIST lalu commit hasilnya.
+#
+# Portal tetap 100% statis: workflow ini yang menjalankan sinkronisasi, bukan
+# browser pengunjung. Jadi tidak ada kredensial di JS sisi klien dan situs tetap
+# jalan walau PlayFab/Supabase down saat demo.
+#
+# Butuh repository secrets PLAYFAB_EMAIL + PLAYFAB_PASSWORD: login anonim ditolak
+# title ini ("PlayerCreationDisabled", errorCode 22000).
+name: Sinkronisasi motif
+
+on:
+  workflow_dispatch:
+  # Harian. Katalog hanya berubah saat ada Batik Artist mengunggah motif baru,
+  # jadi jalur utama untuk refresh cepat tetap workflow_dispatch.
+  schedule:
+    - cron: '17 3 * * *'
+
+permissions:
+  contents: write
+
+# Dua run bersamaan akan saling menimpa commit gambar. Jangan batalkan yang
+# sedang jalan: pembatalan di tengah bisa meninggalkan assets/batik/ separuh.
+concurrency:
+  group: sync-motifs
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    # Fork tidak punya secrets, jadi jadwalnya cuma akan gagal tiap hari.
+    if: github.repository == 'mulyodwi16/batikARisePortal'
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # downloads/ berisi APK ~62 MB yang tidak dipakai sinkronisasi.
+          sparse-checkout: |
+            /*
+            !/downloads
+          sparse-checkout-cone-mode: false
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+
+      # Versi dikunci: encoder Pillow yang berbeda akan menulis ulang SEMUA blob
+      # gambar sekali, menghasilkan commit raksasa tanpa perubahan isi.
+      - run: pip install "Pillow==12.*"
+
+      - name: Ambil katalog dari PlayFab
+        env:
+          PLAYFAB_EMAIL: ${{ secrets.PLAYFAB_EMAIL }}
+          PLAYFAB_PASSWORD: ${{ secrets.PLAYFAB_PASSWORD }}
+        run: node tools/sync-motifs.mjs
+
+      # --force wajib: tanpa itu JPEG progressive hasil unggahan artist dianggap
+      # "sudah optimal" dan file mentah ~1 MB ikut ter-commit.
+      - name: Kompresi + thumbnail
+        run: python tools/optimize-images.py --force
+
+      - name: Commit kalau ada perubahan
+        run: |
+          # Dibatasi ke path yang memang ditulis skrip, supaya `git commit` tidak
+          # pernah gagal karena perubahan tak terduga di tempat lain.
+          if [ -z "$(git status --porcelain -- assets/batik assets/data)" ]; then
+            echo "Katalog tidak berubah, tidak ada yang di-commit."
+            exit 0
+          fi
+          git config user.name  'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add assets/batik assets/data
+          git commit -m 'chore(sync): segarkan katalog motif dari PlayFab'
+          git push

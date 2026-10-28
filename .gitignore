@@ -17,3 +17,6 @@ npm-debug.log*
 # Temporary files
 *.tmp
 .temp/
+
+# Kredensial sinkronisasi PlayFab (di CI dipasok lewat GitHub Secrets)
+.env

@@ -6,8 +6,9 @@
   "scripts": {
     "build": "tailwindcss -i ./src/input.css -o ./src/output.css",
     "watch": "tailwindcss -i ./src/input.css -o ./src/output.css --watch",
-    "sync": "node tools/sync-motifs.mjs",
-    "optimize": "python tools/optimize-images.py",
+    "sync": "node tools/sync-motifs.mjs && python tools/optimize-images.py --force",
+    "sync:only": "node tools/sync-motifs.mjs",
+    "optimize": "python tools/optimize-images.py --force",
     "serve": "node --eval \"import('node:http').then(h=>import('node:fs').then(f=>import('node:path').then(p=>h.createServer((q,s)=>{let fp=p.join(process.cwd(),decodeURIComponent(q.url.split('?')[0]));if(fp.endsWith('/')||!p.extname(fp))fp=p.join(fp,'index.html');f.readFile(fp,(e,d)=>{if(e){s.statusCode=404;return s.end('404')}const t={'.html':'text/html','.js':'text/javascript','.json':'application/json','.png':'image/png','.jpg':'image/jpeg','.webp':'image/webp','.css':'text/css'}[p.extname(fp)]||'application/octet-stream';s.setHeader('content-type',t);s.end(d)})}).listen(5173,()=>console.log('http://localhost:5173')))))\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

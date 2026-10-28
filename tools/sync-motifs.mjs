@@ -1,19 +1,25 @@
 #!/usr/bin/env node
 // Sinkronisasi katalog motif portal dari PlayFab MOTIF_LIST (sumber yang sama
-// dengan aplikasi Unity). Dijalankan manual/di CI tiap motif berubah.
+// dengan aplikasi Unity). Dijalankan GitHub Actions tiap hari + bisa manual.
 //
-// Alurnya persis seperti user biasa di aplikasi:
-//   1. Login PlayFab (akun yang sudah ada, guest-creation dimatikan di title ini).
+// Alurnya:
+//   1. Login PlayFab dengan akun terdaftar. Login anonim TIDAK bisa dipakai:
+//      title ini menolak LoginWithCustomID dengan "PlayerCreationDisabled"
+//      (errorCode 22000), jadi email/password wajib ada.
 //   2. GetTitleData(MOTIF_LIST) -> daftar motif global semua Batik Artist.
 //   3. Tiap imageUrl di-resolve: URL http(s) lama dipakai langsung; path Supabase
 //      ditukar signed URL lewat Edge Function get-download-url (butuh ticket).
-//   4. Download tiap gambar ke assets/batik/ dan tulis assets/data/motifs.json.
+//   4. Download tiap gambar ke assets/batik/, buang file yang sudah tak dirujuk,
+//      lalu tulis assets/data/motifs.json.
 //
-// Portal (script.js) cuma membaca motifs.json -> tetap 100% statis & anti-gagal
-// saat demo, tapi isinya identik dengan yang dilihat user di aplikasi.
+// Portal cuma membaca motifs.json -> tetap 100% statis & anti-gagal saat demo,
+// tapi isinya identik dengan yang dilihat user di aplikasi.
 //
-// Pemakaian (PowerShell/bash):
-//   PLAYFAB_EMAIL=you@example.com PLAYFAB_PASSWORD=secret node tools/sync-motifs.mjs
+// WAJIB dilanjutkan `npm run optimize`: langkah 4 menyimpan gambar MENTAH dari
+// Supabase (~1 MB/motif) dan belum membuat thumbnail yang dirujuk field `thumb`.
+//
+// Pemakaian:
+//   isi .env (lihat .env.example), lalu `npm run sync`
 //
 // Env opsional:
 //   PLAYFAB_TITLE_ID   (default 116550)
@@ -21,8 +27,9 @@
 //   SUPABASE_ANON_KEY  (default anon key publik aplikasi)
 //   TITLE_DATA_KEY     (default MOTIF_LIST)
 
-import { writeFile, mkdir } from 'node:fs/promises';
+import { writeFile, readFile, mkdir, readdir, unlink } from 'node:fs/promises';
 import { createWriteStream } from 'node:fs';
+import { createHash } from 'node:crypto';
 import { pipeline } from 'node:stream/promises';
 import { Readable } from 'node:stream';
 import { fileURLToPath } from 'node:url';
@@ -31,7 +38,11 @@ import { dirname, join, extname } from 'node:path';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..');
 const IMG_DIR = join(ROOT, 'assets', 'batik');
+const THUMB_DIR = join(IMG_DIR, 'thumb');
 const DATA_FILE = join(ROOT, 'assets', 'data', 'motifs.json');
+
+// Di lokal kredensial datang dari .env; di CI dari GitHub Secrets (tanpa file).
+try { process.loadEnvFile(join(ROOT, '.env')); } catch { /* tanpa .env: pakai env proses */ }
 
 const TITLE_ID = process.env.PLAYFAB_TITLE_ID || '116550';
 const EMAIL = process.env.PLAYFAB_EMAIL;
@@ -62,9 +73,20 @@ function extFromPath(p) {
     return ['.jpg', '.jpeg', '.png', '.webp'].includes(e) ? e : '.jpg';
 }
 
+// Nama file sengaja TIDAK memakai prefiks indeks: indeks bergeser setiap ada
+// motif disisipkan/dihapus, sehingga seluruh gambar tertulis ulang di git tiap
+// sinkronisasi. Suffiks hash batikId menjaga nama tetap unik kalau dua motif
+// kebetulan bernama sama.
+function baseNameFor(m) {
+    const hash = createHash('sha1').update(String(m.batikId || m.nama || '')).digest('hex').slice(0, 6);
+    return slugify(m.nama) + '-' + hash;
+}
+
 async function playfabLogin() {
     if (!EMAIL || !PASSWORD) {
-        die('Set PLAYFAB_EMAIL dan PLAYFAB_PASSWORD (akun PlayFab yang sudah terdaftar).');
+        die('Set PLAYFAB_EMAIL dan PLAYFAB_PASSWORD (lihat .env.example).\n'
+            + '  Login anonim tidak tersedia: title ini menolak LoginWithCustomID\n'
+            + '  dengan "PlayerCreationDisabled" (errorCode 22000).');
     }
     const res = await fetch(`https://${TITLE_ID}.playfabapi.com/Client/LoginWithEmailAddress`, {
         method: 'POST',
@@ -123,28 +145,58 @@ async function downloadTo(url, destPath) {
     await pipeline(Readable.fromWeb(res.body), createWriteStream(destPath));
 }
 
+async function readExistingItems() {
+    try {
+        const parsed = JSON.parse(await readFile(DATA_FILE, 'utf8'));
+        return Array.isArray(parsed.items) ? parsed.items : null;
+    } catch {
+        return null;
+    }
+}
+
+// Buang gambar yang tak lagi dirujuk katalog (motif dihapus artist, atau sisa
+// skema nama lama). Tanpa ini assets/batik/ hanya tumbuh.
+async function pruneStale(dir, keepNames) {
+    let entries;
+    try { entries = await readdir(dir, { withFileTypes: true }); } catch { return []; }
+    const removed = [];
+    for (const e of entries) {
+        if (!e.isFile() || e.name.startsWith('.')) continue;
+        if (keepNames.has(e.name)) continue;
+        await unlink(join(dir, e.name));
+        removed.push(e.name);
+    }
+    return removed;
+}
+
 async function main() {
-    await mkdir(IMG_DIR, { recursive: true });
+    await mkdir(THUMB_DIR, { recursive: true });
     await mkdir(dirname(DATA_FILE), { recursive: true });
 
     const ticket = await playfabLogin();
     const motifs = await getMotifList(ticket);
 
     const out = [];
+    const keepImages = new Set();
+    const keepThumbs = new Set();
+
     for (let i = 0; i < motifs.length; i++) {
         const m = motifs[i];
-        const batikId = m.batikId || slugify(m.nama) + '-' + i;
-        const localName = String(i + 1).padStart(2, '0') + '_' + slugify(m.nama) + extFromPath(m.imageUrl);
-        const localRel = 'assets/batik/' + localName;
+        const base = baseNameFor(m);
+        const fileName = base + extFromPath(m.imageUrl);
+        const thumbName = base + '.webp';
         try {
             const url = await resolveImageUrl(m.imageUrl, ticket);
-            await downloadTo(url, join(IMG_DIR, localName));
-            console.log(`[sync-motifs] (${i + 1}/${motifs.length}) ${m.nama} -> ${localRel}`);
+            await downloadTo(url, join(IMG_DIR, fileName));
+            console.log(`[sync-motifs] (${i + 1}/${motifs.length}) ${m.nama} -> assets/batik/${fileName}`);
+            keepImages.add(fileName);
+            keepThumbs.add(thumbName);
             out.push({
-                batikId,
+                batikId: m.batikId || base,
                 nama: m.nama || 'Motif Batik',
                 deskripsi: m.deskripsi || '',
-                image: localRel,
+                image: 'assets/batik/' + fileName,
+                thumb: 'assets/batik/thumb/' + thumbName,
                 artistId: m.artistId || '',
                 createdAt: m.createdAt || ''
             });
@@ -155,14 +207,31 @@ async function main() {
 
     if (out.length === 0) die('Tak ada motif yang berhasil diunduh.');
 
-    const payload = {
-        generatedAt: new Date().toISOString(),
-        source: 'playfab:' + TITLE_DATA_KEY,
-        items: out
-    };
-    await writeFile(DATA_FILE, JSON.stringify(payload, null, 2) + '\n', 'utf8');
-    console.log(`\n[sync-motifs] Selesai. ${out.length} motif ditulis ke assets/data/motifs.json`);
-    console.log('[sync-motifs] Jalankan `npm run optimize`. Gambar hasil unduh masih mentah (~1 MB/motif).');
+    const removed = [
+        ...await pruneStale(IMG_DIR, keepImages),
+        ...await pruneStale(THUMB_DIR, keepThumbs)
+    ];
+    for (const n of removed) console.log(`[sync-motifs] buang file tak terpakai: ${n}`);
+
+    // `generatedAt` sengaja hanya diperbarui saat `items` benar-benar berubah.
+    // Kalau selalu ditulis, CI harian akan menghasilkan commit kosong terus.
+    const existing = await readExistingItems();
+    if (existing && JSON.stringify(existing) === JSON.stringify(out)) {
+        console.log(`\n[sync-motifs] Selesai. ${out.length} motif, katalog tidak berubah`
+            + ' (motifs.json tidak ditulis ulang).');
+    } else {
+        await writeFile(DATA_FILE, JSON.stringify({
+            generatedAt: new Date().toISOString(),
+            source: 'playfab:' + TITLE_DATA_KEY,
+            items: out
+        }, null, 2) + '\n', 'utf8');
+        const delta = existing ? out.length - existing.length : out.length;
+        console.log(`\n[sync-motifs] Selesai. ${out.length} motif ditulis ke assets/data/motifs.json`
+            + (existing ? ` (${delta >= 0 ? '+' : ''}${delta} dari sebelumnya)` : ''));
+    }
+
+    console.log('[sync-motifs] Lanjutkan `npm run optimize` — gambar hasil unduh masih mentah'
+        + ' dan thumbnail belum dibuat.');
 }
 
 main().catch(e => die(e.stack || e.message));
