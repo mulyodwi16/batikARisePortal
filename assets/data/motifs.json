@@ -1,15 +1,114 @@
 {
-  "generatedAt": "2026-11-14T16:56:07.867Z",
+  "generatedAt": "2026-11-14T18:45:44.484Z",
   "source": "playfab:MOTIF_LIST",
   "items": [
     {
       "batikId": "4aac2a46-09ab-4bc1-b9bd-24812edca171",
-      "nama": "Motif Liris",
+      "nama": "Liris Motif",
       "deskripsi": "The Liris batik motif symbolizes perseverance and resilience in facing life's hardships, enduring both rain and scorching heat. Married couples, especially newlyweds, should be courageous and willing to live simply and endure hardships together. When faced with various obstacles and challenges, they should not complain. Instead, they must face and overcome every difficulty together through mutual support and cooperation.",
-      "image": "assets/batik/motif-liris-a01d0f.jpg",
-      "thumb": "assets/batik/thumb/motif-liris-a01d0f.webp",
+      "image": "assets/batik/liris-motif-a01d0f.jpg",
+      "thumb": "assets/batik/thumb/liris-motif-a01d0f.webp",
       "artistId": "FFAAD4E1B5D84A2A",
       "createdAt": "2026-10-05T03:28:21.476Z"
+    },
+    {
+      "batikId": "4e1258d8-df9a-42e3-8b3b-68a7f52cdfd0",
+      "nama": "Alun Alun Contong Motif",
+      "deskripsi": "The Alun-Alun Contong motif features a cone-like shape, symbolizing the story of two roads converging into one, resembling a funnel. Historically, during the Indonesian struggle for independence in 1945, two major clashes took place at Alun-Alun Contong between Indonesian Republican youth fighters and British soldiers. In commemoration of these events, a monument depicting a freedom fighter carrying a traditional bamboo spear (bambu runcing) was erected.",
+      "image": "assets/batik/alun-alun-contong-motif-2bbecd.jpg",
+      "thumb": "assets/batik/thumb/alun-alun-contong-motif-2bbecd.webp",
+      "artistId": "FFAAD4E1B5D84A2A",
+      "createdAt": "2026-11-14T18:29:52.525Z"
+    },
+    {
+      "batikId": "630a2466-e646-4e2a-b71f-d41764bdb668",
+      "nama": "Peacock Motif",
+      "deskripsi": "The Peacock batik motif is characterized by the depiction of a peacock spreading its beautiful, long tail feathers. As one of the most exotic birds in the world, the peacock symbolizes eternal beauty, representing the wearer's timeless elegance and beauty.",
+      "image": "assets/batik/peacock-motif-e40058.jpg",
+      "thumb": "assets/batik/thumb/peacock-motif-e40058.webp",
+      "artistId": "FFAAD4E1B5D84A2A",
+      "createdAt": "2026-11-14T18:30:47.160Z"
+    },
+    {
+      "batikId": "ff74a844-377e-4524-8864-56c8b59b3a50",
+      "nama": "Sekar Jagad",
+      "deskripsi": "The Sekar Jagad batik motif symbolizes beauty and elegance, captivating those who see it with its charm and diversity. The name Sekar Jagad is derived from a combination of two languages: KAART, which means “map” in Dutch, and JAGAD, which means “world” in Javanese. Therefore, this motif also represents the diversity of batik patterns found throughout Indonesia and around the world.",
+      "image": "assets/batik/sekar-jagad-2303e6.jpg",
+      "thumb": "assets/batik/thumb/sekar-jagad-2303e6.webp",
+      "artistId": "FFAAD4E1B5D84A2A",
+      "createdAt": "2026-11-14T18:32:58.881Z"
+    },
+    {
+      "batikId": "86c8ef99-44ad-4cf2-b78a-bb2dbb7bd7ca",
+      "nama": "Parang Jabon Motif",
+      "deskripsi": "The Parang Njabon batik motif features three bright colors: vibrant red, yellow, and ivory white. This Parang motif conveys a message of perseverance and determination, symbolizing the spirit of never giving up, like ocean waves that never cease to move. It also represents an unbroken connection, reflecting continuous efforts toward self-improvement, the pursuit of prosperity, and the enduring bonds of family.",
+      "image": "assets/batik/parang-jabon-motif-51ca68.jpg",
+      "thumb": "assets/batik/thumb/parang-jabon-motif-51ca68.webp",
+      "artistId": "FFAAD4E1B5D84A2A",
+      "createdAt": "2026-11-14T18:34:32.263Z"
+    },
+    {
+      "batikId": "4f6d444f-e366-4207-b6a6-32cf4249d0f1",
+      "nama": "Love Putihan Motif",
+      "deskripsi": "The Love Putihan batik motif features patterns resembling heart symbols. Combined with its bright colors, this batik fabric creates a cheerful and vibrant appearance, emphasizing the heart as a symbol of love and affection.",
+      "image": "assets/batik/love-putihan-motif-be1b76.jpg",
+      "thumb": "assets/batik/thumb/love-putihan-motif-be1b76.webp",
+      "artistId": "FFAAD4E1B5D84A2A",
+      "createdAt": "2026-11-14T18:35:12.532Z"
+    },
+    {
+      "batikId": "3ae45c33-6c68-4628-b80b-510b6c5ce304",
+      "nama": "Abhiboyo Motif",
+      "deskripsi": "The Abhi Boyo batik motif combines two elements: Abhi, meaning bravery, and Boyo, meaning crocodile, one of Surabaya's most recognizable symbols. The motif represents the courageous and heroic spirit of the people of Surabaya. It also reflects the characteristics of a person who is honest, well-mannered, responsible, and fearless in facing challenges.",
+      "image": "assets/batik/abhiboyo-motif-2c9c6e.jpg",
+      "thumb": "assets/batik/thumb/abhiboyo-motif-2c9c6e.webp",
+      "artistId": "FFAAD4E1B5D84A2A",
+      "createdAt": "2026-11-14T18:35:52.659Z"
+    },
+    {
+      "batikId": "4e3e40e3-a9ef-4e4a-8a28-0429398a9036",
+      "nama": "Sparkling Motif",
+      "deskripsi": "The Sparkling batik motif is inspired by the Sparkling Dance of Surabaya, which combines traditional and modern dance elements. The dance represents the beauty, agility, and dynamic spirit of the younger generation of Surabaya. This motif symbolizes the city's vibrant character, creativity, and ability to embrace modern developments while preserving its cultural heritage.",
+      "image": "assets/batik/sparkling-motif-01080e.jpg",
+      "thumb": "assets/batik/thumb/sparkling-motif-01080e.webp",
+      "artistId": "FFAAD4E1B5D84A2A",
+      "createdAt": "2026-11-14T18:36:12.211Z"
+    },
+    {
+      "batikId": "cbaac5b8-65f2-414e-8398-0bcde6e4b424",
+      "nama": "Remo Suroboyoan Motif",
+      "deskripsi": "The Remo Suroboyoan batik motif is inspired by the traditional Remo Dance, a cultural performance originating from East Java and strongly associated with Surabaya. The dance depicts the courage and determination of a prince preparing for battle. This motif symbolizes bravery, perseverance, patriotism, and the heroic spirit of the people of Surabaya.",
+      "image": "assets/batik/remo-suroboyoan-motif-f6a5c6.jpg",
+      "thumb": "assets/batik/thumb/remo-suroboyoan-motif-f6a5c6.webp",
+      "artistId": "FFAAD4E1B5D84A2A",
+      "createdAt": "2026-11-14T18:36:45.783Z"
+    },
+    {
+      "batikId": "105e2171-5234-4a29-9789-487d643a6a93",
+      "nama": "Bungur Flower Motif",
+      "deskripsi": "The Kembang Bungur batik motif is characterized by the beautiful blossoms of the Bungur flower, which grows abundantly in Surabaya. The blooming flowers symbolize the cultural richness and distinctive character of the people of Surabaya, who value openness, equality, tolerance, and solidarity. This motif reflects the beauty of diversity and the importance of maintaining harmonious relationships within society.",
+      "image": "assets/batik/bungur-flower-motif-93ae1c.jpg",
+      "thumb": "assets/batik/thumb/bungur-flower-motif-93ae1c.webp",
+      "artistId": "FFAAD4E1B5D84A2A",
+      "createdAt": "2026-11-14T18:37:25.384Z"
+    },
+    {
+      "batikId": "b889ebb0-818a-41c6-9967-a90f24cf7050",
+      "nama": "Kintir Kintiran Motif",
+      "deskripsi": "The Kintir-Kintiran batik motif represents Surabaya, a city surrounded by several rivers. Its flowing and curved patterns symbolize the movement of water, reflecting the adaptability of the people of Surabaya (Arek-Arek Suroboyo) in following the changing times. The motif also incorporates elements representing mangrove roots, the Suro and Boyo symbols, and clover leaves, which represent love and harmony. Overall, it symbolizes adaptability, determination, loyalty, and the spirit of overcoming l",
+      "image": "assets/batik/kintir-kintiran-motif-f76e12.jpg",
+      "thumb": "assets/batik/thumb/kintir-kintiran-motif-f76e12.webp",
+      "artistId": "FFAAD4E1B5D84A2A",
+      "createdAt": "2026-11-14T18:38:36.203Z"
+    },
+    {
+      "batikId": "ca930e46-2d25-4a51-9db9-9d0053af0c02",
+      "nama": "Gembili Wonokromo Motif",
+      "deskripsi": "The Gembili Wonokromo batik motif is inspired by the everyday atmosphere of Gembili Street in the Wonokromo district of Surabaya. It illustrates the vibrant activities of local communities, including traditional markets, street vendors, bicycle rickshaws, food sellers, and other forms of traditional commerce. This motif represents the warmth of community life, local wisdom, cultural heritage, and the simplicity of everyday life in Surabaya.",
+      "image": "assets/batik/gembili-wonokromo-motif-f3d5a6.jpg",
+      "thumb": "assets/batik/thumb/gembili-wonokromo-motif-f3d5a6.webp",
+      "artistId": "FFAAD4E1B5D84A2A",
+      "createdAt": "2026-11-14T18:38:59.730Z"
     }
   ]
 }
