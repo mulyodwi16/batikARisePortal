@@ -121,6 +121,12 @@ window.I18N = {
         'unduh.specPermsValue': 'Kamera & internet',
         'unduh.specPermsNote': 'Untuk AR dan sinkronisasi katalog',
 
+        // -- Survey (sementara, untuk demo ISART Digital) --------------------
+        'survey.label': 'Survei',
+        'survey.title': 'Isi survei batikARise',
+        'survey.lead': 'Terima kasih sudah mencoba batikARise. Pindai QR atau buka tautannya untuk mengisi survei singkat.',
+        'survey.cta': 'Buka survei',
+
         // -- Footer ----------------------------------------------------------
         'footer.about': 'Aplikasi pembelajaran motif batik berbasis Augmented Reality, dikembangkan sebagai bagian dari penelitian di Politeknik Elektronika Negeri Surabaya.',
         'footer.tim': 'Tim Peneliti',
@@ -266,6 +272,12 @@ window.I18N = {
         'unduh.specPerms': 'Permissions',
         'unduh.specPermsValue': 'Camera & internet',
         'unduh.specPermsNote': 'For AR and catalogue sync',
+
+        // -- Survey (temporary, for the ISART Digital demo) ------------------
+        'survey.label': 'Survey',
+        'survey.title': 'Take the batikARise survey',
+        'survey.lead': 'Thanks for trying batikARise. Scan the QR or open the link to fill in a short survey.',
+        'survey.cta': 'Open the survey',
 
         // -- Footer ----------------------------------------------------------
         'footer.about': 'An Augmented Reality batik motif learning app, developed as part of research at Politeknik Elektronika Negeri Surabaya.',

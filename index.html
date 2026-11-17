@@ -98,6 +98,7 @@
                     <li><a href="#cara" class="nav-link text-sm" data-i18n="nav.cara">Cara Pakai</a></li>
                     <li><a href="#kustomisasi" class="nav-link text-sm" data-i18n="nav.kustomisasi">Kustomisasi</a></li>
                     <li><a href="#galeri" class="nav-link text-sm" data-i18n="nav.galeri">Galeri</a></li>
+                    <li><a href="#survey" class="nav-link text-sm" data-i18n="survey.label">Survei</a></li>
                     <li>
                         <!-- Label ditulis dalam bahasanya sendiri, jadi sengaja di luar kamus. -->
                         <div class="lang-switch" role="group" data-i18n-attr="aria-label:nav.langGroup"
@@ -123,6 +124,7 @@
                 <a href="#cara" class="block font-medium" data-i18n="nav.cara">Cara Pakai</a>
                 <a href="#kustomisasi" class="block font-medium" data-i18n="nav.kustomisasi">Kustomisasi</a>
                 <a href="#galeri" class="block font-medium" data-i18n="nav.galeri">Galeri</a>
+                <a href="#survey" class="block font-medium" data-i18n="survey.label">Survei</a>
                 <div class="lang-switch mt-3" role="group" data-i18n-attr="aria-label:nav.langGroup"
                     aria-label="Bahasa / Language">
                     <button type="button" data-lang="id" aria-pressed="true">Indonesia</button>
@@ -610,6 +612,29 @@
                         <dd class="lead text-sm mt-1" data-i18n="unduh.specPermsNote">Untuk AR dan sinkronisasi katalog</dd>
                     </div>
                 </dl>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== Survei (sementara, untuk demo ISART Digital) ===== -->
+    <section id="survey" class="relative py-24 bg-batik-ink-soft overflow-hidden">
+        <div class="max-w-3xl mx-auto px-6 lg:px-8 relative z-10 text-center">
+            <span class="meta-label mb-4 inline-block" data-aos="fade-up" data-i18n="survey.label">Survei</span>
+            <h2 class="display text-4xl sm:text-5xl mb-5" data-aos="fade-up" data-aos-delay="80"
+                data-i18n="survey.title">Isi survei batikARise</h2>
+            <p class="lead mb-10 max-w-xl mx-auto" data-aos="fade-up" data-aos-delay="140"
+                data-i18n="survey.lead">Terima kasih sudah mencoba batikARise. Pindai QR atau buka tautannya untuk
+                mengisi survei singkat.</p>
+
+            <div class="flex flex-col items-center gap-6" data-aos="fade-up" data-aos-delay="200">
+                <a href="surveyISARTDigital/" class="surface p-5 inline-block rounded-2xl"
+                    aria-label="batikarise.me/surveyISARTDigital">
+                    <img src="assets/survey-qr.png" alt="QR survei batikARise"
+                        width="240" height="240" class="w-56 h-56 rounded-lg bg-white">
+                </a>
+                <a href="surveyISARTDigital/" class="btn-primary" data-i18n="survey.cta">Buka survei</a>
+                <a href="surveyISARTDigital/" class="font-mono text-sm tracking-tight hover:text-batik-gold transition"
+                    style="color: var(--muted);">batikarise.me/surveyISARTDigital</a>
             </div>
         </div>
     </section>
